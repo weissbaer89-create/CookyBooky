@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register – Großmutters Kochbuch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=IM+Fell+English:ital@0;1&family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .register-intro {
+      text-align: center;
+      font-family: var(--font-italic);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--warm-brown);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .register-divider {
+      text-align: center;
+      color: var(--gold);
+      letter-spacing: 0.4rem;
+      margin: 1.5rem 0;
+    }
+    .measures-section {
+      background: rgba(184,134,11,0.06);
+      border: 1px solid rgba(184,134,11,0.3);
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    .measures-section h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--dark-brown);
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .measures-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.3rem;
+    }
+    .measure-item {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      padding: 0.2rem 0;
+      border-bottom: 1px dotted rgba(184,134,11,0.3);
+      display: flex;
+      gap: 0.5rem;
+    }
+    .measure-name { color: var(--warm-brown); font-style: italic; min-width: 120px; }
+    .wisdom-section { margin-top: 2rem; }
+    .wisdom-section h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--dark-brown);
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .wisdom-item {
+      font-family: var(--font-italic);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--ink);
+      line-height: 1.65;
+      margin-bottom: 0.6rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .wisdom-item::before {
+      content: '☙';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+    .hidden-entry { display: none; }
+    .no-results {
+      text-align: center;
+      font-family: var(--font-italic);
+      font-style: italic;
+      color: var(--warm-brown);
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="nav-ornament">❧</span>
+      <a href="index.html">Großmutters Kochbuch</a>
+      <span class="nav-ornament">❧</span>
+    </div>
+    <button class="burger" id="burgerBtn" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="navMenu">
+      <ul class="nav-list">
+        <li class="nav-item has-submenu">
+          <a href="#">🍲 Vorspeisen</a>
+          <ul class="submenu">
+            <li><a href="rezept.html">Rindsuppe mit Grießknödel</a></li>
+            <li><a href="rezept.html">Liptauer Aufstrich</a></li>
+            <li><a href="rezept.html">Gebeizter Lachs</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-submenu">
+          <a href="#">🥩 Hauptspeisen</a>
+          <ul class="submenu">
+            <li><a href="rezept.html">Wiener Schnitzel</a></li>
+            <li><a href="rezept.html">Tafelspitz mit Cremespinat</a></li>
+            <li><a href="rezept.html">Zwiebelrostbraten</a></li>
+            <li><a href="rezept.html">Gefüllte Paprika</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-submenu">
+          <a href="#">🥗 Beilagen</a>
+          <ul class="submenu">
+            <li><a href="rezept.html">Erdäpfelpüree</a></li>
+            <li><a href="rezept.html">Semmelknödel</a></li>
+            <li><a href="rezept.html">Gurkensalat</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-submenu">
+          <a href="#">🍰 Mehlspeisen</a>
+          <ul class="submenu">
+            <li><a href="rezept.html">Apfelstrudel</a></li>
+            <li><a href="rezept.html">Kaiserschmarrn</a></li>
+            <li><a href="rezept.html">Sachertorte</a></li>
+            <li><a href="rezept.html">Buchteln mit Vanillesauce</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-submenu">
+          <a href="#">🥒 Eingemachtes</a>
+          <ul class="submenu">
+            <li><a href="rezept.html">Erdbeermarmelade</a></li>
+            <li><a href="rezept.html">Essiggurken</a></li>
+            <li><a href="rezept.html">Zwetschkenröster</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="register.html">📖 Register</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="index.html">Inhaltsverzeichnis</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>Alphabetisches Register</span>
+  </nav>
+
+  <!-- REGISTER -->
+  <main class="register-page">
+
+    <h1 class="register-title">Alphabetisches Register</h1>
+    <p class="register-subtitle">Aller Gerichte, Zutaten und Küchenbegriffe dieses Buches</p>
+
+    <p class="register-intro">
+      Hier finden Sie alle Rezepte und wichtige Begriffe alphabetisch geordnet.<br>
+      Die Seitenzahl verweist auf das vollständige Rezept im Buch.
+    </p>
+
+    <!-- SUCHE -->
+    <div class="register-search">
+      <input type="text" id="searchInput" placeholder="Gericht suchen …" aria-label="Gericht suchen">
+      <button onclick="searchRegister()">Suchen</button>
+    </div>
+
+    <!-- ALPHA NAVIGATION -->
+    <nav class="alpha-nav" aria-label="Buchstabennavigation">
+      <a href="#A">A</a><a href="#B">B</a><a href="#C">C</a><a href="#D">D</a>
+      <a href="#E">E</a><a href="#F">F</a><a href="#G">G</a><a href="#H">H</a>
+      <a href="#I">I</a><a href="#J">J</a><a href="#K">K</a><a href="#L">L</a>
+      <a href="#M">M</a><a href="#N">N</a><a href="#O">O</a><a href="#P">P</a>
+      <a href="#Q">Q</a><a href="#R">R</a><a href="#S">S</a><a href="#T">T</a>
+      <a href="#U">U</a><a href="#V">V</a><a href="#W">W</a><a href="#Z">Z</a>
+    </nav>
+
+    <div class="register-divider">— ✦ —</div>
+
+    <!-- REGISTER EINTRÄGE -->
+    <div id="registerContent">
+
+      <div class="register-section" id="A">
+        <div class="register-letter">A</div>
+        <ul class="register-entries">
+          <li><a href="rezept.html"><span>Apfelstrudel</span><span class="reg-page">53</span></a></li>
+          <li><a href="rezept.html"><span>Apfelstrudel, gedeckter</span><span class="reg-page">55</span></a></li>
+          <li><a href="rezept.html"><span>Auflauf, Grieß-</span><span class="reg-page">75</span></a></li>
+        </ul>
+      </div>
+
+      <div class="register-section" id="B">
+        <div class="register-letter">B</div>
+        <ul class="register-entries">
+          <li><a href="rezept.html"><span>Buchteln mit Vanillesauce</span><span class="reg-page">71</span></a></li>
+          <li><a href="rezept.html"><span>Beuschel, Wiener</span><span class="reg-page">29</span></a></li>
+          <li><a href="rezept.html"><span>Butterschmalz, selbst gemacht</span><span class="reg-page">91</span></a></li>
+          <li><a href="rezept.html"><span>Brühe, klare Rind-</span><span class="reg-page">3</span></a></li>
+        </ul>
+      </div>
+
+      <div class="register-section" id="E">
+        <div class="register-letter">E</div>
+        <ul class="register-entries">
+          <li><a href="rezept.html"><span>Erdäpfelpüree</span><span class="reg-page">41</span></a></li>
+          <li><a href="rezept.html"><span>Erdäpfelgulasch</span><span class="reg-page">35</span></a></li>
+          <li><a href="rezept.html"><span>Erdbeermarmelade</span><span class="reg-page">79</span></a></li>
+          <li><a href="rezept.html"><span>Essiggurken, eingelegt</span><span class="reg-page">83</span></a></li>
+        </ul>
+      </div>
+
+      <div class="register-section" id="G">
+        <div class="register-letter">G</div>
+        <ul class="register-entries">
+          <li><a href="rezept.html"><span>Gebeizter Lachs</span><span class="reg-page">9</span></a></li>
+          <li><a href="rezept.html"><span>Gefüllte Paprika</span><span class="reg-page">33</span></a></li>
+          <li><a href="rezept.html"><span>Grießknödel</span><span class="reg-page">5</span></a></li>
+          <li><a href="rezept.html"><span>Gulasch, Rinds-</span><span class="reg-page">25</span></a></li>
+          <li><a href="rezept.html"><span>Gurkensalat, Wiener</span><span class="reg-page">47</span></a></li>
+        </ul>
+      </div>
+
+      <div class="register-section" id="K">
+        <div class="register-letter">K</div>
+        <ul class="register-entries">
+          <li><a href="rezept.html"><span>Kaiserschmarrn</span><span class="reg-page">59</span></a></li>
+          <li><a href="rezept.html"><span>Knödel, Semmel-</span><span class="reg-page">43</span></a></li>
+          <li><a href="rezept.html"><span>Knödel, Speck-</span><span class="reg-page">45</span></a></li>
+          <li><a href="rezept.html"><span>Krapfen, Faschings-</span><span class="reg-page">67</span></a></li>
+          <li><a href="rezept.html"><span>Krautfleckerl</span><span class="reg-page">37</span></a></li>
+        </ul>
+      </div>
+
+      <div class="register-section" id="L">
+        <div class="register-letter">L</div>
+        <ul class="register-entries">
+          <li><a href="rezept.html"><span>Lachs, gebeizt</span><span class="reg-page">9</span></a></li>
+          <li><a href="rezept.html"><span>Linzertorte</span><span class="reg-page">69</span></a></li>
+          <li><a href="rezept.html"><span>Liptauer Aufstrich</span><span class="reg-page">7</span></a></li>
+        </ul>
+      </div>
+
+      <div class="register-section" id="M">
+        <div class="register-letter">M</div>
+        <ul class="register-entries">
+          <li><a href="rezept.html"><span>Marmelade, Erdbeer-</span><span class="reg-page">79</span></a></li>
+          <li><a href="rezept.html"><span>Marmelade, Marillen-</span><span class="reg-page">81</span></a></li>
+          <li><a href="rezept.html"><span>Mohnnudeln</span><span class="reg-page">73</span></a></li>
+        </ul>
+      </div>
+
+      <div class="register-section" id="P">
+        <div class="register-letter">P</div>
+        <ul class="register-entries">
+          <li><a href="rezept.html"><span>Palatschinken</span><span class="reg-page">61</span></a></li>
+          <li><a href="rezept.html"><span>Paprika, gefüllte</span><span class="reg-page">33</span></a></li>
+          <li><a href="rezept.html"><span>Paradeissoße, eingemacht</span><span class="reg-page">89</span></a></li>
+        </ul>
+      </div>
+
+      <div class="register-section" id="R">
+        <div class="register-letter">R</div>
+        <ul class="register-entries">
+          <li><a href="rezept.html"><span>Rindsuppe, klare</span><span class="reg-page">3</span></a></li>
+          <li><a href="rezept.html"><span>Röster, Zwetschken-</span><span class="reg-page">87</span></a></li>
+          <li><a href="rezept.html"><span>Rostbraten, Zwiebel-</span><span class="reg-page">27</span></a></li>
+        </ul>
+      </div>
+
+      <div class="register-section" id="S">
+        <div class="register-letter">S</div>
+        <ul class="register-entries">
+          <li><a href="rezept.html"><span>Sachertorte, Original</span><span class="reg-page">63</span></a></li>
+          <li><a href="rezept.html"><span>Schnitzel, Wiener</span><span class="reg-page">15</span></a></li>
+          <li><a href="rezept.html"><span>Schnitzel, Pariser</span><span class="reg-page">17</span></a></li>
+          <li><a href="rezept.html"><span>Semmelknödel</span><span class="reg-page">43</span></a></li>
+          <li><a href="rezept.html"><span>Spinat, Rahmspeinat</span><span class="reg-page">23</span></a></li>
+          <li><a href="rezept.html"><span>Strudel, Apfel-</span><span class="reg-page">53</span></a></li>
+          <li><a href="rezept.html"><span>Strudel, Topfen-</span><span class="reg-page">57</span></a></li>
+        </ul>
+      </div>
+
+      <div class="register-section" id="T">
+        <div class="register-letter">T</div>
+        <ul class="register-entries">
+          <li><a href="rezept.html"><span>Tafelspitz mit Cremespinat</span><span class="reg-page">21</span></a></li>
+          <li><a href="rezept.html"><span>Torte, Sacher-</span><span class="reg-page">63</span></a></li>
+          <li><a href="rezept.html"><span>Torte, Linzer-</span><span class="reg-page">69</span></a></li>
+        </ul>
+      </div>
+
+      <div class="register-section" id="V">
+        <div class="register-letter">V</div>
+        <ul class="register-entries">
+          <li><a href="rezept.html"><span>Vanillesauce</span><span class="reg-page">72</span></a></li>
+          <li><a href="rezept.html"><span>Vanillekipferl</span><span class="reg-page">77</span></a></li>
+        </ul>
+      </div>
+
+      <div class="register-section" id="W">
+        <div class="register-letter">W</div>
+        <ul class="register-entries">
+          <li><a href="rezept.html"><span>Wiener Schnitzel</span><span class="reg-page">15</span></a></li>
+          <li><a href="rezept.html"><span>Wiener Gurkensalat</span><span class="reg-page">47</span></a></li>
+        </ul>
+      </div>
+
+      <div class="register-section" id="Z">
+        <div class="register-letter">Z</div>
+        <ul class="register-entries">
+          <li><a href="rezept.html"><span>Zwetschkenröster</span><span class="reg-page">87</span></a></li>
+          <li><a href="rezept.html"><span>Zwiebelrostbraten</span><span class="reg-page">27</span></a></li>
+          <li><a href="rezept.html"><span>Zwiebelsuppe</span><span class="reg-page">13</span></a></li>
+        </ul>
+      </div>
+
+      <div id="noResults" class="no-results" style="display:none;">
+        Kein Eintrag gefunden. Bitte überprüfen Sie die Schreibweise.
+      </div>
+
+    </div>
+
+    <!-- MASSE UND GEWICHTE -->
+    <div class="register-divider">— ✦ —</div>
+
+    <div class="measures-section">
+      <h3>Maße &amp; Gewichte der alten Küche</h3>
+      <div class="measures-grid">
+        <div class="measure-item"><span class="measure-name">1 Pfund</span><span>= 560 g (österr.)</span></div>
+        <div class="measure-item"><span class="measure-name">1 Lot</span><span>= 17,5 g</span></div>
+        <div class="measure-item"><span class="measure-name">1 Quart</span><span>= ca. 1,1 Liter</span></div>
+        <div class="measure-item"><span class="measure-name">1 Seidel</span><span>= 0,354 Liter</span></div>
+        <div class="measure-item"><span class="measure-name">1 Tasse Mehl</span><span>= ca. 130 g</span></div>
+        <div class="measure-item"><span class="measure-name">1 Tasse Zucker</span><span>= ca. 200 g</span></div>
+        <div class="measure-item"><span class="measure-name">1 Eßlöffel Butter</span><span>= ca. 15 g</span></div>
+        <div class="measure-item"><span class="measure-name">1 Krug Milch</span><span>= ca. 1 Liter</span></div>
+      </div>
+    </div>
+
+    <!-- KÜCHENWEISHEITEN -->
+    <div class="wisdom-section">
+      <h3>Küchenweisheiten</h3>
+      <p class="wisdom-item">Wer gerne ißt, muß auch gerne kochen – und wer gerne kocht, muß zuerst lernen, gut einzukaufen.</p>
+      <p class="wisdom-item">Salz ist der Geist des Kochens. Zu wenig und alles schmeckt fad; zu viel und alles ist verdorben.</p>
+      <p class="wisdom-item">Ein guter Fond ist das Fundament jeder Küche. Wer ihn hat, hat schon halb gewonnen.</p>
+      <p class="wisdom-item">Kochen kann man lernen, Geschmack nicht – aber er läßt sich verfeinern durch Übung und Aufmerksamkeit.</p>
+    </div>
+
+  </main>
+
+  <footer class="book-footer">
+    <div class="footer-ornament">✦ ✦ ✦</div>
+    <p>Alle Rechte vorbehalten &middot; Großmutters Kochbuch &middot; Seit 1923</p>
+  </footer>
+
+  <script src="menu.js"></script>
+  <script>
+    function searchRegister() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      const sections = document.querySelectorAll('.register-section');
+      const noResults = document.getElementById('noResults');
+      let anyVisible = false;
+
+      if (!query) {
+        sections.forEach(s => s.style.display = '');
+        noResults.style.display = 'none';
+        return;
+      }
+
+      sections.forEach(section => {
+        const entries = section.querySelectorAll('li');
+        let sectionVisible = false;
+        entries.forEach(li => {
+          const text = li.textContent.toLowerCase();
+          if (text.includes(query)) { li.style.display = ''; sectionVisible = true; anyVisible = true; }
+          else li.style.display = 'none';
+        });
+        section.style.display = sectionVisible ? '' : 'none';
+      });
+
+      noResults.style.display = anyVisible ? 'none' : 'block';
+    }
+
+    document.getElementById('searchInput').addEventListener('keyup', function(e) {
+      if (e.key === 'Enter') searchRegister();
+    });
+  </script>
+</body>
+</html>

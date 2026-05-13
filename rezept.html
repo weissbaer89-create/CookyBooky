@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wiener Schnitzel – Großmutters Kochbuch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=IM+Fell+English:ital@0;1&family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Rezept-spezifische Dekorationen */
+    .recipe-header-deco {
+      text-align: center;
+      font-size: 2.5rem;
+      color: var(--gold);
+      opacity: 0.3;
+      line-height: 1;
+      margin: 0.5rem 0 1rem;
+    }
+    .recipe-divider {
+      text-align: center;
+      color: var(--gold);
+      font-size: 1.1rem;
+      letter-spacing: 0.5rem;
+      margin: 1.5rem 0;
+    }
+    .recipe-variations {
+      margin-top: 2rem;
+    }
+    .recipe-variations h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--dark-brown);
+      margin-bottom: 0.8rem;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 0.3rem;
+    }
+    .recipe-variations p {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--ink);
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+    }
+    .recipe-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--gold);
+    }
+    .recipe-nav a {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      color: var(--warm-brown);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .recipe-nav a:hover { color: var(--rust); }
+    .handnote {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      color: var(--rust);
+      font-size: 0.85rem;
+      margin-top: 0.3rem;
+      display: block;
+    }
+    .ing-group-title {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      color: var(--warm-brown);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin: 0.8rem 0 0.3rem;
+      border-bottom: 1px solid rgba(184,134,11,0.3);
+      padding-bottom: 0.2rem;
+    }
+    .recipe-page-number {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 2rem;
+      font-family: var(--font-italic);
+      font-style: italic;
+      color: var(--warm-brown);
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="nav-ornament">❧</span>
+      <a href="index.html">Großmutters Kochbuch</a>
+      <span class="nav-ornament">❧</span>
+    </div>
+    <button class="burger" id="burgerBtn" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="navMenu">
+      <ul class="nav-list">
+        <li class="nav-item has-submenu">
+          <a href="#">🍲 Vorspeisen</a>
+          <ul class="submenu">
+            <li><a href="rezept.html">Rindsuppe mit Grießknödel</a></li>
+            <li><a href="rezept.html">Liptauer Aufstrich</a></li>
+            <li><a href="rezept.html">Gebeizter Lachs</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-submenu">
+          <a href="#">🥩 Hauptspeisen</a>
+          <ul class="submenu">
+            <li><a href="rezept.html" class="active">Wiener Schnitzel</a></li>
+            <li><a href="rezept.html">Tafelspitz mit Cremespinat</a></li>
+            <li><a href="rezept.html">Zwiebelrostbraten</a></li>
+            <li><a href="rezept.html">Gefüllte Paprika</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-submenu">
+          <a href="#">🥗 Beilagen</a>
+          <ul class="submenu">
+            <li><a href="rezept.html">Erdäpfelpüree</a></li>
+            <li><a href="rezept.html">Semmelknödel</a></li>
+            <li><a href="rezept.html">Gurkensalat</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-submenu">
+          <a href="#">🍰 Mehlspeisen</a>
+          <ul class="submenu">
+            <li><a href="rezept.html">Apfelstrudel</a></li>
+            <li><a href="rezept.html">Kaiserschmarrn</a></li>
+            <li><a href="rezept.html">Sachertorte</a></li>
+            <li><a href="rezept.html">Buchteln mit Vanillesauce</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-submenu">
+          <a href="#">🥒 Eingemachtes</a>
+          <ul class="submenu">
+            <li><a href="rezept.html">Erdbeermarmelade</a></li>
+            <li><a href="rezept.html">Essiggurken</a></li>
+            <li><a href="rezept.html">Zwetschkenröster</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="register.html">📖 Register</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="index.html">Inhaltsverzeichnis</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="#">Hauptspeisen</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>Wiener Schnitzel</span>
+  </nav>
+
+  <!-- REZEPT -->
+  <article class="recipe-page">
+
+    <div class="recipe-header-deco">✦</div>
+
+    <p class="recipe-category">Hauptspeisen · Seite 15</p>
+    <h1 class="recipe-title">Wiener Schnitzel</h1>
+    <p class="recipe-subtitle">Das Kronjuwel der Wiener Küche – zart, goldbraun und unvergleichlich</p>
+
+    <div class="recipe-meta-bar">
+      <div class="recipe-meta-item">
+        <span class="recipe-meta-label">Vorbereitungszeit</span>
+        <span class="recipe-meta-value">20 Min.</span>
+      </div>
+      <div class="recipe-meta-item">
+        <span class="recipe-meta-label">Garzeit</span>
+        <span class="recipe-meta-value">15 Min.</span>
+      </div>
+      <div class="recipe-meta-item">
+        <span class="recipe-meta-label">Portionen</span>
+        <span class="recipe-meta-value">4 Personen</span>
+      </div>
+      <div class="recipe-meta-item">
+        <span class="recipe-meta-label">Schwierigkeit</span>
+        <span class="recipe-meta-value">Mittel</span>
+      </div>
+    </div>
+
+    <!-- ZUTATEN + ZUBEREITUNG -->
+    <div class="recipe-columns">
+
+      <!-- ZUTATEN -->
+      <section class="ingredients-section">
+        <h3>Zutaten</h3>
+
+        <p class="ing-group-title">Schnitzel</p>
+        <ul class="ingredients-list">
+          <li><span class="ing-amount">4 Stück</span> Kalbsschnitzel (je ca. 180 g)</li>
+          <li><span class="ing-amount">100 g</span> Mehl, glatt</li>
+          <li><span class="ing-amount">3</span> Eier</li>
+          <li><span class="ing-amount">200 g</span> Semmelbrösel</li>
+          <li><span class="ing-amount">1 TL</span> Salz</li>
+          <li><span class="ing-amount">etwas</span> frisch gemahlener Pfeffer</li>
+        </ul>
+        <span class="handnote">* Immer Kalbfleisch, kein Schwein!</span>
+
+        <p class="ing-group-title">Zum Ausbacken</p>
+        <ul class="ingredients-list">
+          <li><span class="ing-amount">500 ml</span> Butterschmalz oder Schweinefett</li>
+        </ul>
+
+        <p class="ing-group-title">Zum Anrichten</p>
+        <ul class="ingredients-list">
+          <li><span class="ing-amount">2</span> Bio-Zitronen</li>
+          <li><span class="ing-amount">4 Zweige</span> frische Petersilie</li>
+          <li><span class="ing-amount">nach Belieben</span> Preiselbeeren</li>
+        </ul>
+      </section>
+
+      <!-- ZUBEREITUNG -->
+      <section class="steps-section">
+        <h3>Zubereitung</h3>
+        <ol class="steps-list">
+          <li>Die Kalbsschnitzel zwischen zwei Lagen Frischhaltefolie legen und mit einem Fleischklopfer gleichmäßig auf ca. 4 mm Dicke klopfen. Vorsichtig, damit das Fleisch nicht reißt.</li>
+          <li>Die Schnitzel beidseitig leicht salzen und pfeffern. Mehl, verquirlte Eier und Semmelbrösel jeweils auf flache Teller geben.</li>
+          <li>Jedes Schnitzel nacheinander im Mehl wenden (überschüssiges Mehl abschütteln), dann durch das Ei ziehen und zuletzt in den Semmelbröseln wenden. Die Panier dabei nicht andrücken – sie soll locker bleiben und beim Backen aufgehen.</li>
+          <li>Das Butterschmalz in einer großen, tiefen Pfanne auf 160–170 °C erhitzen. Das Fett muss reichlich vorhanden sein, damit die Schnitzel schwimmen können.</li>
+          <li>Die Schnitzel portionsweise einlegen und bei mittlerer Hitze ca. 3–4 Minuten pro Seite goldbraun backen. Dabei die Pfanne gelegentlich schwenken, damit das heiße Fett über das Schnitzel schwappt und die Panier gleichmäßig gart.</li>
+          <li>Fertige Schnitzel kurz auf Küchenpapier abtropfen lassen und sofort servieren. Nie zudecken – die Panier würde sonst weich!</li>
+          <li>Mit einer Zitronenscheibe, frischer Petersilie und einem Löffel Preiselbeeren anrichten. Als Beilage empfehlen sich Erdäpfelpüree oder Gurkensalat.</li>
+        </ol>
+      </section>
+
+    </div>
+
+    <div class="recipe-divider">— ✦ —</div>
+
+    <!-- TIPP DER KÖCHIN -->
+    <div class="recipe-tip">
+      <strong>Großmutters Geheimnis:</strong> Das wichtigste beim echten Wiener Schnitzel ist das Fett – es muss reichlich und heiß genug sein. Die Panier darf beim Wenden nie angedrückt werden, denn dann bildet sich jene wunderbare, soufflierte Kruste, die das echte Wiener Schnitzel von allen Nachahmern unterscheidet. Wer spart, dem gelingt es nicht.
+    </div>
+
+    <!-- VARIATIONEN -->
+    <div class="recipe-variations">
+      <h3>Anmerkungen & Variationen</h3>
+      <p>
+        <em>Pariser Schnitzel:</em> Ohne Semmelbrösel, nur in Mehl und Ei gewendet – die Panier bleibt glatt und geschlossen.
+      </p>
+      <p>
+        <em>Schnitzel nach Jägerart:</em> Mit einer Sauce aus Champignons, Zwiebeln und Sauerrahm übergossen. Eigentlich kein „echtes" Wiener Schnitzel mehr, aber außerordentlich wohlschmeckend.
+      </p>
+      <p>
+        <em>Für Kinder:</em> Kleinere, etwas dünnere Stücke, kürzer gebraten. Kinder lieben das Schnitzel mit Erdäpfelpüree und keiner Garnierung.
+      </p>
+    </div>
+
+    <!-- ILLUSTRATION (dekorativ) -->
+    <div class="recipe-illustration" aria-hidden="true">
+      🍋
+    </div>
+
+    <!-- NAVIGATION ZW. REZEPTEN -->
+    <nav class="recipe-nav" aria-label="Rezept-Navigation">
+      <a href="rezept.html">← Liptauer Aufstrich</a>
+      <a href="index.html">Zum Inhaltsverzeichnis</a>
+      <a href="rezept.html">Tafelspitz →</a>
+    </nav>
+
+    <span class="recipe-page-number">15</span>
+  </article>
+
+  <footer class="book-footer">
+    <div class="footer-ornament">✦ ✦ ✦</div>
+    <p>Alle Rechte vorbehalten &middot; Großmutters Kochbuch &middot; Seit 1923</p>
+  </footer>
+
+  <script src="menu.js"></script>
+</body>
+</html>

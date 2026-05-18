@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tantanmen Ramen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <script src="../recipes.js"></script>
+  <link rel="stylesheet" href="recipes.css" />
+  <style>
+    
+  </style>
+</head>
+<body>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     SIDEBAR
+══════════════════════════════════════════════════════════ -->
+<nav id="sidebar" aria-label="Rezept-Navigation">
+  <div class="sb-header">
+    <div class="sb-top-row">
+      <a class="sb-logo" id="sb-logo" href="../index.html"></a>
+      <button class="sb-close" onclick="closeSidebar()" aria-label="Menü schließen">✕</button>
+    </div>
+    <div class="sb-search">
+      <span class="sb-search-icon">🔍</span>
+      <input id="sb-search-input" type="search" placeholder="Rezept suchen …" autocomplete="off" />
+      <button class="sb-search-clear" id="sb-search-clear" aria-label="Suche löschen">✕</button>
+    </div>
+  </div>
+  <div id="sb-search-results">
+    <div class="sb-results-label">Treffer</div>
+    <ul class="nav-items" id="sb-search-results-list"></ul>
+  </div>
+  <div id="sb-nav-body"></div>
+  <div class="sb-footer">
+    <span class="sb-footer-label">Erscheinungsbild</span>
+    <div class="theme-toggle">
+      <span class="theme-label">Dunkel</span>
+      <div class="toggle-track on" onclick="toggleTheme()" role="switch" aria-label="Theme wechseln">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════
+     TOPBAR
+══════════════════════════════════════════════════════════ -->
+<header id="topbar">
+  <button class="burger-btn" onclick="openSidebar()" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="topbar-breadcrumb">
+    <a href="../index.html">Kochbuch</a>
+    <span class="sep">›</span>
+    <span>Hauptgerichte</span>
+    <span class="sep">›</span>
+    <span class="current">Tantanmen Ramen</span>
+  </nav>
+  <!--<button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button>-->
+</header>
+
+<!-- ══════════════════════════════════════════════════════════
+     REZEPT
+══════════════════════════════════════════════════════════ -->
+<article>
+  <header class="recipe-hero">
+    <div class="recipe-category-label">Hauptgerichte</div>
+    <h1 class="recipe-title"><em>Tantanmen</em> Ramen</h1>
+    <p class="recipe-description">
+      Tantanmen Ramen, das sind Ramen in einer scharfen Suppe mit Sesampaste, Sojamilch und Hackfleisch. 
+	  Diese japanische Variante ist angelehnt an chinesische Dandan-Nudeln aus Sichuan, auch Dandanmian. 
+	  Als Tantanmen-Nudel-Suppe schmeckt sie kräftig, würzig und wärmt von innen.
+    </p>
+    <div class="recipe-meta">
+      <div class="meta-pill"><span class="label">Zeit&nbsp;</span>40 min</div>
+      <div class="meta-pill"><span class="label">Schwierigkeit&nbsp;</span>mittel</div>
+      <div class="meta-pill"><span class="label">Portionen&nbsp;</span>2</div>
+      <div class="meta-pill"><span class="label">Küche&nbsp;</span>Japanisch <img src="https://flagcdn.com/jp.svg" height="13" alt="${l.trim()}" style="vertical-align:middle;margin-left:5px;border:0px solid #ddd"></div>
+    </div>
+    <div class="recipe-tags">
+      <span class="tag">#pasta</span>
+      <span class="tag">#japanisch</span>
+      <span class="tag">#kalte-tage</span>
+    </div>
+  </header>
+
+  <div class="gold-rule"><div class="gold-rule-dot"></div></div>
+
+  <div class="recipe-body">
+    <!-- Zutaten -->
+    <aside class="ingredients-panel">
+      <h2 class="panel-title">Zutaten</h2>
+      <div class="serving-control">
+        <button class="serving-btn" onclick="changeServings(-1)">−</button>
+        <span class="serving-num" id="serving-num">2</span>
+        <button class="serving-btn" onclick="changeServings(1)">+</button>
+        <span class="serving-label">Portionen</span>
+      </div>
+      <ul class="ingredient-list" id="ingredient-list"></ul>
+    </aside>
+
+    <!-- Zubereitung -->
+    <div class="steps-panel">
+      <h2 class="steps-title">Zubereitung</h2>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-heading">Eier kochen</div>
+          <div class="step-text">
+            Die Eier 6 Minuten kochen und schälen, in Hälften schneiden.
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-heading">Gemüse vorbereiten</div>
+          <div class="step-text">
+            Das Gemüse in Salzwasser kurz blanchieren sodass es noch Biss hat.
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-heading">Faschiertes anbraten</div>
+          <div class="step-text">
+            Faschiertes auf mittlerer Hitze knusprig braten, dazu den gehackten Knoblauch und Ingwer geben
+			Mit Sojasauce, Sambal Oelek, Austernsauce und Zucker ablöschen und einkochen lassen.
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-heading">Tare</div>
+          <div class="step-text">
+            Die Zutaten für das Tare zusammen mischen. Man kann dies auch in einem Topf mit den Zutaten für die Brühe erwärmen.
+          </div>
+        </div>
+      </div>
+	  
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-heading">Ramennudeln kochen</div>
+          <div class="step-text">
+            Die Ramen nach packungsanweisung kochen. Da die Nudeln schnell durch sind, diesen Schritt erst kurz vor dem Anrichten durchführen
+          </div>
+        </div>
+		 </div>
+
+      <div class="notes-box">
+        <h3>Hinweise &amp; Varianten</h3>
+        <p>
+          <strong>Lust auf andere Zutaten?</strong> Zuckererbsenschoten, Spitzkohl, Garnelen, Bohnen, als Ersatz für das Fleisch geviertelte Champignons. So kann man die Ramen auch Vegetarisch machen
+        </p>
+      </div>
+    </div>
+  </div>
+</article>
+
+<footer>
+  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zum Register</a>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════════════════ -->
+<script src="../sidebar.js"></script>
+<script>
+  /* ── Sidebar-Konfiguration ──────────────────────────── */
+  window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
+  window.SIDEBAR_CURRENT_FILE = 'tantamenramen.html'; // ← bei jeder Vorlage anpassen
+
+  /* ── Zutaten mit Mengenrechner ──────────────────────── */
+  const BASE_SERVINGS = 2;
+  // [Menge pro Portion, Einheit, Name]
+  const INGREDIENTS = [
+    [150,  'g',   'Faschiertes'],
+    [0.5,    'Stk', 'Ingwer'],
+    [1.5,   'Stk',   'Knoblauchzehen'],
+    [0.5,   'EL',   'Chilibohnenpaste oder Sambal Oelek'],
+	[1, 'EL',' Sojasauce'],
+	[0.5,  'EL',   'Austernsauce'],
+	[null, '',    'Prise Zucker'],
+	[1,  'Stangen',   'Jungzwiebeln'],
+	[1,  'EL',   ' Mais'],
+	[1,  'Stk',   'Eier'],
+	[1, 'Portion',    'Ramennudeln'],
+	[2,  'Blätter',    'Pak Choi'],
+	[1, 'EL', 'Erdnussbutter'],
+    [1.5, 'EL', 'Chiliöl'],
+    [1.5, 'EL', 'Sojasauce'],
+    [0.5, 'EL', 'Mirin/Reisessig'],
+	[125, 'ml', 'Hühnerbrühe'],
+    [125, 'ml', 'ungesüßte Soja oder Hafermilch'],
+  ];
+  let servings = BASE_SERVINGS;
+
+  function renderIngredients() {
+    document.getElementById('ingredient-list').innerHTML = INGREDIENTS.map(([amt, unit, name]) => {
+      let amtStr = '–';
+      if (amt !== null) {
+        const s = amt * servings;
+        amtStr = (Number.isInteger(s) ? s : s.toFixed(1)) + ' ' + unit;
+      }
+      return `<li><span class="ing-amount">${amtStr}</span><span class="ing-name">${name}</span></li>`;
+    }).join('');
+  }
+  function changeServings(delta) {
+    servings = Math.max(1, Math.min(20, servings + delta));
+    document.getElementById('serving-num').textContent = servings;
+    renderIngredients();
+  }
+  renderIngredients();
+</script>
+</body>
+</html>

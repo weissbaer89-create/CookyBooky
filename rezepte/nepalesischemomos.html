@@ -3,39 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nepalesische Momos</title>
+  <title id="titelA">Titel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../theme.css" />
-  <script src="../recipes.js"></script>
   <link rel="stylesheet" href="recipes.css" />
-  <style>
-    
-  </style>
+  <script src="../recipes.js"></script>
 </head>
 <body>
 
 <div id="overlay" onclick="closeSidebar()"></div>
 
-<!-- ══════════════════════════════════════════════════════════
-     SIDEBAR
-══════════════════════════════════════════════════════════ -->
+<!-- ── Sidebar ─────────────────────────────────────────────── -->
 <nav id="sidebar" aria-label="Rezept-Navigation">
   <div class="sb-header">
-    <div class="sb-top-row">
-      <a class="sb-logo" id="sb-logo" href="../index.html"></a>
-      <button class="sb-close" onclick="closeSidebar()" aria-label="Menü schließen">✕</button>
-    </div>
-    <div class="sb-search">
-      <span class="sb-search-icon">🔍</span>
-      <input id="sb-search-input" type="search" placeholder="Rezept suchen …" autocomplete="off" />
-      <button class="sb-search-clear" id="sb-search-clear" aria-label="Suche löschen">✕</button>
-    </div>
-  </div>
-  <div id="sb-search-results">
-    <div class="sb-results-label">Treffer</div>
-    <ul class="nav-items" id="sb-search-results-list"></ul>
+    <a class="sb-logo" id="sb-logo" href="../index.html"></a>
+    <button class="sb-close" onclick="closeSidebar()" aria-label="Schließen">✕</button>
   </div>
   <div id="sb-nav-body"></div>
   <div class="sb-footer">
@@ -49,9 +33,7 @@
   </div>
 </nav>
 
-<!-- ══════════════════════════════════════════════════════════
-     TOPBAR
-══════════════════════════════════════════════════════════ -->
+<!-- ── Topbar ──────────────────────────────────────────────── -->
 <header id="topbar">
   <button class="burger-btn" onclick="openSidebar()" aria-label="Menü öffnen">
     <span></span><span></span><span></span>
@@ -59,38 +41,30 @@
   <nav class="topbar-breadcrumb">
     <a href="../index.html">Kochbuch</a>
     <span class="sep">›</span>
-    <span>Hauptgerichte</span>
+    <a href="../index.html"><span id="landA"></span></a>
     <span class="sep">›</span>
-    <span class="current">Nepalesische Momos</span>
+    <a href="../index.html"><span id="typA"></span></a>
+    <span class="sep">›</span>
+    <span class="current" id="titelB">Titel</span>
   </nav>
-<!-- <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button> -->
+  <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button>
 </header>
 
-<!-- ══════════════════════════════════════════════════════════
-     REZEPT
-══════════════════════════════════════════════════════════ -->
+<!-- ── Rezept ─────────────────────────────────────────────── -->
 <article>
   <header class="recipe-hero">
-    <div class="recipe-category-label">Hauptgerichte</div>
-    <h1 class="recipe-title">Nepalesische <em>Momos</em></h1>
-    <p class="recipe-description">
-		Gefüllte Teigtaschen gibt es in fast jeder Kultur – als „Dumplings“ schafften sie es sogar zur internationalen Trend-Speise.
-		In Nepal heißen sie Momos und erfreuen sich auch auf einigen Alpenhütten großer Beliebtheit. Wir verraten euch, wie man sie zubereitet.
-    </p>
+    <div class="recipe-cat-label"><span id="icon"></span> <span id="typB"></span> · <span id="flag"></span> <span id="landB"></span></div>
+    <h1 class="recipe-title" id="headline">Überschrift</h1>
+    <p class="recipe-desc" id="description">Beschreibung</p>
     <div class="recipe-meta">
-      <div class="meta-pill"><span class="label">Zeit&nbsp;</span>120 min</div>
-      <div class="meta-pill"><span class="label">Schwierigkeit&nbsp;</span>mittel</div>
-      <div class="meta-pill"><span class="label">Portionen&nbsp;</span>2</div>
-      <div class="meta-pill"><span class="label">Küche&nbsp;</span>Nepalesisch <img src="https://flagcdn.com/np.svg" height="13" alt="${l.trim()}" style="vertical-align:middle;margin-left:5px;border:0px solid #ddd"></div>
+      <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
+      <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">2</span></div>
     </div>
-    <div class="recipe-tags">
-      <span class="tag">#pasta</span>
-      <span class="tag">#italienisch</span>
-      <span class="tag">#klassiker</span>
-    </div>
+    <div class="recipe-tags" id="tags"></div>
   </header>
 
-  <div class="gold-rule"><div class="gold-rule-dot"></div></div>
+  <div class="gold-rule"><div class="gold-dot"></div></div>
 
   <div class="recipe-body">
     <!-- Zutaten -->
@@ -106,160 +80,65 @@
     </aside>
 
     <!-- Zubereitung -->
-    <div class="steps-panel">
+	<div syle="width=100%;">
+	<div id="steps">
       <h2 class="steps-title">Zubereitung</h2>
-
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <div class="step-heading">Teig</div>
-          <div class="step-text">
-			Mehl, Eier, Öl mit einer Prise Salz mischen und kneten, bis ein geschmeidiger Teig entsteht. 
-			Eine Kugel formen, in Klarsichtfolie packen und eine Stunde rasten lassen. 
-			Danach Teig rund 2 mm dick ausrollen und Kreise mit einem Durchmesser von ca. 8 cm ausstechen.
-          </div>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <div class="step-heading">Guanciale ausbraten</div>
-          <div class="step-text">
-            Guanciale in Würfel oder Streifen schneiden und in einer großen,
-            kalten Pfanne ohne Öl bei mittlerer Hitze langsam ausbraten,
-            bis er goldbraun und knusprig ist. Pfanne vom Herd nehmen.
-          </div>
-          <div class="step-tip">
-            💡 Kein Öl nötig – der Guanciale bringt genug eigenes Fett mit.
-            Wer keinen Guanciale bekommt, nimmt Pancetta.
-          </div>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <div class="step-heading">Eiersauce vorbereiten</div>
-          <div class="step-text">
-            Eigelb mit frisch geriebenem Pecorino Romano in einer Schüssel
-            verrühren. Großzügig schwarzen Pfeffer aus der Mühle dazugeben
-            und gut vermischen. Etwas Pasta-Kochwasser beiseite stellen.
-          </div>
-          <div class="step-tip">
-            💡 Die Mischung sollte dickflüssig wie Pudding sein –
-            bei Bedarf mit einem Löffel Kochwasser verdünnen.
-          </div>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-content">
-          <div class="step-heading">Pasta kochen</div>
-          <div class="step-text">
-            Spaghetti nach Packungsanweisung bissfest (al dente) kochen.
-            Vor dem Abgießen ca. 200 ml Kochwasser abschöpfen und beiseite stellen.
-          </div>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">5</div>
-        <div class="step-content">
-          <div class="step-heading">Alles vereinen</div>
-          <div class="step-text">
-            Die heiße, abgegossene Pasta sofort in die Pfanne mit dem Guanciale
-            geben (Herd aus!). Ei-Käse-Mischung darübergießen und rasch
-            mit einer Zange vermischen. Schlückchenweise Kochwasser dazugeben,
-            bis eine cremige, seidige Sauce entsteht.
-          </div>
-          <div class="step-tip">💡 Der Herd muss aus sein – sonst stockt das Ei!</div>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">6</div>
-        <div class="step-content">
-          <div class="step-heading">Anrichten &amp; servieren</div>
-          <div class="step-text">
-            Sofort auf vorgewärmten Tellern anrichten. Mit weiterem Pecorino
-            und frisch gemahlenem schwarzen Pfeffer vollenden.
-            Sofort servieren – Carbonara wartet auf niemanden!
-          </div>
-        </div>
-      </div>
-
-      <div class="notes-box">
-        <h3>Hinweise &amp; Varianten</h3>
-        <p>
-          <strong>Kein Guanciale?</strong> Pancetta funktioniert gut, gibt aber ein anderes Aroma.
-          Speck geht im Notfall, ist aber nicht traditionell.<br><br>
-          <strong>Kein Pecorino?</strong> Parmesan (Parmigiano Reggiano) ist eine gute Alternative,
-          macht die Sauce etwas milder.<br><br>
-          <strong>Aufwärmen</strong> funktioniert kaum – Carbonara gehört frisch auf den Tisch.
-        </p>
-      </div>
-    </div>
+	</div>
+		<div id="notes"></div>
+  </div>
   </div>
 </article>
 
 <footer>
-  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zum Register</a>
+  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zur Startseite</a>
 </footer>
 
-<!-- ══════════════════════════════════════════════════════════
-     SCRIPTS
-══════════════════════════════════════════════════════════ -->
-<script src="../sidebar.js"></script>
+<!-- ── Scripts ────────────────────────────────────────────── -->
 <script>
   /* ── Sidebar-Konfiguration ──────────────────────────── */
   window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
   window.SIDEBAR_CURRENT_FILE = 'nepalesischemomos.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Nepalesische <em>Momos</em>';
+const ID = 'nepalesische-momos';
+const beschreibung = 'Gefüllte Teigtaschen gibt es in fast jeder Kultur – als „Dumplings“ schafften sie es sogar zur internationalen Trend-Speise. In Nepal heißen sie Momos und erfreuen sich auch auf einigen Alpenhütten großer Beliebtheit. Wir verraten euch, wie man sie zubereitet.';
+const hinweis = '';
 
+// Ausgabe: Pasta alla Carbonara
   /* ── Zutaten mit Mengenrechner ──────────────────────── */
   const BASE_SERVINGS = 2;
   // [Menge pro Portion, Einheit, Name]
   const INGREDIENTS = [
-    [125,'g','Mehl'],
-    [1,'Stk','Eier'],
-    [0.5,'EL','Öl'],
-    [0.25,'kg','Schweinsfaschiertes'],
-    [0.5,'Stk','Zwiebel'],
-    [0.5,'Stk','Ei'],
-    [null,'','Salz'],
-    [null,'','Chili'],
-    [null,'','Kreuzkümmel'],
-    [null,'','Senf'],
-    [null,'','Curry'],
-    [null,'','Knoblauch'],
-    [null,'','Curcuma'],
-    [null,'','Sojasauce'],
-	[null,'','Pfeffer'],
-    [0.5,'Stk','Zwiebel'],
-    [2.5,'Stk','frische Tomaten'],
-	[0.5,'Stk','Lorbeerblatt'],
+    [75,'g','Mehl'],
+    [0.5,'Stk','Eier'],
+    [0.25,'EL','ÖL'],
+    [0.25,'Prise','Salz'],
+    [null,'<b>Fülle</b>',null],
+    [0.125,'kg','Rinder- oder Schweinsfaschiertes'],
+    [0.25,'Stk','Zwiebel'],
+	[0.25,'Stk','Knoblauchzehe'],
+    [0.25,'Stk','Ei'],
+    [null,'','Salz, Chili, Kreuzkümmel, Senf, Curry, Knoblauch, Curcuma, Sojasauce, Pfeffer'],
+    [null,'<b>Sauce</b>',null],
+    [0.25,'Stk','Zwiebel'],
+    [1.25,'Stk','frische Tomaten'],
+	[0.25,'Stk','Lorbeerblatt'],
     [0.25,'l','Gemüsebrühe'],
-    [0.625,'l','Sahne'],
+    [0.3125,'l','Sahne'],
+	[null,'','Pfeffer, Salz'],
   ];
   let servings = BASE_SERVINGS;
+  
+  const zubereitung = [
+  ["Teig", "Zutaten für den Teig mischen und kneten, bis ein geschmeidiger Teig entsteht. Eine Kugel formen, in Klarsichtfolie packen und eine Stunde rasten lassen. Danach Teig rund 2 mm dick ausrollen und Kreise mit einem Durchmesser von ca. 8 cm ausstechen.", ""],
+  ["Füllung vorbereiten", "Zwiebel fein hacken und mit Gewürzen, Ei und Faschiertem gut durchmischen. Kleine Bällchen formen.", ""], // <--- Dieser Tipp ist leer!
+  ["Teigtaschen formen", "Die Fleischbällchen in die Mitte der Kreise setzen und zu einem Teigtäschchen formen.", ""],
+  ["Zubereiten", "Die Teigtaschen entweder über Dampf ca. 20 Minuten garen oder in Fett ca. 5 Minuten durchbraten.", ""],
+  ["Sauce", "Für die Sauce Zwiebel schneiden und anrösten, geschälte und grob geschnittene Tomaten mitbraten. Mit Brühe aufgießen, würzen und ca. 15 Minuten kochen lassen. Mit einem Pürierstab gut durchmixen. Zum Schluss Sahne einrühren.", ""],
+];
 
-  function renderIngredients() {
-    document.getElementById('ingredient-list').innerHTML = INGREDIENTS.map(([amt, unit, name]) => {
-      let amtStr = '–';
-      if (amt !== null) {
-        const s = amt * servings;
-        amtStr = (Number.isInteger(s) ? s : s.toFixed(1)) + ' ' + unit;
-      }
-      return `<li><span class="ing-amount">${amtStr}</span><span class="ing-name">${name}</span></li>`;
-    }).join('');
-  }
-  function changeServings(delta) {
-    servings = Math.max(1, Math.min(20, servings + delta));
-    document.getElementById('serving-num').textContent = servings;
-    renderIngredients();
-  }
-  renderIngredients();
+	//const notizen =
 </script>
+<script src="../sidebar.js"></script>
+<script src="recipe_render.js"></script>
 </body>
 </html>

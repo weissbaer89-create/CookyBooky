@@ -3,39 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pasta alla Carbonara</title>
+  <title>Pasta alla Carbonara – Bella Cucina</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../theme.css" />
-  <script src="../recipes.js"></script>
   <link rel="stylesheet" href="recipes.css" />
-  <style>
-    
-  </style>
+  <script src="../recipes.js"></script>
 </head>
 <body>
 
 <div id="overlay" onclick="closeSidebar()"></div>
 
-<!-- ══════════════════════════════════════════════════════════
-     SIDEBAR
-══════════════════════════════════════════════════════════ -->
+<!-- ── Sidebar ─────────────────────────────────────────────── -->
 <nav id="sidebar" aria-label="Rezept-Navigation">
   <div class="sb-header">
-    <div class="sb-top-row">
-      <a class="sb-logo" id="sb-logo" href="../index.html"></a>
-      <button class="sb-close" onclick="closeSidebar()" aria-label="Menü schließen">✕</button>
-    </div>
-    <div class="sb-search">
-      <span class="sb-search-icon">🔍</span>
-      <input id="sb-search-input" type="search" placeholder="Rezept suchen …" autocomplete="off" />
-      <button class="sb-search-clear" id="sb-search-clear" aria-label="Suche löschen">✕</button>
-    </div>
-  </div>
-  <div id="sb-search-results">
-    <div class="sb-results-label">Treffer</div>
-    <ul class="nav-items" id="sb-search-results-list"></ul>
+    <a class="sb-logo" id="sb-logo" href="../index.html"></a>
+    <button class="sb-close" onclick="closeSidebar()" aria-label="Schließen">✕</button>
   </div>
   <div id="sb-nav-body"></div>
   <div class="sb-footer">
@@ -49,9 +33,7 @@
   </div>
 </nav>
 
-<!-- ══════════════════════════════════════════════════════════
-     TOPBAR
-══════════════════════════════════════════════════════════ -->
+<!-- ── Topbar ──────────────────────────────────────────────── -->
 <header id="topbar">
   <button class="burger-btn" onclick="openSidebar()" aria-label="Menü öffnen">
     <span></span><span></span><span></span>
@@ -59,38 +41,31 @@
   <nav class="topbar-breadcrumb">
     <a href="../index.html">Kochbuch</a>
     <span class="sep">›</span>
-    <span>Hauptgerichte</span>
+    <a href="../index.html"><img src="https://flagcdn.com/it.svg" height="13" alt="Italien" style="vertical-align:middle"> Italien</a>
     <span class="sep">›</span>
     <span class="current">Pasta alla Carbonara</span>
   </nav>
-<!-- <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button> -->
+  <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button>
 </header>
 
-<!-- ══════════════════════════════════════════════════════════
-     REZEPT
-══════════════════════════════════════════════════════════ -->
+<!-- ── Rezept ─────────────────────────────────────────────── -->
 <article>
   <header class="recipe-hero">
-    <div class="recipe-category-label">Hauptgerichte</div></div>
+    <div class="recipe-cat-label">🍝 Hauptgerichte · <img src="https://flagcdn.com/it.svg" height="12" alt="Italien" style="vertical-align:middle"> Italien</div>
     <h1 class="recipe-title">Pasta alla <em>Carbonara</em></h1>
-    <p class="recipe-description">
-      Das Original aus Rom – ohne Sahne, ganz ohne Tricks. Nur Eigelb,
-      Pecorino, Guanciale und frisch gemahlener schwarzer Pfeffer.
-    </p>
+    <p class="recipe-desc">Das Original aus Rom – ohne Sahne, ganz ohne Tricks. Nur Eigelb, Pecorino, Guanciale und frisch gemahlener schwarzer Pfeffer.</p>
     <div class="recipe-meta">
-      <div class="meta-pill"><span class="label">Zeit&nbsp;</span>25 min</div>
-      <div class="meta-pill"><span class="label">Schwierigkeit&nbsp;</span>mittel</div>
-      <div class="meta-pill"><span class="label">Portionen&nbsp;</span>2</div>
-      <div class="meta-pill"><span class="label">Küche&nbsp;</span>Italienisch <img src="https://flagcdn.com/it.svg" height="13" alt="${l.trim()}" style="vertical-align:middle;margin-left:5px;border:0px solid #ddd"></div>
+      <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span>25 min</div>
+      <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span>mittel</div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span>2</div>
     </div>
     <div class="recipe-tags">
       <span class="tag">#pasta</span>
-      <span class="tag">#italienisch</span>
       <span class="tag">#klassiker</span>
     </div>
   </header>
 
-  <div class="gold-rule"><div class="gold-rule-dot"></div></div>
+  <div class="gold-rule"><div class="gold-dot"></div></div>
 
   <div class="recipe-body">
     <!-- Zutaten -->
@@ -106,132 +81,95 @@
     </aside>
 
     <!-- Zubereitung -->
-    <div class="steps-panel">
+    <div>
       <h2 class="steps-title">Zubereitung</h2>
 
       <div class="step">
         <div class="step-num">1</div>
-        <div class="step-content">
+        <div>
           <div class="step-heading">Wasser aufsetzen</div>
-          <div class="step-text">
-            Einen großen Topf mit reichlich Salzwasser zum Kochen bringen.
-            Das Wasser sollte kräftig gesalzen sein – es ist das einzige
-            Gewürz für die Pasta selbst.
-          </div>
+          <div class="step-text">Einen großen Topf mit reichlich Salzwasser zum Kochen bringen. Das Wasser sollte kräftig gesalzen sein.</div>
         </div>
       </div>
 
       <div class="step">
         <div class="step-num">2</div>
-        <div class="step-content">
+        <div>
           <div class="step-heading">Guanciale ausbraten</div>
-          <div class="step-text">
-            Guanciale in Würfel oder Streifen schneiden und in einer großen,
-            kalten Pfanne ohne Öl bei mittlerer Hitze langsam ausbraten,
-            bis er goldbraun und knusprig ist. Pfanne vom Herd nehmen.
-          </div>
-          <div class="step-tip">
-            💡 Kein Öl nötig – der Guanciale bringt genug eigenes Fett mit.
-            Wer keinen Guanciale bekommt, nimmt Pancetta.
-          </div>
+          <div class="step-text">Guanciale in Würfel schneiden und in einer kalten Pfanne ohne Öl bei mittlerer Hitze goldbraun ausbraten. Pfanne vom Herd nehmen.</div>
+          <div class="step-tip">💡 Kein Öl nötig – der Guanciale bringt genug Fett mit. Alternativ: Pancetta.</div>
         </div>
       </div>
 
       <div class="step">
         <div class="step-num">3</div>
-        <div class="step-content">
+        <div>
           <div class="step-heading">Eiersauce vorbereiten</div>
-          <div class="step-text">
-            Eigelb mit frisch geriebenem Pecorino Romano in einer Schüssel
-            verrühren. Großzügig schwarzen Pfeffer aus der Mühle dazugeben
-            und gut vermischen. Etwas Pasta-Kochwasser beiseite stellen.
-          </div>
-          <div class="step-tip">
-            💡 Die Mischung sollte dickflüssig wie Pudding sein –
-            bei Bedarf mit einem Löffel Kochwasser verdünnen.
-          </div>
+          <div class="step-text">Eigelb mit frisch geriebenem Pecorino Romano verrühren, großzügig schwarzen Pfeffer dazugeben.</div>
+          <div class="step-tip">💡 Die Mischung sollte dickflüssig wie Pudding sein.</div>
         </div>
       </div>
 
       <div class="step">
         <div class="step-num">4</div>
-        <div class="step-content">
+        <div>
           <div class="step-heading">Pasta kochen</div>
-          <div class="step-text">
-            Spaghetti nach Packungsanweisung bissfest (al dente) kochen.
-            Vor dem Abgießen ca. 200 ml Kochwasser abschöpfen und beiseite stellen.
-          </div>
+          <div class="step-text">Spaghetti al dente kochen. Vor dem Abgießen ca. 200 ml Kochwasser abschöpfen und beiseitestellen.</div>
         </div>
       </div>
 
       <div class="step">
         <div class="step-num">5</div>
-        <div class="step-content">
+        <div>
           <div class="step-heading">Alles vereinen</div>
-          <div class="step-text">
-            Die heiße, abgegossene Pasta sofort in die Pfanne mit dem Guanciale
-            geben (Herd aus!). Ei-Käse-Mischung darübergießen und rasch
-            mit einer Zange vermischen. Schlückchenweise Kochwasser dazugeben,
-            bis eine cremige, seidige Sauce entsteht.
-          </div>
-          <div class="step-tip">💡 Der Herd muss aus sein – sonst stockt das Ei!</div>
+          <div class="step-text">Heiße Pasta in die Pfanne geben (Herd aus!). Ei-Käse-Mischung darübergießen, rasch vermischen. Schlückchenweise Kochwasser dazugeben bis eine seidige Sauce entsteht.</div>
+          <div class="step-tip">💡 Herd muss aus sein – sonst stockt das Ei!</div>
         </div>
       </div>
 
       <div class="step">
         <div class="step-num">6</div>
-        <div class="step-content">
-          <div class="step-heading">Anrichten &amp; servieren</div>
-          <div class="step-text">
-            Sofort auf vorgewärmten Tellern anrichten. Mit weiterem Pecorino
-            und frisch gemahlenem schwarzen Pfeffer vollenden.
-            Sofort servieren – Carbonara wartet auf niemanden!
-          </div>
+        <div>
+          <div class="step-heading">Servieren</div>
+          <div class="step-text">Sofort auf vorgewärmten Tellern anrichten, mit weiterem Pecorino und frisch gemahlenem Pfeffer vollenden.</div>
         </div>
       </div>
 
       <div class="notes-box">
-        <h3>Hinweise &amp; Varianten</h3>
-        <p>
-          <strong>Kein Guanciale?</strong> Pancetta funktioniert gut, gibt aber ein anderes Aroma.
-          Speck geht im Notfall, ist aber nicht traditionell.<br><br>
-          <strong>Kein Pecorino?</strong> Parmesan (Parmigiano Reggiano) ist eine gute Alternative,
-          macht die Sauce etwas milder.<br><br>
-          <strong>Aufwärmen</strong> funktioniert kaum – Carbonara gehört frisch auf den Tisch.
-        </p>
+        <h3>📝 Hinweise &amp; Varianten</h3>
+        <p><strong>Kein Guanciale?</strong> Pancetta ist eine gute Alternative.<br><br>
+        <strong>Kein Pecorino?</strong> Parmigiano Reggiano macht die Sauce etwas milder.<br><br>
+        <strong>Aufwärmen</strong> funktioniert kaum – Carbonara gehört frisch auf den Tisch.</p>
       </div>
     </div>
   </div>
 </article>
 
 <footer>
-  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zum Register</a>
+  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zur Startseite</a>
 </footer>
 
-<!-- ══════════════════════════════════════════════════════════
-     SCRIPTS
-══════════════════════════════════════════════════════════ -->
+<!-- ── Scripts ────────────────────────────────────────────── -->
+<script>
+  window.SIDEBAR_PREFIX       = '../';
+  window.SIDEBAR_CURRENT_FILE = 'carbonara.html';
+</script>
 <script src="../sidebar.js"></script>
 <script>
-  /* ── Sidebar-Konfiguration ──────────────────────────── */
-  window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
-  window.SIDEBAR_CURRENT_FILE = 'carbonara.html'; // ← bei jeder Vorlage anpassen
-
-  /* ── Zutaten mit Mengenrechner ──────────────────────── */
-  const BASE_SERVINGS = 2;
-  // [Menge pro Portion, Einheit, Name]
+  /* ── Portionenrechner ─────────────────────────────────── */
   const INGREDIENTS = [
-    [100,  'g',   'Spaghetti'],
-    [2,    'Stk', 'Eigelb'],
-    [50,   'g',   'Guanciale'],
-    [30,   'g',   'Pecorino Romano'],
-    [null, '',    'Schwarzer Pfeffer'],
-    [null, '',    'Salz (für Kochwasser)'],
+    [100, 'g',   'Spaghetti'],
+    [2,   'Stk', 'Eigelb'],
+    [50,  'g',   'Guanciale'],
+    [30,  'g',   'Pecorino Romano'],
+    [null,'',    'Schwarzer Pfeffer'],
+    [null,'',    'Salz (Kochwasser)'],
   ];
-  let servings = BASE_SERVINGS;
+  let servings = 2;
 
   function renderIngredients() {
-    document.getElementById('ingredient-list').innerHTML = INGREDIENTS.map(([amt, unit, name]) => {
+    document.getElementById('ingredient-list').innerHTML = INGREDIENTS.map(function (ing) {
+      const amt = ing[0], unit = ing[1], name = ing[2];
       let amtStr = '–';
       if (amt !== null) {
         const s = amt * servings;
@@ -240,8 +178,8 @@
       return `<li><span class="ing-amount">${amtStr}</span><span class="ing-name">${name}</span></li>`;
     }).join('');
   }
-  function changeServings(delta) {
-    servings = Math.max(1, Math.min(20, servings + delta));
+  function changeServings(d) {
+    servings = Math.max(1, Math.min(20, servings + d));
     document.getElementById('serving-num').textContent = servings;
     renderIngredients();
   }

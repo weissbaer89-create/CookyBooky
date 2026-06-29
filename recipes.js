@@ -156,15 +156,15 @@ const RECIPES = [
             file: "rezepte/ziegenfrischkäsesalat.html",
             tags: ["deftig", "hüttenküche",],
             time: "100 min",
-            difficulty: "mittel",
+            difficulty: "einfach",
             description: "mit Himbeerdressing"
           },{
             id: "tirolergroestl",
             title: "Tiroler Gröstl",
             file: "rezepte/tirolergroestl.html",
             tags: ["deftig", "hüttenküche",],
-            time: "100 min",
-            difficulty: "mittel",
+            time: "50 min",
+            difficulty: "einfach",
             description: "mit Himbeerdressing"
           },
         ]

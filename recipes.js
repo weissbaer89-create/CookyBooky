@@ -111,7 +111,59 @@ const RECIPES = [
       }
     ]
   },
-
+  // ════════════════════════════════════════════════════════
+  //  LAND: Nepal
+  // ════════════════════════════════════════════════════════
+  {
+    country: "Österreich",
+    flag: "🇦🇹",
+    code: "at",
+    subcategories: [
+      {
+        name: "Ausbildungszentrum Bergrettung Jamtal",
+        icon: "🏔️",
+        items: [
+          {
+            id: "erfrischendebowl",
+            title: "Erfrischende Bowl",
+            file: "rezepte/erfrischendebowl.html",
+            tags: ["erfrischend", "hüttenküche",],
+            time: "60 min",
+            difficulty: "einfach",
+            description: "Erfrischende Bowl für den Sommer"
+          },
+          {
+            id: "spanferkelrollbraten",
+            title: "Spanferkelrollbraten",
+            file: "rezepte/spanferkelrollbraten.html",
+            tags: ["feiertage", "hüttenküche",],
+            time: "180 min",
+            difficulty: "anspruchsvoll",
+            description: "mit Semmelknödelfüllung und Kürbispüree"
+          },
+		  {
+            id: "eierschwammerlgulasch",
+            title: "Eierschwammerlgulasch",
+            file: "rezepte/eierschwammerlgulasch.html",
+            tags: ["deftig", "hüttenküche",],
+            time: "100 min",
+            difficulty: "mittel",
+            description: "mit Semmelknödel"
+          },
+		  {
+            id: "ziegenfrischkäsesalat",
+            title: "Tiroler Ziegenfrischkäse-Salat",
+            file: "rezepte/ziegenfrischkäsesalat.html",
+            tags: ["deftig", "hüttenküche",],
+            time: "100 min",
+            difficulty: "mittel",
+            description: "mit Himbeerdressing"
+          },
+        ]
+      }
+    ]
+  },
+ 
   // ════════════════════════════════════════════════════════
   //  LAND: Indien
   // ════════════════════════════════════════════════════════
@@ -177,7 +229,7 @@ const RECIPES = [
         ]
       }
     ]
-  }
+  },
 
   // ── Weiteres Land hier eintragen: ─────────────────────────
   // {

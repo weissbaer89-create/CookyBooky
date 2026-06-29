@@ -158,6 +158,14 @@ const RECIPES = [
             time: "100 min",
             difficulty: "mittel",
             description: "mit Himbeerdressing"
+          },{
+            id: "tirolergroestl",
+            title: "Tiroler Gröstl",
+            file: "rezepte/tirolergroestl.html",
+            tags: ["deftig", "hüttenküche",],
+            time: "100 min",
+            difficulty: "mittel",
+            description: "mit Himbeerdressing"
           },
         ]
       }

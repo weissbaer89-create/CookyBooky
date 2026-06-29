@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="titelA">Titel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="recipes.css" />
+  <script src="../recipes.js"></script>
+</head>
+<body>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ── Sidebar ─────────────────────────────────────────────── -->
+<nav id="sidebar" aria-label="Rezept-Navigation">
+  <div class="sb-header">
+    <a class="sb-logo" id="sb-logo" href="../index.html"></a>
+    <button class="sb-close" onclick="closeSidebar()" aria-label="Schließen">✕</button>
+  </div>
+  <div id="sb-nav-body"></div>
+  <div class="sb-footer">
+    <span class="sb-footer-label">Erscheinungsbild</span>
+    <div class="theme-toggle">
+      <span class="theme-label">Dunkel</span>
+      <div class="toggle-track on" onclick="toggleTheme()" role="switch" aria-label="Theme wechseln">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Topbar ──────────────────────────────────────────────── -->
+<header id="topbar">
+  <button class="burger-btn" onclick="openSidebar()" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="topbar-breadcrumb">
+    <a href="../index.html">Kochbuch</a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="landA"></span></a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="typA"></span></a>
+    <span class="sep">›</span>
+    <span class="current" id="titelB">Titel</span>
+  </nav>
+  <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button>
+</header>
+
+<!-- ── Rezept ─────────────────────────────────────────────── -->
+<article>
+  <header class="recipe-hero">
+    <div class="recipe-cat-label"><span id="icon"></span> <span id="typB"></span> · <span id="flag"></span> <span id="landB"></span></div>
+    <h1 class="recipe-title" id="headline">Überschrift</h1>
+    <p class="recipe-desc" id="description">Beschreibung</p>
+    <div class="recipe-meta">
+      <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
+      <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">2</span></div>
+    </div>
+    <div class="recipe-tags" id="tags"></div>
+  </header>
+
+  <div class="gold-rule"><div class="gold-dot"></div></div>
+
+  <div class="recipe-body">
+    <!-- Zutaten -->
+    <aside class="ingredients-panel">
+      <h2 class="panel-title">Zutaten</h2>
+      <div class="serving-control">
+        <button class="serving-btn" onclick="changeServings(-1)">−</button>
+        <span class="serving-num" id="serving-num">2</span>
+        <button class="serving-btn" onclick="changeServings(1)">+</button>
+        <span class="serving-label">Portionen</span>
+      </div>
+      <ul class="ingredient-list" id="ingredient-list"></ul>
+    </aside>
+
+    <!-- Zubereitung -->
+	<div syle="width=100%;">
+	<div id="steps">
+      <h2 class="steps-title">Zubereitung</h2>
+	</div>
+		<div id="notes"></div>
+  </div>
+  </div>
+</article>
+
+<footer>
+  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zur Startseite</a>
+</footer>
+
+<!-- ── Scripts ────────────────────────────────────────────── -->
+<script>
+  /* ── Sidebar-Konfiguration ──────────────────────────── */
+  window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
+  window.SIDEBAR_CURRENT_FILE = 'erfrischendebowl.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Erfrischende Bowl <em>Momos</em>';
+const ID = 'erfrischendebowl';
+const beschreibung = 'Bowls sind seit einiger Zeit im Trend. Sie sehen schön angerichtet nicht nur gut aus, sondern sind auch gesund. Die Rezeptempfehlung von Vinzenz Klimmer ist für zwei Personen gedacht.';
+const hinweis = 'Statt Quinoa können auch Reis, Kichererbsen oder Linsen verwendet werden. Gut passen auch frische Kräuter (zum Beispiel Schnittlauch oder Petersilie). Beim Dressing kann statt Olivenöl auch Tahini (Sesampaste) verwendet werden. Das ergibt ein nussiges Aroma.';
+
+// Ausgabe: Pasta alla Carbonara
+  /* ── Zutaten mit Mengenrechner ──────────────────────── */
+  const BASE_SERVINGS = 2;
+  // [Menge pro Portion, Einheit, Name]
+  const INGREDIENTS = [
+    [null,'<b>Basis für die Bowl</b>',null],
+    [60,  'g',   'Quinoa'],
+    [125,    'ml', 'Wasser'],
+    [0.5,   'Prise',   'Salz'],
+	[null,'<b>Gemüse (nach Saison)</b>',null],
+	[0.5, '', 'Karotte (in Streifen geschnitten)'],
+	[0.5, '', 'Zucchini (in Streifen geschnitten)'],
+	[0.5, 'Handvoll', 'grüner Spargel'],
+	[0.5, 'Handvoll', 'Kirschtomaten'],
+	[0.5, 'Handvoll', 'Babyspinat'],
+	[null,'<b>Toppings</b>',null],
+	[0.5, '', 'Avocado'],
+	[0.5, 'EL', 'Nüsse oder Samen (etwa Sonnenblumenkerne, Mandeln etc.)'],
+	[null,'<b>Dressing</b>',null],
+	[0.5, 'EL', 'Olivenöl'],
+	[0.5, 'EL', 'Zitronensaft'],
+	[0.5, 'EL', 'Honig'],
+	[null, '', 'Salz und Pfeffer'],
+  ];
+  let servings = BASE_SERVINGS;
+  
+  const zubereitung = [
+  ["Quinoa", "Quinoa in gesalzenem Wasser etwa 15 Minuten köcheln und dann quellen lassen.", ""],
+  ["Gemüse", "Inzwischen das Gemüse vorbereiten: Die Karotte schneiden, Zucchini und Spargel in der Pfanne für etwa fünf bis sieben Minuten anbraten. Die Kirschtomaten halbieren.", ""],
+  ["Dressing", "Für das Dressing alle Zutaten gut verrühren, bis eine leicht cremige Konsistenz entsteht.", ""], // <--- Dieser Tipp ist leer!
+  ["Die Bowl zusammenstellen", "Die Quinoa-Basis in eine Schüssel geben, das Gemüse darauf verteilen, anschließend die Avocado und die Toppings hinzufügen. Danach das Dressing darübergeben.", ""],
+];
+
+	//const notizen =
+</script>
+<script src="../sidebar.js"></script>
+<script src="recipe_render.js"></script>
+</body>
+</html>

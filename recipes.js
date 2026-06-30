@@ -24,15 +24,6 @@ const RECIPES = [
         name: "Vorspeisen",
         icon: "🥗",
         items: [
-          {
-            id: "bruschetta",
-            title: "Bruschetta al Pomodoro",
-            file: "rezepte/bruschetta.html",
-            tags: ["vegetarisch", "schnell"],
-            time: "15 min",
-            difficulty: "einfach",
-            description: "Geröstetes Brot mit frischen Tomaten und Basilikum."
-          }
         ]
       },
       {
@@ -48,30 +39,13 @@ const RECIPES = [
             difficulty: "mittel",
             description: "Das Original aus Rom – ohne Sahne, mit Eigelb und Guanciale."
           },
-          {
-            id: "risotto-pilze",
-            title: "Pilz-Risotto",
-            file: "rezepte/risotto-pilze.html",
-            tags: ["vegetarisch", "cremig"],
-            time: "45 min",
-            difficulty: "mittel",
-            description: "Cremiges Risotto mit Steinpilzen und Parmesan."
-          }
         ]
       },
       {
         name: "Desserts",
         icon: "🍮",
         items: [
-          {
-            id: "tiramisu",
-            title: "Klassisches Tiramisù",
-            file: "rezepte/tiramisu.html",
-            tags: ["kalt", "kaffee"],
-            time: "30 min + 4 h kühlen",
-            difficulty: "einfach",
-            description: "Das Beste zum Schluss – cremig, kräftig, unvergesslich."
-          }
+
         ]
       }
     ]
@@ -80,37 +54,37 @@ const RECIPES = [
   // ════════════════════════════════════════════════════════
   //  LAND: Frankreich
   // ════════════════════════════════════════════════════════
-  {
-    country: "Frankreich",
-    flag: "🇫🇷",
-    code: "fr",
-    subcategories: [
-      {
-        name: "Backwaren",
-        icon: "🥐",
-        items: [
-          {
-            id: "zitronentarte",
-            title: "Zitronentarte",
-            file: "rezepte/zitronentarte.html",
-            tags: ["süß", "klassiker"],
-            time: "1 h",
-            difficulty: "mittel",
-            description: "Frisch-säuerliche Tarte mit knusprigem Mürbteig."
-          },
-          {
-            id: "sauerteigbrot",
-            title: "Rustikales Sauerteigbrot",
-            file: "rezepte/sauerteigbrot.html",
-            tags: ["brot", "vegan"],
-            time: "12 h",
-            difficulty: "anspruchsvoll",
-            description: "Knusprige Kruste, luftige Krume – echter Slow-Food-Genuss."
-          }
-        ]
-      }
-    ]
-  },
+//  {
+//    country: "Frankreich",
+//    flag: "🇫🇷",
+//    code: "fr",
+//    subcategories: [
+//      {
+//        name: "Backwaren",
+//        icon: "🥐",
+//        items: [
+//          {
+//            id: "zitronentarte",
+//            title: "Zitronentarte",
+//            file: "rezepte/zitronentarte.html",
+//            tags: ["süß", "klassiker"],
+//            time: "1 h",
+//            difficulty: "mittel",
+//            description: "Frisch-säuerliche Tarte mit knusprigem Mürbteig."
+//          },
+//          {
+//            id: "sauerteigbrot",
+//            title: "Rustikales Sauerteigbrot",
+//            file: "rezepte/sauerteigbrot.html",
+//            tags: ["brot", "vegan"],
+//            time: "12 h",
+//            difficulty: "anspruchsvoll",
+//            description: "Knusprige Kruste, luftige Krume – echter Slow-Food-Genuss."
+//          }
+//        ]
+//      }
+//    ]
+//  },
   // ════════════════════════════════════════════════════════
   //  LAND: Nepal
   // ════════════════════════════════════════════════════════
@@ -158,7 +132,8 @@ const RECIPES = [
             time: "100 min",
             difficulty: "einfach",
             description: "mit Himbeerdressing"
-          },{
+          },
+		  {
             id: "tirolergroestl",
             title: "Tiroler Gröstl",
             file: "rezepte/tirolergroestl.html",
@@ -166,6 +141,15 @@ const RECIPES = [
             time: "50 min",
             difficulty: "einfach",
             description: "mit Himbeerdressing"
+          },
+		  {
+            id: "holzknechtkrapfen",
+            title: "Zillertaler Holzknechtkrapfen",
+            file: "rezepte/holzknechtkrapfen.html",
+            tags: ["herzhaft", "hüttenküche",],
+            time: "40 min",
+            difficulty: "einfach",
+            description: "ein Gericht der traditionellen Tiroler Küche"
           },
         ]
       }
@@ -175,47 +159,47 @@ const RECIPES = [
   // ════════════════════════════════════════════════════════
   //  LAND: Indien
   // ════════════════════════════════════════════════════════
-  {
-    country: "Indien",
-    flag: "🇮🇳",
-    code: "in",
-    subcategories: [
-      {
-        name: "Hauptgerichte",
-        icon: "🍛",
-        items: [
-          {
-            id: "chicken-curry",
-            title: "Butter Chicken Curry",
-            file: "rezepte/butter-chicken.html",
-            tags: ["hähnchen", "würzig"],
-            time: "50 min",
-            difficulty: "mittel",
-            description: "Zartes Hähnchen in samtiger Tomaten-Butter-Sauce."
-          }
-        ]
-      },
-      {
-        name: "Vorspeisen",
-        icon: "🥣",
-        items: [
-          {
-            id: "karotten-suppe",
-            title: "Ingwer-Karotten-Suppe",
-            file: "rezepte/karotten-suppe.html",
-            tags: ["vegan", "warm"],
-            time: "30 min",
-            difficulty: "einfach",
-            description: "Cremige Suppe mit frischem Ingwer und Kokosmilch."
-          }
-        ]
-      }
-    ]
-  },
-
-  // ════════════════════════════════════════════════════════
-  //  LAND: Nepal
-  // ════════════════════════════════════════════════════════
+//  {
+//    country: "Indien",
+//    flag: "🇮🇳",
+//    code: "in",
+//    subcategories: [
+//      {
+//        name: "Hauptgerichte",
+//        icon: "🍛",
+//        items: [
+//          {
+//            id: "chicken-curry",
+//            title: "Butter Chicken Curry",
+//            file: "rezepte/butter-chicken.html",
+//            tags: ["hähnchen", "würzig"],
+//            time: "50 min",
+//            difficulty: "mittel",
+//            description: "Zartes Hähnchen in samtiger Tomaten-Butter-Sauce."
+//          }
+//        ]
+//      },
+//      {
+//        name: "Vorspeisen",
+//        icon: "🥣",
+//        items: [
+//          {
+//            id: "karotten-suppe",
+//            title: "Ingwer-Karotten-Suppe",
+//            file: "rezepte/karotten-suppe.html",
+//            tags: ["vegan", "warm"],
+//            time: "30 min",
+//            difficulty: "einfach",
+//            description: "Cremige Suppe mit frischem Ingwer und Kokosmilch."
+//          }
+//        ]
+//      }
+//    ]
+//  },
+//
+//  // ════════════════════════════════════════════════════════
+//  //  LAND: Nepal
+//  // ════════════════════════════════════════════════════════
   {
     country: "Nepal",
     flag: "🇮🇳",
@@ -237,22 +221,26 @@ const RECIPES = [
         ]
       }
     ]
+  },  {
+    country: "Japan",
+    flag: "🇯🇵",
+    code: "jp",
+    subcategories: [
+      {
+        name: "Hauptgerichte",
+        icon: "🍜",
+        items: [
+          {
+            id: "tantanmenramen",
+            title: "Tantanmen Ramen",
+            file: "rezepte/tantanmenramen.html",
+            tags: ["asiatisch", "straßenküche", "winter",],
+            time: "60 min",
+            difficulty: "mittel",
+            description: "in einer scharfen Suppe"
+          }
+        ]
+      }
+    ]
   },
-
-  // ── Weiteres Land hier eintragen: ─────────────────────────
-  // {
-  //   country: "Japan",
-  //   flag: "🇯🇵",
-  //   subcategories: [
-  //     {
-  //       name: "Hauptgerichte",
-  //       icon: "🍜",
-  //       items: [
-  //         { id: "ramen", title: "Tonkotsu Ramen", file: "rezepte/ramen.html",
-  //           tags: ["suppe","schwein"], time: "3 h", difficulty: "anspruchsvoll",
-  //           description: "Reichhaltige Brühe mit Chashu-Schwein." }
-  //       ]
-  //     }
-  //   ]
-  // }
 ];

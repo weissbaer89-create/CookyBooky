@@ -31,9 +31,9 @@ const RECIPES = [
         icon: "🍝",
         items: [
           {
-            id: "pasta-carbonara",
+            id: "it-carbonara",
             title: "Pasta alla Carbonara",
-            file: "rezepte/carbonara.html",
+            file: "rezepte/it-carbonara.html",
             tags: ["pasta", "klassiker"],
             time: "25 min",
             difficulty: "mittel",
@@ -54,11 +54,11 @@ const RECIPES = [
   // ════════════════════════════════════════════════════════
   //  LAND: Frankreich
   // ════════════════════════════════════════════════════════
-//  {
-//    country: "Frankreich",
-//    flag: "🇫🇷",
-//    code: "fr",
-//    subcategories: [
+  {
+    country: "Frankreich",
+    flag: "🇫🇷",
+    code: "fr",
+    subcategories: [
 //      {
 //        name: "Backwaren",
 //        icon: "🥐",
@@ -72,19 +72,25 @@ const RECIPES = [
 //            difficulty: "mittel",
 //            description: "Frisch-säuerliche Tarte mit knusprigem Mürbteig."
 //          },
-//          {
-//            id: "sauerteigbrot",
-//            title: "Rustikales Sauerteigbrot",
-//            file: "rezepte/sauerteigbrot.html",
-//            tags: ["brot", "vegan"],
-//            time: "12 h",
-//            difficulty: "anspruchsvoll",
-//            description: "Knusprige Kruste, luftige Krume – echter Slow-Food-Genuss."
-//          }
 //        ]
-//      }
-//    ]
-//  },
+//      },
+      {
+        name: "Hauptgerichte",
+		icon: "🍲",
+        items: [
+          {
+            id: "fr-ratatouille",
+            title: "Ratatouille",
+            file: "rezepte/fr-ratatouille.html",
+            tags: ["süß", "klassiker"],
+            time: "1 h",
+            difficulty: "mittel",
+            description: "Französischer Klassiker"
+          },
+        ]
+      }
+    ]
+  },
   // ════════════════════════════════════════════════════════
   //  LAND: Nepal
   // ════════════════════════════════════════════════════════
@@ -94,62 +100,71 @@ const RECIPES = [
     code: "at",
     subcategories: [
       {
-        name: "Ausbildungszentrum Bergrettung Jamtal",
-        icon: "🏔️",
+        name: "Hauptgerichte",
+		icon: "🍲",
         items: [
           {
-            id: "erfrischendebowl",
+            id: "at-erfrischendebowl",
             title: "Erfrischende Bowl",
-            file: "rezepte/erfrischendebowl.html",
-            tags: ["erfrischend", "hüttenküche",],
+            file: "rezepte/at-erfrischendebowl.html",
+            tags: ["erfrischend", "hüttenküche", "bergrettung",],
             time: "60 min",
             difficulty: "einfach",
             description: "Erfrischende Bowl für den Sommer"
           },
           {
-            id: "spanferkelrollbraten",
+            id: "at-spanferkelrollbraten",
             title: "Spanferkelrollbraten",
-            file: "rezepte/spanferkelrollbraten.html",
+            file: "rezepte/at-spanferkelrollbraten.html",
             tags: ["feiertage", "hüttenküche",],
             time: "180 min",
             difficulty: "anspruchsvoll",
             description: "mit Semmelknödelfüllung und Kürbispüree"
           },
 		  {
-            id: "eierschwammerlgulasch",
+            id: "at-eierschwammerlgulasch",
             title: "Eierschwammerlgulasch",
-            file: "rezepte/eierschwammerlgulasch.html",
+            file: "rezepte/at-eierschwammerlgulasch.html",
             tags: ["deftig", "hüttenküche",],
             time: "100 min",
             difficulty: "mittel",
             description: "mit Semmelknödel"
           },
 		  {
-            id: "ziegenfrischkäsesalat",
+            id: "at-ziegenfrischkäsesalat",
             title: "Tiroler Ziegenfrischkäse-Salat",
-            file: "rezepte/ziegenfrischkäsesalat.html",
+            file: "rezepte/at-ziegenfrischkäsesalat.html",
             tags: ["deftig", "hüttenküche",],
             time: "100 min",
             difficulty: "einfach",
             description: "mit Himbeerdressing"
           },
 		  {
-            id: "tirolergroestl",
+            id: "at-tirolergroestl",
             title: "Tiroler Gröstl",
-            file: "rezepte/tirolergroestl.html",
+            file: "rezepte/at-tirolergroestl.html",
             tags: ["deftig", "hüttenküche",],
             time: "50 min",
             difficulty: "einfach",
             description: "mit Himbeerdressing"
           },
 		  {
-            id: "holzknechtkrapfen",
+            id: "at-holzknechtkrapfen",
             title: "Zillertaler Holzknechtkrapfen",
-            file: "rezepte/holzknechtkrapfen.html",
+            file: "rezepte/at-holzknechtkrapfen.html",
             tags: ["herzhaft", "hüttenküche",],
             time: "40 min",
             difficulty: "einfach",
             description: "ein Gericht der traditionellen Tiroler Küche"
+          },
+		  {
+            id: "at-huettencarbonara",
+            title: "Hütten-Carbonara",
+            file: "rezepte/at-huettencarbonara.html",
+            tags: ["herzhaft", "hüttenküche",],
+            time: "40 min",
+            difficulty: "einfach",
+            description: "mit Speck-Pilz-Ragout"
           },
         ]
       }
@@ -210,9 +225,9 @@ const RECIPES = [
         icon: "🍛",
         items: [
           {
-            id: "nepalesische-momos",
+            id: "np-nepalesische-momos",
             title: "Nepalesische Momos",
-            file: "rezepte/nepalesischemomos.html",
+            file: "rezepte/np-nepalesischemomos.html",
             tags: ["asiatisch", "hüttenküche",],
             time: "120 min",
             difficulty: "mittel",
@@ -221,10 +236,139 @@ const RECIPES = [
         ]
       }
     ]
-  },  {
+  },
+  // ════════════════════════════════════════════════════════
+  //  LAND: Thailand
+  // ════════════════════════════════════════════════════════  
+  {
+    country: "Thailand",
+    flag: "🇹🇭",
+    code: "th",
+    subcategories: [
+      {
+        name: "Hauptgerichte",
+        icon: "🍜",
+        items: [
+          {
+            id: "th-stickyricemango",
+            title: "Sticky Rice mit Mango",
+            file: "rezepte/th-stickyricemango.html",
+            tags: ["asiatisch", "straßenküche", "sommer",],
+            time: "60 min",
+            difficulty: "mittel",
+            description: "Khao Niaow Ma Muang"
+          }
+        ]
+      }
+    ]
+  },
+  // ════════════════════════════════════════════════════════
+  //  LAND: Japan
+  // ════════════════════════════════════════════════════════  
+  {
     country: "Japan",
     flag: "🇯🇵",
     code: "jp",
+    subcategories: [
+      {
+        name: "Hauptgerichte",
+        icon: "🍜",
+        items: [
+          {
+            id: "jp-tantanmenramen",
+            title: "Tantanmen Ramen",
+            file: "rezepte/jp-tantanmenramen.html",
+            tags: ["asiatisch", "straßenküche", "winter",],
+            time: "60 min",
+            difficulty: "mittel",
+            description: "in einer scharfen Suppe"
+          }
+        ]
+      }
+    ]
+  },
+  // ════════════════════════════════════════════════════════
+  //  LAND: Portugal
+  // ════════════════════════════════════════════════════════  
+  {
+    country: "Portugal",
+    flag: "🇵🇹",
+    code: "pt",
+    subcategories: [
+      {
+        name: "Hauptgerichte",
+        icon: "🍜",
+        items: [
+          {
+            id: "tantanmenramen",
+            title: "Tantanmen Ramen",
+            file: "rezepte/tantanmenramen.html",
+            tags: ["asiatisch", "straßenküche", "winter",],
+            time: "60 min",
+            difficulty: "mittel",
+            description: "in einer scharfen Suppe"
+          }
+        ]
+      }
+    ]
+  },
+  // ════════════════════════════════════════════════════════
+  //  LAND: Spanien
+  // ════════════════════════════════════════════════════════  
+  {
+    country: "Spanien",
+    flag: "🇪🇸",
+    code: "es",
+    subcategories: [
+      {
+        name: "Hauptgerichte",
+        icon: "🍜",
+        items: [
+          {
+            id: "tantanmenramen",
+            title: "Tantanmen Ramen",
+            file: "rezepte/tantanmenramen.html",
+            tags: ["asiatisch", "straßenküche", "winter",],
+            time: "60 min",
+            difficulty: "mittel",
+            description: "in einer scharfen Suppe"
+          }
+        ]
+      }
+    ]
+  },
+  // ════════════════════════════════════════════════════════
+  //  LAND: Deutschland
+  // ════════════════════════════════════════════════════════  
+  {
+    country: "Deutschland",
+    flag: "🇩🇪",
+    code: "de",
+    subcategories: [
+      {
+        name: "Hauptgerichte",
+        icon: "🍜",
+        items: [
+          {
+            id: "tantanmenramen",
+            title: "Tantanmen Ramen",
+            file: "rezepte/tantanmenramen.html",
+            tags: ["asiatisch", "straßenküche", "winter",],
+            time: "60 min",
+            difficulty: "mittel",
+            description: "in einer scharfen Suppe"
+          }
+        ]
+      }
+    ]
+  },
+  // ════════════════════════════════════════════════════════
+  //  LAND: USA
+  // ════════════════════════════════════════════════════════  
+  {
+    country: "USA",
+    flag: "🇺🇸",
+    code: "us",
     subcategories: [
       {
         name: "Hauptgerichte",

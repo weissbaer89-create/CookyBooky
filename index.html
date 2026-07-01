@@ -145,49 +145,66 @@
     `<div class="stat"><div class="stat-num">${RECIPES.length}</div><div class="stat-label">Länder</div></div>` +
     `<div class="stat"><div class="stat-num">${totalSubs}</div><div class="stat-label">Kategorien</div></div>`;
 
-  // Rezeptübersicht nach Land → Unterkategorie
+  // Zufällige Auswahl von 6 Rezepten (statt komplette Übersicht)
   const diffClass = function (d) {
     return d === 'einfach' ? 'badge-diff-einfach' :
            d === 'mittel'  ? 'badge-diff-mittel'  : 'badge-diff-anspruchsvoll';
   };
 
-  const main = document.getElementById('main-content');
+  // Alle Rezepte flach sammeln, inkl. Länderinfo
+  const allRecipes = [];
   RECIPES.forEach(function (country) {
-    const countryTotal = country.subcategories.reduce(function (s, sub) { return s + sub.items.length; }, 0);
-    const section = document.createElement('section');
-    section.className = 'country-section';
-
-    let html = `<div class="country-header">
-      <span class="country-flag"><img src="https://flagcdn.com/${country.code}.svg" height="20" alt="${country.country}"></span>
-      <h2 class="country-name">${country.country}</h2>
-      <span class="country-count">${countryTotal} Rezept${countryTotal !== 1 ? 'e' : ''}</span>
-    </div>`;
-
     country.subcategories.forEach(function (sub) {
-      html += `<div class="subcat-block">
-        <div class="subcat-header">
-          <span class="subcat-icon">${sub.icon}</span>
-          <span class="subcat-name">${sub.name}</span>
-        </div>
-        <div class="recipe-grid">
-          ${sub.items.map(function (r) {
-            return `<a class="recipe-card" href="${r.file}">
-              <div class="card-title">${r.title}</div>
-              <div class="card-desc">${r.description}</div>
-              <div class="card-meta">
-                <span class="badge badge-time">⏱ ${r.time}</span>
-                <span class="badge ${diffClass(r.difficulty)}">${r.difficulty}</span>
-              </div>
-              <div class="card-tags">${r.tags.map(function (t) { return `<span class="tag">#${t}</span>`; }).join('')}</div>
-            </a>`;
-          }).join('')}
-        </div>
-      </div>`;
+      sub.items.forEach(function (r) {
+        allRecipes.push(Object.assign({}, r, {
+          countryName: country.country,
+          countryFlag: country.code,
+          subName: sub.name,
+          subIcon: sub.icon
+        }));
+      });
     });
-
-    section.innerHTML = html;
-    main.appendChild(section);
   });
+
+  // Fisher-Yates Shuffle
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  const randomPicks = shuffle(allRecipes).slice(0, 6);
+
+  const main = document.getElementById('main-content');
+  const section = document.createElement('section');
+  section.className = 'country-section';
+
+  let html = `<div class="country-header">
+    <h2 class="country-name">Zufällige Auswahl</h2>
+    <span class="country-count">${randomPicks.length} von ${allRecipes.length} Rezepten</span>
+  </div>
+  <div class="recipe-grid">
+    ${randomPicks.map(function (r) {
+      return `<a class="recipe-card" href="${r.file}">
+        <div class="card-title">${r.title}</div>
+        <div class="card-desc">${r.description}</div>
+        <div class="card-meta">
+          <span class="badge badge-time">⏱ ${r.time}</span>
+          <span class="badge ${diffClass(r.difficulty)}">${r.difficulty}</span>
+        </div>
+        <div class="card-tags">
+          <span class="tag">${r.countryFlag ? `<img src="https://flagcdn.com/${r.countryFlag}.svg" height="10" alt="${r.countryName}" style="vertical-align:-1px;margin-right:.25rem;">` : ''}${r.countryName}</span>
+          ${r.tags.map(function (t) { return `<span class="tag">#${t}</span>`; }).join('')}
+        </div>
+      </a>`;
+    }).join('')}
+  </div>`;
+
+  section.innerHTML = html;
+  main.appendChild(section);
 </script>
 </body>
 </html>

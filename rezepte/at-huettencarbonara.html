@@ -97,34 +97,39 @@
 <script>
   /* ── Sidebar-Konfiguration ──────────────────────────── */
   window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
-  window.SIDEBAR_CURRENT_FILE = 'fr-ratatouille.html'; // ← bei jeder Vorlage anpassen
-const headline = '<em>Ratatouille</em>';
-const ID = 'fr-ratatouille';
-const beschreibung = 'Gemüse schneiden und alles mehr oder weniger gleichzeitig rein in den Topf: So wird Ratatouille häufig zubereitet und schmeckt dann meist ein wenig langweilig. Besser ist es, die Paprika und die Tomaten zu häuten sowie die Auberginen (in manchen Rezepten auch die Zucchini) vor dem Kochen extra anzubraten – das dauert seine Zeit, das Ergebnis ist den Mehraufwand aber auf jeden Fall wert. Nicht umsonst lässt im gleichnamigen Film die Ratte Rémy dem strengen Restaurantkritiker Ego eine Portion Ratatouille servieren.';
-const hinweis = 'Ratatouille schmeckt auch sehr gut wieder aufgewärmt, manchmal sogar noch besser. Verquirlte Eier unter etwas restliche Ratatouille gemischt sind ebenfalls köstlich.';
+  window.SIDEBAR_CURRENT_FILE = 'at-huettencarbonara.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Hütten-Carbonara <em>mit Speck-Pilz-Ragout</em>';
+const ID = 'at-huettencarbonara';
+const beschreibung = 'Bergwelten-Magazin: Steinseehütte, Lechtaler Alpen, 2061 m<br> Manuela Kneringer-Schimpfössl, Christoph Zangerl';
+const hinweis = 'Die Sauce kann man auch vorbereiten, indem man Obers und Eidotter erst kurz vor der Fertigstellung unterrührt.';
 
   /* ── Zutaten mit Mengenrechner ──────────────────────── */
   const BASE_SERVINGS = 4;
   // [Menge pro Portion, Einheit, Name]
   const INGREDIENTS = [
-	[75,  'g',   'Auberginen, gewaschen'],
-	[100,  'g',   'Zucchini, gewaschen'],
-	[50,  'g',   'Paprikaschoten, vorzugsweise grüne oder gelbe'],
-	[50,  'ml',   'Olivenöl'],
-	[50,  'g',   'Zwiebeln, abgezogen, gewürfelt'],
-	[0.25,  '',   'Knoblauchzehe'],
-	[200,  'g',   'Tomaten, enthäutet, Samen entfernt, grob gewürfelt'],
-	[0.25,  '',   'mittelgroßes Bouquet garni (Kräutersträußchen aus Petersilie, Lorbeerblatt, Thymian)'],
-	[null,  '',   'Meersalz, frisch gemahlener Pfeffer'],
+	[100,  'g',   'Spaghetti'],
+    [12.5,  'ml',   'Olivenöl'],
+    [37.5,  'g',   'Speckwürfel'],
+    [0.125,  '',   'weiße Zwiebel'],
+    [0.5,  '',   'Knoblauchzehen'],
+    [1,  '',   'Dotter'],
+    [31.25,  'ml',   'Obers'],
+    [12.5,  'ml',   'Milch'],
+    [18.75,  'g',   'Parmesan'],
+    [50,  'g',   'Pilze (Champignon, Kräuterseitlinge, Eierschwammerl oder Steinpilze)'],
+    [12.5,  'g',   'Lauchzwiebeln'],
+    [null,  '',   'frische Petersilie'],
+    [null,  '',   'Salz, Muskat, Pfeffer aus der Mühle'],
+    [15,  'g',   'Tiroler Speck'],
   ];
   let servings = BASE_SERVINGS;
   
   const zubereitung = [
-["Vorbereitung", "Blüten- und Stielansatz von den Auberginen und Zucchini abschneiden. Die Auberginen in Würfel von etwa 1,5 cm Kantenlänge schneiden, auf einen Teller legen, leicht mit Salz bestreuen und 30 Minuten zum Wasserziehen beiseite stellen. Die Zucchini in Würfel von etwa 2 cm Kantenlänge schneiden und beiseite stellen.", ""],
-["Grillen", "Den Grill vorheizen. Die Paprikaschoten mit etwas Olivenöl bepinseln und unter häufigem Wenden grillen, bis sie Blasen werfen und von allen Seiten etwas Farbe genommen haben. In eine Schüssel mit Eiswasser tauchen, dann vorsichtig mit den Fingern oder einem kleinen Messer enthäuten. Die Schoten halbieren, von den Samen und weißen Scheidewänden befreien, in kleine Stücke schneiden und beiseite stellen.", ""],
-["Schmoren", "In einem Schmortopf mit schwerem Boden ein Drittel des Olivenöls bei geringer Temperatur erwärmen. Die Zwiebeln und den Knoblauch darin 2 Minuten anschwitzen, dabei mit einem Holzlöffel rühren. Dann die Tomaten und das Bouquet garni hinzufügen und bei mittlerer Temperatur etwa 15 Minuten garen, dabei alle 5 Minuten rühren. Die Paprika- und Zucchiniwürfel hinzufügen, leicht salzen und 30 Minuten kochen.", ""],
-["Braten", "Inzwischen die Auberginen trockentupfen. In einer Bratpfanne das restliche Olivenöl bei mittlerer Temperatur erwärmen und darin die Auberginen 20 Minuten braten, dabei einmal umrühren. Die Auberginen in den Topf zum Gemüse geben, mit einem Holzlöffel umrühren und bei geringer Temperatur 25-35 Minuten köcheln lassen; die Garzeit hängt von der Frische des Gemüses ab. Dabei alle 5-10 Minuten rühren. Das Gemüse sollte nicht zu matschig , der Geschmack jedes einzelnen noch erkennbar sein. Das Bouquet garni und den Knoblauch entfernen. ", ""],
-["Anrichten", "Das Ratatouille mit Salz und großzügig mit Pfeffer würzen. Direkt aus dem Topf servieren.", ""],
+  ["Vorbereitung", "Zwiebel und Knoblauchzehen schälen und fein schneiden. Petersilie und Junglauch klein schneiden und zur Seite stellen. In einem Topf das Olivenöl leicht erhitzen, Speckwürfel mit geschnittenen Zwiebeln und Knoblauch dazu geben und anschwitzen lassen, Spaghetti in reichlich Salzwasser al dente kochen.", ""],
+  ["Pilze", "Pilze säubern und in kleine Würfel schneiden. In einer separaten Pfanne mit etwas Olivenöl anbraten, bis sie Farbe bekommen, mit Salz, Pfeffer und etwas Zitronensaft abschmecken, zur Speck-Zwiebel-Mischung im Topf geben und vermengen.", ""],
+  ["Legierung vorbereiten", "Eidotter mit dem geriebenen Parmesan, Sahne und Milch verrühren und mit Salz, Pfeffer und Muskat gut würzen. Speck Heu in einer Pfanne ohne Fett kurz anbraten und bereitstellen.", ""],
+  ["Vermengen", "Sobald die Spaghetti fertiggekocht sind, heißt es schnell sein! Etwas Nudelwasser beim Abseihen beiseitestellen. Den Topf vom Herd nehmen, die frisch gekochten heißen Spaghetti zur Speck-Pilzmischung geben und unter ständigem Rühren gründlich mit dem Sahne-Ei-Gemisch vermengen. Es entsteht nun eine cremige Sauce, die nicht zu flüssig sein sollte und dadurch perfekt an den Spaghetti haftet. Sollte die Legierung doch zu dick werden, mit etwas Nudelwasser verdünnen!", ""],
+  ["Anrichten", "Auf einem Teller anrichten, mit Speck Heu, Petersilie und Junglauch garnieren und mit einer Prise frisch gemahlenem Pfeffer vollenden.", ""],
 ];
 
 	//const notizen =

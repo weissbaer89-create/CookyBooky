@@ -59,7 +59,7 @@
     <div class="recipe-meta">
       <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
       <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
-      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">4</span></div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">2</span></div>
     </div>
     <div class="recipe-tags" id="tags"></div>
   </header>
@@ -72,7 +72,7 @@
       <h2 class="panel-title">Zutaten</h2>
       <div class="serving-control">
         <button class="serving-btn" onclick="changeServings(-1)">−</button>
-        <span class="serving-num" id="serving-num">4</span>
+        <span class="serving-num" id="serving-num">2</span>
         <button class="serving-btn" onclick="changeServings(1)">+</button>
         <span class="serving-label">Portionen</span>
       </div>
@@ -97,34 +97,43 @@
 <script>
   /* ── Sidebar-Konfiguration ──────────────────────────── */
   window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
-  window.SIDEBAR_CURRENT_FILE = 'fr-ratatouille.html'; // ← bei jeder Vorlage anpassen
-const headline = '<em>Ratatouille</em>';
-const ID = 'fr-ratatouille';
-const beschreibung = 'Gemüse schneiden und alles mehr oder weniger gleichzeitig rein in den Topf: So wird Ratatouille häufig zubereitet und schmeckt dann meist ein wenig langweilig. Besser ist es, die Paprika und die Tomaten zu häuten sowie die Auberginen (in manchen Rezepten auch die Zucchini) vor dem Kochen extra anzubraten – das dauert seine Zeit, das Ergebnis ist den Mehraufwand aber auf jeden Fall wert. Nicht umsonst lässt im gleichnamigen Film die Ratte Rémy dem strengen Restaurantkritiker Ego eine Portion Ratatouille servieren.';
-const hinweis = 'Ratatouille schmeckt auch sehr gut wieder aufgewärmt, manchmal sogar noch besser. Verquirlte Eier unter etwas restliche Ratatouille gemischt sind ebenfalls köstlich.';
+  window.SIDEBAR_CURRENT_FILE = 'rezepte/at-erfrischendebowl.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Erfrischende Bowl <em>Momos</em>';
+const ID = 'at-erfrischendebowl';
+const beschreibung = 'Bowls sind seit einiger Zeit im Trend. Sie sehen schön angerichtet nicht nur gut aus, sondern sind auch gesund. Die Rezeptempfehlung von Vinzenz Klimmer ist für zwei Personen gedacht.';
+const hinweis = 'Statt Quinoa können auch Reis, Kichererbsen oder Linsen verwendet werden. Gut passen auch frische Kräuter (zum Beispiel Schnittlauch oder Petersilie). Beim Dressing kann statt Olivenöl auch Tahini (Sesampaste) verwendet werden. Das ergibt ein nussiges Aroma.';
 
+// Ausgabe: Pasta alla Carbonara
   /* ── Zutaten mit Mengenrechner ──────────────────────── */
-  const BASE_SERVINGS = 4;
+  const BASE_SERVINGS = 2;
   // [Menge pro Portion, Einheit, Name]
   const INGREDIENTS = [
-	[75,  'g',   'Auberginen, gewaschen'],
-	[100,  'g',   'Zucchini, gewaschen'],
-	[50,  'g',   'Paprikaschoten, vorzugsweise grüne oder gelbe'],
-	[50,  'ml',   'Olivenöl'],
-	[50,  'g',   'Zwiebeln, abgezogen, gewürfelt'],
-	[0.25,  '',   'Knoblauchzehe'],
-	[200,  'g',   'Tomaten, enthäutet, Samen entfernt, grob gewürfelt'],
-	[0.25,  '',   'mittelgroßes Bouquet garni (Kräutersträußchen aus Petersilie, Lorbeerblatt, Thymian)'],
-	[null,  '',   'Meersalz, frisch gemahlener Pfeffer'],
+    [null,'<b>Basis für die Bowl</b>',null],
+    [60,  'g',   'Quinoa'],
+    [125,    'ml', 'Wasser'],
+    [0.5,   'Prise',   'Salz'],
+	[null,'<b>Gemüse (nach Saison)</b>',null],
+	[0.5, '', 'Karotte (in Streifen geschnitten)'],
+	[0.5, '', 'Zucchini (in Streifen geschnitten)'],
+	[0.5, 'Handvoll', 'grüner Spargel'],
+	[0.5, 'Handvoll', 'Kirschtomaten'],
+	[0.5, 'Handvoll', 'Babyspinat'],
+	[null,'<b>Toppings</b>',null],
+	[0.5, '', 'Avocado'],
+	[0.5, 'EL', 'Nüsse oder Samen (etwa Sonnenblumenkerne, Mandeln etc.)'],
+	[null,'<b>Dressing</b>',null],
+	[0.5, 'EL', 'Olivenöl'],
+	[0.5, 'EL', 'Zitronensaft'],
+	[0.5, 'EL', 'Honig'],
+	[null, '', 'Salz und Pfeffer'],
   ];
   let servings = BASE_SERVINGS;
   
   const zubereitung = [
-["Vorbereitung", "Blüten- und Stielansatz von den Auberginen und Zucchini abschneiden. Die Auberginen in Würfel von etwa 1,5 cm Kantenlänge schneiden, auf einen Teller legen, leicht mit Salz bestreuen und 30 Minuten zum Wasserziehen beiseite stellen. Die Zucchini in Würfel von etwa 2 cm Kantenlänge schneiden und beiseite stellen.", ""],
-["Grillen", "Den Grill vorheizen. Die Paprikaschoten mit etwas Olivenöl bepinseln und unter häufigem Wenden grillen, bis sie Blasen werfen und von allen Seiten etwas Farbe genommen haben. In eine Schüssel mit Eiswasser tauchen, dann vorsichtig mit den Fingern oder einem kleinen Messer enthäuten. Die Schoten halbieren, von den Samen und weißen Scheidewänden befreien, in kleine Stücke schneiden und beiseite stellen.", ""],
-["Schmoren", "In einem Schmortopf mit schwerem Boden ein Drittel des Olivenöls bei geringer Temperatur erwärmen. Die Zwiebeln und den Knoblauch darin 2 Minuten anschwitzen, dabei mit einem Holzlöffel rühren. Dann die Tomaten und das Bouquet garni hinzufügen und bei mittlerer Temperatur etwa 15 Minuten garen, dabei alle 5 Minuten rühren. Die Paprika- und Zucchiniwürfel hinzufügen, leicht salzen und 30 Minuten kochen.", ""],
-["Braten", "Inzwischen die Auberginen trockentupfen. In einer Bratpfanne das restliche Olivenöl bei mittlerer Temperatur erwärmen und darin die Auberginen 20 Minuten braten, dabei einmal umrühren. Die Auberginen in den Topf zum Gemüse geben, mit einem Holzlöffel umrühren und bei geringer Temperatur 25-35 Minuten köcheln lassen; die Garzeit hängt von der Frische des Gemüses ab. Dabei alle 5-10 Minuten rühren. Das Gemüse sollte nicht zu matschig , der Geschmack jedes einzelnen noch erkennbar sein. Das Bouquet garni und den Knoblauch entfernen. ", ""],
-["Anrichten", "Das Ratatouille mit Salz und großzügig mit Pfeffer würzen. Direkt aus dem Topf servieren.", ""],
+  ["Quinoa", "Quinoa in gesalzenem Wasser etwa 15 Minuten köcheln und dann quellen lassen.", ""],
+  ["Gemüse", "Inzwischen das Gemüse vorbereiten: Die Karotte schneiden, Zucchini und Spargel in der Pfanne für etwa fünf bis sieben Minuten anbraten. Die Kirschtomaten halbieren.", ""],
+  ["Dressing", "Für das Dressing alle Zutaten gut verrühren, bis eine leicht cremige Konsistenz entsteht.", ""], // <--- Dieser Tipp ist leer!
+  ["Die Bowl zusammenstellen", "Die Quinoa-Basis in eine Schüssel geben, das Gemüse darauf verteilen, anschließend die Avocado und die Toppings hinzufügen. Danach das Dressing darübergeben.", ""],
 ];
 
 	//const notizen =

@@ -97,34 +97,39 @@
 <script>
   /* ── Sidebar-Konfiguration ──────────────────────────── */
   window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
-  window.SIDEBAR_CURRENT_FILE = 'fr-ratatouille.html'; // ← bei jeder Vorlage anpassen
-const headline = '<em>Ratatouille</em>';
-const ID = 'fr-ratatouille';
-const beschreibung = 'Gemüse schneiden und alles mehr oder weniger gleichzeitig rein in den Topf: So wird Ratatouille häufig zubereitet und schmeckt dann meist ein wenig langweilig. Besser ist es, die Paprika und die Tomaten zu häuten sowie die Auberginen (in manchen Rezepten auch die Zucchini) vor dem Kochen extra anzubraten – das dauert seine Zeit, das Ergebnis ist den Mehraufwand aber auf jeden Fall wert. Nicht umsonst lässt im gleichnamigen Film die Ratte Rémy dem strengen Restaurantkritiker Ego eine Portion Ratatouille servieren.';
-const hinweis = 'Ratatouille schmeckt auch sehr gut wieder aufgewärmt, manchmal sogar noch besser. Verquirlte Eier unter etwas restliche Ratatouille gemischt sind ebenfalls köstlich.';
+  window.SIDEBAR_CURRENT_FILE = 'rezepte/at-ziegenfrischkäsesalat.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Tiroler Ziegenfrischkäse-Salat <em>mit Himbeerdressing</em>';
+const ID = 'at-ziegenfrischkäsesalat';
+const beschreibung = 'Vinzenz´ Rezept aus dem Bergrettungsmagazin 06-2025';
+const hinweis = 'Dieses Rezept für vier Personen kombiniert frische Frühlingszutaten mit einem fruchtigen Himbeerdressing und ist perfekt für ein leichtes Abendessen oder als Beilage bei Grillabenden. ';
 
   /* ── Zutaten mit Mengenrechner ──────────────────────── */
   const BASE_SERVINGS = 4;
   // [Menge pro Portion, Einheit, Name]
   const INGREDIENTS = [
-	[75,  'g',   'Auberginen, gewaschen'],
-	[100,  'g',   'Zucchini, gewaschen'],
-	[50,  'g',   'Paprikaschoten, vorzugsweise grüne oder gelbe'],
-	[50,  'ml',   'Olivenöl'],
-	[50,  'g',   'Zwiebeln, abgezogen, gewürfelt'],
-	[0.25,  '',   'Knoblauchzehe'],
-	[200,  'g',   'Tomaten, enthäutet, Samen entfernt, grob gewürfelt'],
-	[0.25,  '',   'mittelgroßes Bouquet garni (Kräutersträußchen aus Petersilie, Lorbeerblatt, Thymian)'],
-	[null,  '',   'Meersalz, frisch gemahlener Pfeffer'],
+    [null,'<b>Salat</b>',null],
+    [0.25,  '',   'Kopfsalat'],
+    [25,    'g', 'Zuckerschoten'],
+    [37.5,    'g', 'frische Himbeeren'],
+    [0.5,    '', 'Schalotten'],
+    [25,    'g', 'gehackte und geröstete Haselnüsse'],
+    [1,    '', 'Ziegenfrischkäsetaler (à 60 g) '],
+    [1,    '', 'Stängel Petersilie und Blatt'],
+	[null,'<b>Himbeerdressing</b>',null],	
+    [62.5,    'g', 'Himbeeren'],
+    [0.25,    'TL', 'mittelscharfer Senf/Dijon-Senf '],
+    [0.75,    'EL', 'Balsamico-Essig'],
+    [0.25,    'TL', 'Honig'],
+    [null,    '', 'Salz, Pfeffer'],
+    [1,    'EL', 'Rapsöl oder Olivenöl '],	
   ];
   let servings = BASE_SERVINGS;
   
   const zubereitung = [
-["Vorbereitung", "Blüten- und Stielansatz von den Auberginen und Zucchini abschneiden. Die Auberginen in Würfel von etwa 1,5 cm Kantenlänge schneiden, auf einen Teller legen, leicht mit Salz bestreuen und 30 Minuten zum Wasserziehen beiseite stellen. Die Zucchini in Würfel von etwa 2 cm Kantenlänge schneiden und beiseite stellen.", ""],
-["Grillen", "Den Grill vorheizen. Die Paprikaschoten mit etwas Olivenöl bepinseln und unter häufigem Wenden grillen, bis sie Blasen werfen und von allen Seiten etwas Farbe genommen haben. In eine Schüssel mit Eiswasser tauchen, dann vorsichtig mit den Fingern oder einem kleinen Messer enthäuten. Die Schoten halbieren, von den Samen und weißen Scheidewänden befreien, in kleine Stücke schneiden und beiseite stellen.", ""],
-["Schmoren", "In einem Schmortopf mit schwerem Boden ein Drittel des Olivenöls bei geringer Temperatur erwärmen. Die Zwiebeln und den Knoblauch darin 2 Minuten anschwitzen, dabei mit einem Holzlöffel rühren. Dann die Tomaten und das Bouquet garni hinzufügen und bei mittlerer Temperatur etwa 15 Minuten garen, dabei alle 5 Minuten rühren. Die Paprika- und Zucchiniwürfel hinzufügen, leicht salzen und 30 Minuten kochen.", ""],
-["Braten", "Inzwischen die Auberginen trockentupfen. In einer Bratpfanne das restliche Olivenöl bei mittlerer Temperatur erwärmen und darin die Auberginen 20 Minuten braten, dabei einmal umrühren. Die Auberginen in den Topf zum Gemüse geben, mit einem Holzlöffel umrühren und bei geringer Temperatur 25-35 Minuten köcheln lassen; die Garzeit hängt von der Frische des Gemüses ab. Dabei alle 5-10 Minuten rühren. Das Gemüse sollte nicht zu matschig , der Geschmack jedes einzelnen noch erkennbar sein. Das Bouquet garni und den Knoblauch entfernen. ", ""],
-["Anrichten", "Das Ratatouille mit Salz und großzügig mit Pfeffer würzen. Direkt aus dem Topf servieren.", ""],
+  ["Das Dressing zubereiten", "Die Hälfte der Himbeeren zusammen mit Senf, Balsamico-Essig, Honig, Salz, Pfeffer und Raps- oder Olivenöl in einen hohen Becher geben und fein pürieren. Mit Salz abschmecken.", ""],
+  ["Salat vorbereiten", "Den Kopfsalat putzen, waschen und trocken schütteln. Grob zerzupfen. Zuckerschoten waschen, putzen und schräg in dünne Streifen schneiden. Schalotten abziehen und in dünne Ringe schneiden. Alles in eine große Salatschüssel geben.", ""],
+  ["Käse vorbereiten", "Die Ziegenfrischkäsetaler vierteln und in den gerösteten Haselnüssen wälzen, dabei leicht andrücken.", "Für eine zusätzliche Tiroler Note kann man statt Ziegenfrischkäse auch Frischkäse aller Art aus heimischer Produktion verwenden."],
+  ["Anrichten", "Das Dressing über den Salat geben und locker untermischen. Auf vier Teller verteilen. Die Käseecken, die übrigen Himbeeren und die Petersilie darüber streuen. Sofort servieren.  ", "Dazu passt hausgemachtes Vollkornbrot."],
 ];
 
 	//const notizen =

@@ -49,8 +49,11 @@
   regLink.innerHTML = `<a href="${prefix}register.html">📖&nbsp; Register</a>`;
   sbNav.appendChild(regLink);
 
-  // ── Ebene 1: Länder ──────────────────────────────────────
-  RECIPES.forEach(function (country, ci) {
+  // ── Ebene 1: Länder (alphabetisch sortiert) ──────────────
+  const sortedCountries = RECIPES.slice().sort(function (a, b) {
+    return a.country.localeCompare(b.country, 'de');
+  });
+  sortedCountries.forEach(function (country, ci) {
     const countryDiv = document.createElement('div');
     countryDiv.className = 'nav-country';
 

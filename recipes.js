@@ -50,6 +50,7 @@ const RECIPES = [
       }
     ]
   },
+
   // ════════════════════════════════════════════════════════
   //  LAND: Frankreich
   // ════════════════════════════════════════════════════════
@@ -321,16 +322,16 @@ const RECIPES = [
     subcategories: [
       {
         name: "Hauptgerichte",
-        icon: "🍜",
+        icon: "🥘",
         items: [
           {
-            id: "tantanmenramen",
-            title: "Tantanmen Ramen",
-            file: "rezepte/tantanmenramen.html",
-            tags: ["asiatisch", "straßenküche", "winter",],
-            time: "60 min",
+            id: "es-salzgambas",
+            title: "Auf Salz gegarte Gambas",
+            file: "rezepte/es-salzgambas.html",
+            tags: ["meeresfrüchte", "straßenküche",],
+            time: "90 min",
             difficulty: "mittel",
-            description: "in einer scharfen Suppe"
+            description: "mit Paella-Sud"
           }
         ]
       }

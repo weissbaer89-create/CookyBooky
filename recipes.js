@@ -92,7 +92,7 @@ const RECIPES = [
     ]
   },
   // ════════════════════════════════════════════════════════
-  //  LAND: Nepal
+  //  LAND: Österreich
   // ════════════════════════════════════════════════════════
   {
     country: "Österreich",
@@ -272,7 +272,7 @@ const RECIPES = [
     subcategories: [
       {
         name: "Hauptgerichte",
-        icon: "🍜",
+        icon: "🍙",
         items: [
           {
             id: "jp-tantanmenramen",
@@ -297,7 +297,7 @@ const RECIPES = [
     subcategories: [
       {
         name: "Hauptgerichte",
-        icon: "🍜",
+        icon: "🥘",
         items: [
           {
             id: "tantanmenramen",
@@ -347,22 +347,22 @@ const RECIPES = [
     subcategories: [
       {
         name: "Hauptgerichte",
-        icon: "🍜",
+        icon: "🍖",
         items: [
           {
-            id: "tantanmenramen",
-            title: "Tantanmen Ramen",
-            file: "rezepte/tantanmenramen.html",
-            tags: ["asiatisch", "straßenküche", "winter",],
-            time: "60 min",
+            id: "de-gefuellterkohlrabi",
+            title: "Gefüllter Kohlrabi",
+            file: "rezepte/de-gefuellterkohlrabi.html",
+            tags: ["leicht", "winter",],
+            time: "50 min",
             difficulty: "mittel",
-            description: "in einer scharfen Suppe"
+            description: " mit Käse gratiniert"
           },
         ],
       },
       {
         name: "Desserts",
-        icon: "🍮",
+        icon: "🍰",
         items: [
           {
             id: "de-apfelzimtkuechlein",
@@ -396,7 +396,7 @@ const RECIPES = [
     subcategories: [
       {
         name: "Hauptgerichte",
-        icon: "🍜",
+        icon: "🍔",
         items: [
           {
             id: "tantanmenramen",

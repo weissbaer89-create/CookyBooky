@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="titelA">Titel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="recipes.css" />
+  <script src="../recipes.js"></script>
+</head>
+<body>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ── Sidebar ─────────────────────────────────────────────── -->
+<nav id="sidebar" aria-label="Rezept-Navigation">
+  <div class="sb-header">
+    <a class="sb-logo" id="sb-logo" href="../index.html"></a>
+    <button class="sb-close" onclick="closeSidebar()" aria-label="Schließen">✕</button>
+  </div>
+  <div id="sb-nav-body"></div>
+  <div class="sb-footer">
+    <span class="sb-footer-label">Erscheinungsbild</span>
+    <div class="theme-toggle">
+      <span class="theme-label">Dunkel</span>
+      <div class="toggle-track on" onclick="toggleTheme()" role="switch" aria-label="Theme wechseln">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Topbar ──────────────────────────────────────────────── -->
+<header id="topbar">
+  <button class="burger-btn" onclick="openSidebar()" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="topbar-breadcrumb">
+    <a href="../index.html">Kochbuch</a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="landA"></span></a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="typA"></span></a>
+    <span class="sep">›</span>
+    <span class="current" id="titelB">Titel</span>
+  </nav>
+  <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button>
+</header>
+
+<!-- ── Rezept ─────────────────────────────────────────────── -->
+<article>
+  <header class="recipe-hero">
+    <div class="recipe-cat-label"><span id="icon"></span> <span id="typB"></span> · <span id="flag"></span> <span id="landB"></span></div>
+    <h1 class="recipe-title" id="headline">Überschrift</h1>
+    <p class="recipe-desc" id="description">Beschreibung</p>
+    <div class="recipe-meta">
+      <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
+      <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">25</span></div>
+    </div>
+    <div class="recipe-tags" id="tags"></div>
+  </header>
+
+  <div class="gold-rule"><div class="gold-dot"></div></div>
+
+  <div class="recipe-body">
+    <!-- Zutaten -->
+    <aside class="ingredients-panel">
+      <h2 class="panel-title">Zutaten</h2>
+      <div class="serving-control">
+        <button class="serving-btn" onclick="changeServings(-1)">−</button>
+        <span class="serving-num" id="serving-num">25</span>
+        <button class="serving-btn" onclick="changeServings(1)">+</button>
+        <span class="serving-label">Portionen</span>
+      </div>
+      <ul class="ingredient-list" id="ingredient-list"></ul>
+    </aside>
+
+    <!-- Zubereitung -->
+	<div syle="width=100%;">
+	<div id="steps">
+      <h2 class="steps-title">Zubereitung</h2>
+	</div>
+		<div id="notes"></div>
+  </div>
+  </div>
+</article>
+
+<footer>
+  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zur Startseite</a>
+</footer>
+
+<!-- ── Scripts ────────────────────────────────────────────── -->
+<script>
+  /* ── Sidebar-Konfiguration ──────────────────────────── */
+  window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
+  window.SIDEBAR_CURRENT_FILE = 'rezepte/de-apfelzimtkuechlein.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Apfel-Zimt-<em>Küchlein</em>';
+const ID = 'de-apfelzimtkuechlein';
+const beschreibung = 'Ein Rezept von Lotte für 25 Stück. Schnell und einfach zubereitet, auch gut zum Einfrieren geeignet. Schmecken frisch am besten!';
+const hinweis = '';
+
+  /* ── Zutaten mit Mengenrechner ──────────────────────── */
+  const BASE_SERVINGS = 25;
+  // [Menge pro Portion, Einheit, Name]
+  const INGREDIENTS = [
+	[0.06,  'kg',   'säuerliche Äpfel'],
+    [null,  '',   'Zitronensaft je nach Apfelmenge'],
+    [0.02,  'TL',   'Zimt'],
+    [10,  'g',   'weiche Butter oder Margarine'],
+    [8,  'g',   'Zucker'],
+    [0.04,  'Prise',   'Salz'],
+    [0.04,  'Packl',   'Vanille-Zucker'],
+    [0.04,  'Packl',   'Backpulver'],
+    [0.16,  '',   'Eier'],
+    [16,  'g',   'Mehl'],
+    [0.08,  'EL',   'Puderzucker'],
+  ];
+  let servings = BASE_SERVINGS;
+  
+  const zubereitung = [
+  ["Äpfel vorbereiten", "Äpfel schälen, entkernen und in feine Stückchen schneiden. Mit Zitronensaft und Zimt vermischen. Zugedeckt ziehen lassen.", "1/2 Zitrone auf 1,5 kg Äpfel"],
+  ["Teig", "Fett, Zucker, Vanillin-Zucker und Salz cremig rühren. Eier nach und nach unterrühren. Mehl und Backpulver mischen, darübersieben und unterrühren. Die Apfelstückchen unterheben.", "Ofen auf 175 °C Umluft vorheizen"],
+  ["Küchlein", "Backblech mit Backpapier auslegen. Häufchen aus je 2-3 Esslöfel Teig daraufsetzen und dabei jeweils ca. 5cm Abstand lassen (Teig läuft beim Backen etwas auseinander).", ""],
+  ["Backen", "Im vorgeheitzen Backofen 15-20 Minuten Backen. Etwas auskühlen lassen, mit Puderzucker bestäuben. Schmecken frisch am besten.", ""],
+
+];
+
+	//const notizen =
+</script>
+<script src="../sidebar.js"></script>
+<script src="recipe_render.js"></script>
+</body>
+</html>

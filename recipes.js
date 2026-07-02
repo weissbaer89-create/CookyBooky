@@ -357,7 +357,31 @@ const RECIPES = [
             time: "60 min",
             difficulty: "mittel",
             description: "in einer scharfen Suppe"
-          }
+          },
+        ],
+      },
+      {
+        name: "Desserts",
+        icon: "🍮",
+        items: [
+          {
+            id: "de-apfelzimtkuechlein",
+            title: "Apfel-Zimt-Küchlein",
+            file: "rezepte/de-apfelzimtkuechlein.html",
+            tags: ["süß", "fingerfood",],
+            time: "30 min",
+            difficulty: "einfach",
+            description: "von Lotte"
+          },
+          {
+            id: "de-apfelknoedel",
+            title: "Gebackene Apfelknödel",
+            file: "rezepte/de-apfelknoedel.html",
+            tags: ["süß",],
+            time: "30 min",
+            difficulty: "einfach",
+            description: "mit Preiselbeersahne und Vanilleeis"
+          },
         ]
       }
     ]

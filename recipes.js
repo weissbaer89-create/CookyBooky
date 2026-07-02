@@ -358,6 +358,15 @@ const RECIPES = [
             difficulty: "mittel",
             description: " mit Käse gratiniert"
           },
+          {
+            id: "de-griesschnitten",
+            title: "Grießschnitten",
+            file: "rezepte/de-griesschnitten.html",
+            tags: ["leicht", "winter", "süß",],
+            time: "50 min",
+            difficulty: "mittel",
+            description: "mit karamellisierten Äpfeln"
+          },
         ],
       },
       {

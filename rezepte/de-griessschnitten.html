@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="titelA">Titel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="recipes.css" />
+  <script src="../recipes.js"></script>
+</head>
+<body>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ── Sidebar ─────────────────────────────────────────────── -->
+<nav id="sidebar" aria-label="Rezept-Navigation">
+  <div class="sb-header">
+    <a class="sb-logo" id="sb-logo" href="../index.html"></a>
+    <button class="sb-close" onclick="closeSidebar()" aria-label="Schließen">✕</button>
+  </div>
+  <div id="sb-nav-body"></div>
+  <div class="sb-footer">
+    <span class="sb-footer-label">Erscheinungsbild</span>
+    <div class="theme-toggle">
+      <span class="theme-label">Dunkel</span>
+      <div class="toggle-track on" onclick="toggleTheme()" role="switch" aria-label="Theme wechseln">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Topbar ──────────────────────────────────────────────── -->
+<header id="topbar">
+  <button class="burger-btn" onclick="openSidebar()" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="topbar-breadcrumb">
+    <a href="../index.html">Kochbuch</a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="landA"></span></a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="typA"></span></a>
+    <span class="sep">›</span>
+    <span class="current" id="titelB">Titel</span>
+  </nav>
+  <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button>
+</header>
+
+<!-- ── Rezept ─────────────────────────────────────────────── -->
+<article>
+  <header class="recipe-hero">
+    <div class="recipe-cat-label"><span id="icon"></span> <span id="typB"></span> · <span id="flag"></span> <span id="landB"></span></div>
+    <h1 class="recipe-title" id="headline">Überschrift</h1>
+    <p class="recipe-desc" id="description">Beschreibung</p>
+    <div class="recipe-meta">
+      <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
+      <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">6</span></div>
+    </div>
+    <div class="recipe-tags" id="tags"></div>
+  </header>
+
+  <div class="gold-rule"><div class="gold-dot"></div></div>
+
+  <div class="recipe-body">
+    <!-- Zutaten -->
+    <aside class="ingredients-panel">
+      <h2 class="panel-title">Zutaten</h2>
+      <div class="serving-control">
+        <button class="serving-btn" onclick="changeServings(-1)">−</button>
+        <span class="serving-num" id="serving-num">6</span>
+        <button class="serving-btn" onclick="changeServings(1)">+</button>
+        <span class="serving-label">Portionen</span>
+      </div>
+      <ul class="ingredient-list" id="ingredient-list"></ul>
+    </aside>
+
+    <!-- Zubereitung -->
+	<div syle="width=100%;">
+	<div id="steps">
+      <h2 class="steps-title">Zubereitung</h2>
+	</div>
+		<div id="notes"></div>
+  </div>
+  </div>
+</article>
+
+<footer>
+  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zur Startseite</a>
+</footer>
+
+<!-- ── Scripts ────────────────────────────────────────────── -->
+<script>
+  /* ── Sidebar-Konfiguration ──────────────────────────── */
+  window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
+  window.SIDEBAR_CURRENT_FILE = 'rezepte/de-griesschnitten'; // ← bei jeder Vorlage anpassen
+const headline = 'Grießschnitten<em> mit karamellisierten Äpfeln</em>';
+const ID = 'de-griesschnitten';
+const beschreibung = 'Die Zutaten sind preiswert, die Zubereitung ist unkompliziert – auch deshalb eignen sich Grießschnitten für alle eiligen Eltern. Sie sind eine leckere süße Haupt- oder Nachspeise. Man verwendet Hartweizengrieß, der die Eigenschaft besitzt, beim Kochen recht fest zu bleiben. Uns schmeckt er am besten mit viel Vanille und Zimt. Dazu passt jegliche Art von Früchten oder Kompott, selbst gemacht oder aus dem Glas, das spielt keine Rolle. Die karamellisierten Äpfel allerdings runden die Grießschnitten perfekt ab, und es können meistens nicht genug sein! Für viele in unserer Familie sind Grießschnitten ein Lieblingsgericht, passend zu jeder Jahreszeit.';
+const hinweis = 'Für den unwahrscheinlichen Fall, dass Grießschnitten übrig bleiben, lassen sich die Teigrauten auch mehrere Tage im Kühlschrank lagern und dann erneut in der Pfanne erhitzen – auch mit frisch geraspeltem Apfel ein perfekter Nachmittagssnack für hungrige Kinder (und Eltern).';
+
+
+  /* ── Zutaten mit Mengenrechner ──────────────────────── */
+  const BASE_SERVINGS = 6;
+  // [Menge pro Portion, Einheit, Name]
+  const INGREDIENTS = [
+	[null, 'Grießschnitten', null],
+	[1/6, 'l', 'Milch'],
+	[1/6, 'Prise', 'Salz'],
+	[80/6, 'g', 'Zucker'],
+	[1/6, 'Stück', 'Orangenschale'],
+	[1/6, 'Stück', 'Zitronenschale'],
+	[1/6, '', 'Zimtstange (oder Zimtpulver)'],
+	[1/6, '', 'Vanilleschote (oder Vanilleextrakt)'],
+	[65/6, 'g', 'Butter'],
+	[150/6, 'g', 'Hartweizengrieß'],
+	[2/6, '', 'Eigelb'],
+	[1/6, '', 'Tasse Semmelbrösel'],
+	[50/6, 'g', 'Butter'],
+	[null,  'karamellisierte Äpfel',   null],
+	[4/6, '', 'säuerliche Äpfel'],
+	[60/6, 'g', 'Zucker'],
+	[null, '','etwas Zitronensaft],'],
+	[100/6, 'g', 'Apfelsaft'],
+	[40/6, 'g', 'kalte Butter'],
+  ];
+  let servings = BASE_SERVINGS;
+  
+  const zubereitung = [
+  ["Gieß", "Milch mit Salz, Zucker, Orangen- und Zitronenschale, Zimtstange, einer halben ausgeschabten Vanilleschote und Butter aufkochen. Hartweizengrieß langsam einrieseln lassen und etwa 5 Minuten leicht köcheln lassen, bis die Masse andickt. Zur Seite stellen, die Eigelbe unterrühren und ziehen lassen.", ""],
+  ["Grießmasse", "Schalen, Zimtstange und Vanilleschote wieder entfernen. Jetzt die Grießmasse auf ein mit Backpapier ausgelegtes Blech etwa 1 cm dick aufstreichen und erkalten lassen. Dann in zirka 5 mal 5 Zentimeter große Rauten schneiden und leicht in Semmelbröseln wälzen.", ""],
+  ["Äpfel", "Äpfel schälen, vierteln und das Kerngehäuse entfernen. Jede Apfelspalte noch in drei dünnere Apfelspalten schneiden. Zucker in der Pfanne karamellisieren und mit etwas Zitronensaft ablöschen. Apfelspalten und das restliche Vanillemark dazugeben, mit Weißwein oder Apfelsaft angießen und dünsten, bis die Apfelspalten fertig gegart sind. Kalte Butterflocken zur Bindung unterrühren.", ""],
+  ["Anbraten", "Grießschnitten in 50 g Butter goldgelb braten.", ""],
+  ["Anrichten", "Gebratene Grießschnitten auf den karamellisierten Vanilleäpfeln anrichten und mit Zimt und Zucker servieren.", ""],
+
+];
+
+	//const notizen =
+</script>
+<script src="../sidebar.js"></script>
+<script src="recipe_render.js"></script>
+</body>
+</html>

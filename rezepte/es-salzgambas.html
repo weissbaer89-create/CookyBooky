@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="titelA">Titel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="recipes.css" />
+  <script src="../recipes.js"></script>
+</head>
+<body>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ── Sidebar ─────────────────────────────────────────────── -->
+<nav id="sidebar" aria-label="Rezept-Navigation">
+  <div class="sb-header">
+    <a class="sb-logo" id="sb-logo" href="../index.html"></a>
+    <button class="sb-close" onclick="closeSidebar()" aria-label="Schließen">✕</button>
+  </div>
+  <div id="sb-nav-body"></div>
+  <div class="sb-footer">
+    <span class="sb-footer-label">Erscheinungsbild</span>
+    <div class="theme-toggle">
+      <span class="theme-label">Dunkel</span>
+      <div class="toggle-track on" onclick="toggleTheme()" role="switch" aria-label="Theme wechseln">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Topbar ──────────────────────────────────────────────── -->
+<header id="topbar">
+  <button class="burger-btn" onclick="openSidebar()" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="topbar-breadcrumb">
+    <a href="../index.html">Kochbuch</a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="landA"></span></a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="typA"></span></a>
+    <span class="sep">›</span>
+    <span class="current" id="titelB">Titel</span>
+  </nav>
+  <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button>
+</header>
+
+<!-- ── Rezept ─────────────────────────────────────────────── -->
+<article>
+  <header class="recipe-hero">
+    <div class="recipe-cat-label"><span id="icon"></span> <span id="typB"></span> · <span id="flag"></span> <span id="landB"></span></div>
+    <h1 class="recipe-title" id="headline">Überschrift</h1>
+    <p class="recipe-desc" id="description">Beschreibung</p>
+    <div class="recipe-meta">
+      <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
+      <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">6</span></div>
+    </div>
+    <div class="recipe-tags" id="tags"></div>
+  </header>
+
+  <div class="gold-rule"><div class="gold-dot"></div></div>
+
+  <div class="recipe-body">
+    <!-- Zutaten -->
+    <aside class="ingredients-panel">
+      <h2 class="panel-title">Zutaten</h2>
+      <div class="serving-control">
+        <button class="serving-btn" onclick="changeServings(-1)">−</button>
+        <span class="serving-num" id="serving-num">6</span>
+        <button class="serving-btn" onclick="changeServings(1)">+</button>
+        <span class="serving-label">Portionen</span>
+      </div>
+      <ul class="ingredient-list" id="ingredient-list"></ul>
+    </aside>
+
+    <!-- Zubereitung -->
+	<div syle="width=100%;">
+	<div id="steps">
+      <h2 class="steps-title">Zubereitung</h2>
+	</div>
+		<div id="notes"></div>
+  </div>
+  </div>
+</article>
+
+<footer>
+  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zur Startseite</a>
+</footer>
+
+<!-- ── Scripts ────────────────────────────────────────────── -->
+<script>
+  /* ── Sidebar-Konfiguration ──────────────────────────── */
+  window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
+  window.SIDEBAR_CURRENT_FILE = 'rezepte/es-salzgambas.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Auf Salz gegarte Gambas <em>mit Paella-Sud</em>';
+const ID = 'es-salzgambas';
+const beschreibung = 'In diesem Rezept wirkt das Salz als Wärmeträger: es verteilt die Hitze gleichmäßig und verleiht den Krustentieren Würze, ohne sie zu versalzen.';
+const hinweis = '';
+
+// Ausgabe: Pasta alla Carbonara
+  /* ── Zutaten mit Mengenrechner ──────────────────────── */
+  const BASE_SERVINGS = 6;
+  // [Menge pro Portion, Einheit, Name]
+  const INGREDIENTS = [
+	[13.5,  'g',   'Zwiebel'],
+	[13.5,  'g',   'Staudensellerie'],
+	[13.5,  'g',   'Fenchel'],
+	[13.5,  'g',   'Tomaten'],
+	[40,  'g',   'Hühnerflügel'],
+	[0.2,    'EL', 'Olivenöl'],
+	[8.5,  'g',   'Pelati-Tomaten'],
+	[0.6,    'cl', 'Estragonessig'],
+	[17,    'ml', 'Weißwein'],
+	[8.5,    'ml', 'Noilly Prat'],
+	[0.4,    'l', 'Geflügelbrühe'],
+	[5,  'g',   'Risottoreis'],
+	[0.2,    '', 'Lorbeerblatt'],
+	[2,    '', 'Gambakarkassen'],
+	[25,    'ml', 'Olivenöl'],
+	[5,    '', 'Safranfäden, in Wasser eingeweicht'],
+	[0.05,    '', 'Zitronenschale'],
+	[0.1,    '', 'Chilischote (frisch, ohne Kerne)'],
+	[0.5,    '', 'Zweige Petersilie'],
+	[0.7,    '', 'Zweige Estragon'],
+	[17,  'g',   'Butter'],
+	[0.4,  'kg',   'gewaschenes Meersalz'],
+	[1,    '', 'Gamba à 50 g pro Person'],
+	[0.17,    'TL', 'Fischfarce'],
+	[0.17,    '', 'Zweig Thymian, fein gehackt'],
+	[0.4,    '', 'Scheiben Salsiccia pro Gamba, gefroren'],
+	[0.7,    '', 'Streifen Limettenschale'],
+	[0.17,    '', 'Knoblauchzehe'],
+	[0.17,    '', 'Zweig Basilikum'],
+	[0.4,    '', 'Blatt Lorbeer'],
+  ];
+  let servings = BASE_SERVINGS;
+  
+  const zubereitung = [
+  ["Fond vorbereiten", "Gemüse würfeln. Hühnerflügel in Olivenöl goldgelb anbraten. Fett abgießen. Gemüse zugeben, leicht anschwitzen, Pelati-Tomaten zugeben. Mit Essig, Weißwein und Noilly Prat ablöschen, kurz dünsten. Geflügelbrühe zugeben, mit Reis und Lorbeer 45 Minuten leicht köcheln. Fond abpassieren.", ""],
+  ["Paella-Sud", "Karkassen in etwas Olivenöl anschwitzen, mit Fond auffüllen. Safran, Zitronenschale, Chili, Petersilie und Estragon im Sud ziehen lassen. Abpassieren und vor dem Anrichten mit restlichem Olivenöl und Butter aufmontieren.", ""],
+  ["Salz", "Meersalz mit Wasser mischen, bis eine cremige Masse entsteht. In feuerfeste Form füllen, 3/4 voll, und im Ofen bei 250 °C 1 Stunde aushärten lassen.", ""],
+  ["Gambas", "Gambaschwänze mit Farce bestreichen und mit Thymian bestreuen. Anschließend mit dünnen Scheiben Salsiccia belegen und auf das Salz legen.", ""],
+  ["Finalisieren", " Limettenschale, Knoblauch, Basilikum und Lorbeer in das Salzgefäß geben. 1 Espressotasse heißes Wasser aufgießen, mit Deckel verschließen. 2 bis 3 Minuten garen, Gambas herausnehmen und auf vorgewärmten Tellern anrichten, Sauce angießen.", ""],
+];
+
+	//const notizen =
+</script>
+<script src="../sidebar.js"></script>
+<script src="recipe_render.js"></script>
+</body>
+</html>

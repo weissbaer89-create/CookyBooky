@@ -80,8 +80,11 @@
     const subcatsDiv = document.createElement('div');
     subcatsDiv.className = 'nav-subcats';
 
-    // ── Ebene 2: Unterkategorien ──────────────────────────
-    country.subcategories.forEach(function (sub, si) {
+    // ── Ebene 2: Unterkategorien (alphabetisch sortiert) ──
+    const sortedSubcats = country.subcategories.slice().sort(function (a, b) {
+      return a.name.localeCompare(b.name, 'de');
+    });
+    sortedSubcats.forEach(function (sub, si) {
       const subDiv = document.createElement('div');
       subDiv.className = 'nav-subcat';
 
@@ -107,7 +110,10 @@
       // ── Ebene 3: Rezepte ────────────────────────────────
       const ul = document.createElement('ul');
       ul.className = 'nav-items';
-      sub.items.forEach(function (r) {
+      const sortedItems = sub.items.slice().sort(function (a, b) {
+        return a.title.localeCompare(b.title, 'de');
+      });
+      sortedItems.forEach(function (r) {
         const isActive = currentFile && r.file.endsWith(currentFile);
         const li = document.createElement('li');
         li.innerHTML =

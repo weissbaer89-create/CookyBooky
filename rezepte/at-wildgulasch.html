@@ -99,39 +99,63 @@
 <script>
   /* ── Sidebar-Konfiguration ──────────────────────────── */
   window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
-  window.SIDEBAR_CURRENT_FILE = 'at-huettencarbonara.html'; // ← bei jeder Vorlage anpassen
-const headline = 'Hütten-Carbonara <em>mit Speck-Pilz-Ragout</em>';
-const ID = 'at-huettencarbonara';
-const beschreibung = 'Bergwelten-Magazin: Steinseehütte, Lechtaler Alpen, 2061 m<br> Manuela Kneringer-Schimpfössl, Christoph Zangerl';
-const hinweis = 'Die Sauce kann man auch vorbereiten, indem man Obers und Eidotter erst kurz vor der Fertigstellung unterrührt.';
-
+  window.SIDEBAR_CURRENT_FILE = 'rezepte/at-wildgulasch.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Wildgulasch <em>mit Steinpilz-Rahmwirsing, Butterspätzle und geschmorter Williams Birne</em>';
+const ID = 'at-wildgulasch';
+const beschreibung = 'Das ist das festliche Rezept von Vinzenz Klimmer, Hüttenwirt und Koch im Ausbildungszentrum Jamtal, für die bevorstehenden Feiertage. Ausgelegt ist das Rezept für vier Personen. Für die Vorbereitung werden 45 Minuten benötigt, die Koch- und Backzeit umfasst etwa zwei Stunden. Bergrettungsmagazin 12-2024';
+const hinweis = 'Dazu passt ein kräftiger Rotwein.';
   /* ── Zutaten mit Mengenrechner ──────────────────────── */
   const BASE_SERVINGS = 4;
   // [Menge pro Portion, Einheit, Name]
   const INGREDIENTS = [
-	[100,  'g',   'Spaghetti'],
-    [12.5,  'ml',   'Olivenöl'],
-    [37.5,  'g',   'Speckwürfel'],
-    [0.125,  '',   'weiße Zwiebel'],
-    [0.5,  '',   'Knoblauchzehen'],
-    [1,  '',   'Dotter'],
-    [31.25,  'ml',   'Obers'],
-    [12.5,  'ml',   'Milch'],
-    [18.75,  'g',   'Parmesan'],
-    [50,  'g',   'Pilze (Champignon, Kräuterseitlinge, Eierschwammerl oder Steinpilze)'],
-    [12.5,  'g',   'Lauchzwiebeln'],
-    [null,  '',   'frische Petersilie'],
-    [null,  '',   'Salz, Muskat, Pfeffer aus der Mühle'],
-    [15,  'g',   'Tiroler Speck'],
+    [null,'<b>Wildgulasch</b>',null],
+    [800/4,  'g',   'Wildfleisch (Reh, Hirsch oder Wildschwein), in ca. 2 bis 3 Zentimeter große Würfel geschnitten'],
+    [2/4,    'EL', 'Butterschmalz oder Öl'],
+	[2/4,  '', 'große Zwiebeln, fein gewürfelt'],
+	[2/4,  '', 'Knoblauchzehen, fein gehackt'],
+	[1/4,  'EL', 'Tomatenmark'],
+	[250/4,  ' ml', 'trockener Rotwein'],
+	[500/4,  ' ml', 'Wildfond oder kräftige Rinderbrühe '],
+	[2/4,  '', 'Lorbeerblätter'],
+	[5/4,  '', 'Wacholderbeeren'],
+	[4/4,  '', 'Pimentkörner'],
+	[null, '', 'ein halbes Stück Sternanis'],
+	[1/4,  '', 'halbe Zimtstange '],
+	[1/4,  'TL', 'getrockneter Thymian'],
+	[null, '', 'Salz und frisch gemahlener Pfeffer'],
+	[1/4,  'EL', 'Preiselbeeren aus dem Glas (optional)'],
+	[null,'<b>Steinpilz-Rahmwirsing</b>',null],
+	[1/4,  '', 'mittelgroßer Wirsing (ca. 1 kg), geputzt und in Streifen geschnitten'],
+	[150/4,  'g', 'frische oder tiefgefrorene Steinpilze, geputzt und in Scheiben geschnitten'],
+	[1/4,  '', 'kleine Zwiebel, fein gewürfelt'],
+	[2/4,  'EL', 'Butter'],
+	[200/4,  'ml', 'Sahne'],
+	[100/4,  'ml', 'Gemüsebrühe'],
+	[null, '', 'Salz, Pfeffer und frisch geriebene Muskatnuss'],
+	[null,'<b>Butterspätzle</b>',null],
+	[300/4,  'g', 'Spätzlemehl'],
+	[4/4,  '', 'Eier'],
+	[120/4,  'ml', 'lauwarmes Wasser'],
+	[1/4,  'TL', 'Salz'],
+	[4/4,  'EL', 'Butter'],
+	[null,'<b>Geschmorte Williams Birne</b>',null],
+	[2/4,  '', 'reife, aber feste Williams Birnen'],
+	[50/4,  'g', 'Zucker'],
+	[50/4,  'ml', 'Weißwein'],
+	[50/4,  'ml', 'Wasser'],
+	[1/4,  '', 'Zimtstange'],
+	[4/4,  'EL', 'Preiselbeeren aus dem Glas'],
   ];
   let servings = BASE_SERVINGS;
   
   const zubereitung = [
-  ["Vorbereitung", "Zwiebel und Knoblauchzehen schälen und fein schneiden. Petersilie und Junglauch klein schneiden und zur Seite stellen. In einem Topf das Olivenöl leicht erhitzen, Speckwürfel mit geschnittenen Zwiebeln und Knoblauch dazu geben und anschwitzen lassen, Spaghetti in reichlich Salzwasser al dente kochen.", ""],
-  ["Pilze", "Pilze säubern und in kleine Würfel schneiden. In einer separaten Pfanne mit etwas Olivenöl anbraten, bis sie Farbe bekommen, mit Salz, Pfeffer und etwas Zitronensaft abschmecken, zur Speck-Zwiebel-Mischung im Topf geben und vermengen.", ""],
-  ["Legierung vorbereiten", "Eidotter mit dem geriebenen Parmesan, Sahne und Milch verrühren und mit Salz, Pfeffer und Muskat gut würzen. Speck Heu in einer Pfanne ohne Fett kurz anbraten und bereitstellen.", ""],
-  ["Vermengen", "Sobald die Spaghetti fertiggekocht sind, heißt es schnell sein! Etwas Nudelwasser beim Abseihen beiseitestellen. Den Topf vom Herd nehmen, die frisch gekochten heißen Spaghetti zur Speck-Pilzmischung geben und unter ständigem Rühren gründlich mit dem Sahne-Ei-Gemisch vermengen. Es entsteht nun eine cremige Sauce, die nicht zu flüssig sein sollte und dadurch perfekt an den Spaghetti haftet. Sollte die Legierung doch zu dick werden, mit etwas Nudelwasser verdünnen!", ""],
-  ["Anrichten", "Auf einem Teller anrichten, mit Speck Heu, Petersilie und Junglauch garnieren und mit einer Prise frisch gemahlenem Pfeffer vollenden.", ""],
+  ["Wildgulasch", "Wildfleisch mit Salz und Pfeffer würzen. Butterschmalz in einem Bräter erhitzen und das Fleisch portionsweise rundherum scharf anbraten. Herausnehmen und beiseitestellen. ", ""],
+  ["Schmoren", "Die Hitze reduzieren, Zwiebeln und Knoblauch im Bratfett glasig dünsten. Tomatenmark zugeben und kurz mitrösten. Mit Rotwein ablöschen und etwas einkochen lassen. Das Wildfleisch zurück in den Bräter geben. Wildfond oder Brühe, Lorbeerblätter, Wacholderbeeren, Thymian, Pimentkörner, Sternanis und Zimtstange hinzufügen. Aufkochen lassen, dann Hitze reduzieren, abdecken und ca. 1,5 bis 2 Stunden schmoren lassen, bis das Fleisch butterzart ist.", ""], 
+  ["Steinpilz-Rahmwirsing", "Während das Gulasch schmort, den Wirsing zubereiten. Butter in einem Topf erhitzen, Zwiebel darin glasig dünsten. Steinpilze zugeben und kurz mitbraten. Wirsingstreifen zugeben und unter Rühren zusammenfallen lassen. Mit Sahne und Gemüsebrühe ablöschen, aufkochen und zugedeckt bei mittlerer Hitze ca. 15 Minuten schmoren lassen, bis der Wirsing weich ist. Mit Salz, Pfeffer und Muskatnuss abschmecken.", ""],  
+  ["Butterspätzle", "Für die Spätzle Mehl, Eier, Wasser und Salz in einer Schüssel zu einem glatten Teig verrühren. Den Teig ca. 10 Minuten ruhen lassen. In einem großen Topf Salzwasser zum Kochen bringen. Den Teig portionsweise durch eine Spätzlepresse oder über ein Spätzlebrett ins kochende Wasser geben. Sobald die Spätzle an die Oberfläche steigen, mit einem Schaumlöffel herausnehmen und abtropfen lassen. Butter in einer Pfanne schmelzen und die Spätzle darin kurz schwenken.", ""], // <--- Dieser Tipp ist leer!
+  ["Geschmorte Williams Birne", "Birnen schälen, halbieren und entkernen. Zucker in einem Topf karamellisieren lassen. Mit Weißwein und Wasser ablöschen. Zimtstange zugeben. Die Birnenhälften in den Sud geben und bei schwacher Hitze ca. 15 bis 20 Minuten köcheln lassen, bis sie weich sind, aber noch Biss haben. Birnen aus dem Sud nehmen und warm halten. Den Sud etwas einkochen lassen. Kurz vor dem Servieren die Preiselbeeren unterrühren.", ""],
+  ["Wildgulasch abschmecken", "Vor dem Servieren die Lorbeerblätter und Wacholderbeeren aus dem Gulasch entfernen. Eventuell mit etwas angerührter Speisestärke binden und mit Salz, Pfeffer und nach Belieben mit Preiselbeeren abschmecken.", ""],
+  ["Anrichten", "Wildgulasch mit Steinpilz-Rahmwirsing und Butterspätzle auf vorgewärmten Tellern anrichten. Die geschmorten Birnenhälften dazugeben und mit etwas Preiselbeersud beträufeln. ", ""],
 ];
 
 	//const notizen =

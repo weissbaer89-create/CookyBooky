@@ -70,11 +70,13 @@
     <!-- Zutaten -->
     <aside class="ingredients-panel">
       <h2 class="panel-title">Zutaten</h2>
+      <div class="serving-label-div">
+		<span class="serving-label">~ Portionen ~</span>
+	  </div>
       <div class="serving-control">
         <button class="serving-btn" onclick="changeServings(-1)">−</button>
         <span class="serving-num" id="serving-num">2</span>
         <button class="serving-btn" onclick="changeServings(1)">+</button>
-        <span class="serving-label">Portionen</span>
       </div>
       <ul class="ingredient-list" id="ingredient-list"></ul>
     </aside>
@@ -103,7 +105,7 @@ const ID = 'de-gefuellterkohlrabi';
 const beschreibung = 'Leicht bekömmlich und delikat im Geschmack ist der gefüllte Kohlrabi mit Käse gratiniert. Dieses Rezept ist eine tolle und ausgefallene Gemüsevariation.';
 const hinweis = 'Mit Petersilienkartoffeln sowie mit Salat der Saison servieren.';
 
-// Ausgabe: Pasta alla Carbonara
+
   /* ── Zutaten mit Mengenrechner ──────────────────────── */
   const BASE_SERVINGS = 2;
   // [Menge pro Portion, Einheit, Name]

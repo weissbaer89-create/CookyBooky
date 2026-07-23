@@ -166,6 +166,15 @@ const RECIPES = [
             difficulty: "einfach",
             description: "mit Speck-Pilz-Ragout"
           },
+		  {
+            id: "at-wildgulasch",
+            title: "Wildgulasch",
+            file: "rezepte/at-wildgulasch",
+            tags: ["herzhaft", "hüttenküche",],
+            time: "3 Std.",
+            difficulty: "anspruchsvoll",
+            description: "mit Steinpilz-Rahmwirsing, Butterspätzle und geschmorter Williams Birne"
+          },
         ]
       }
     ]

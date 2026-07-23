@@ -116,7 +116,7 @@ const RECIPES = [
             id: "at-spanferkelrollbraten",
             title: "Spanferkelrollbraten",
             file: "rezepte/at-spanferkelrollbraten.html",
-            tags: ["feiertage", "hüttenküche",],
+            tags: ["feiertage", "hüttenküche", "bergrettung",],
             time: "180 min",
             difficulty: "anspruchsvoll",
             description: "mit Semmelknödelfüllung und Kürbispüree"
@@ -125,7 +125,7 @@ const RECIPES = [
             id: "at-eierschwammerlgulasch",
             title: "Eierschwammerlgulasch",
             file: "rezepte/at-eierschwammerlgulasch.html",
-            tags: ["deftig", "hüttenküche",],
+            tags: ["deftig", "hüttenküche", "bergrettung",],
             time: "100 min",
             difficulty: "mittel",
             description: "mit Semmelknödel"
@@ -134,7 +134,7 @@ const RECIPES = [
             id: "at-ziegenfrischkäsesalat",
             title: "Tiroler Ziegenfrischkäse-Salat",
             file: "rezepte/at-ziegenfrischkäsesalat.html",
-            tags: ["deftig", "hüttenküche",],
+            tags: ["deftig", "hüttenküche", "bergrettung",],
             time: "100 min",
             difficulty: "einfach",
             description: "mit Himbeerdressing"
@@ -143,7 +143,7 @@ const RECIPES = [
             id: "at-tirolergroestl",
             title: "Tiroler Gröstl",
             file: "rezepte/at-tirolergroestl.html",
-            tags: ["deftig", "hüttenküche",],
+            tags: ["deftig", "hüttenküche", "bergrettung",],
             time: "50 min",
             difficulty: "einfach",
             description: "mit Himbeerdressing"
@@ -152,7 +152,7 @@ const RECIPES = [
             id: "at-holzknechtkrapfen",
             title: "Zillertaler Holzknechtkrapfen",
             file: "rezepte/at-holzknechtkrapfen.html",
-            tags: ["herzhaft", "hüttenküche",],
+            tags: ["herzhaft", "hüttenküche", "bergrettung",],
             time: "40 min",
             difficulty: "einfach",
             description: "ein Gericht der traditionellen Tiroler Küche"
@@ -169,11 +169,20 @@ const RECIPES = [
 		  {
             id: "at-wildgulasch",
             title: "Wildgulasch",
-            file: "rezepte/at-wildgulasch",
-            tags: ["herzhaft", "hüttenküche",],
+            file: "rezepte/at-wildgulasch.html",
+            tags: ["herzhaft", "hüttenküche", "bergrettung",],
             time: "3 Std.",
             difficulty: "anspruchsvoll",
             description: "mit Steinpilz-Rahmwirsing, Butterspätzle und geschmorter Williams Birne"
+          },
+		  {
+            id: "at-feurigereintopf",
+            title: "Feuriger Eintopf",
+            file: "rezepte/at-feurigereintopf.html",
+            tags: ["herzhaft", "hüttenküche", "bergrettung",],
+            time: "1 Std.",
+            difficulty: "einfach",
+            description: "Ideal für die kalte Jahreszeit"
           },
         ]
       }

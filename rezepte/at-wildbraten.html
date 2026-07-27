@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="titelA">Titel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="recipes.css" />
+  <script src="../recipes.js"></script>
+</head>
+<body>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ── Sidebar ─────────────────────────────────────────────── -->
+<nav id="sidebar" aria-label="Rezept-Navigation">
+  <div class="sb-header">
+    <a class="sb-logo" id="sb-logo" href="../index.html"></a>
+    <button class="sb-close" onclick="closeSidebar()" aria-label="Schließen">✕</button>
+  </div>
+  <div id="sb-nav-body"></div>
+  <div class="sb-footer">
+    <span class="sb-footer-label">Erscheinungsbild</span>
+    <div class="theme-toggle">
+      <span class="theme-label">Dunkel</span>
+      <div class="toggle-track on" onclick="toggleTheme()" role="switch" aria-label="Theme wechseln">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Topbar ──────────────────────────────────────────────── -->
+<header id="topbar">
+  <button class="burger-btn" onclick="openSidebar()" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="topbar-breadcrumb">
+    <a href="../index.html">Kochbuch</a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="landA"></span></a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="typA"></span></a>
+    <span class="sep">›</span>
+    <span class="current" id="titelB">Titel</span>
+  </nav>
+  <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button>
+</header>
+
+<!-- ── Rezept ─────────────────────────────────────────────── -->
+<article>
+  <header class="recipe-hero">
+    <div class="recipe-cat-label"><span id="icon"></span> <span id="typB"></span> · <span id="flag"></span> <span id="landB"></span></div>
+    <h1 class="recipe-title" id="headline">Überschrift</h1>
+    <p class="recipe-desc" id="description">Beschreibung</p>
+    <div class="recipe-meta">
+      <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
+      <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">5</span></div>
+    </div>
+    <div class="recipe-tags" id="tags"></div>
+  </header>
+
+  <div class="gold-rule"><div class="gold-dot"></div></div>
+
+  <div class="recipe-body">
+    <!-- Zutaten -->
+    <aside class="ingredients-panel">
+      <h2 class="panel-title">Zutaten</h2>
+      <div class="serving-label-div">
+		<span class="serving-label">~ Portionen ~</span>
+	  </div>
+      <div class="serving-control">
+        <button class="serving-btn" onclick="changeServings(-1)">−</button>
+        <span class="serving-num" id="serving-num">5</span>
+        <button class="serving-btn" onclick="changeServings(1)">+</button>
+      </div>
+      <ul class="ingredient-list" id="ingredient-list"></ul>
+    </aside>
+
+    <!-- Zubereitung -->
+	<div syle="width=100%;">
+	<div id="steps">
+      <h2 class="steps-title">Zubereitung</h2>
+	</div>
+		<div id="notes"></div>
+  </div>
+  </div>
+</article>
+
+<footer>
+  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zur Startseite</a>
+</footer>
+
+<!-- ── Scripts ────────────────────────────────────────────── -->
+<script>
+  /* ── Sidebar-Konfiguration ──────────────────────────── */
+  window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
+  window.SIDEBAR_CURRENT_FILE = 'at-wildbraten.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Wildbraten <em>mit gebratenem Rotkraut, Selleriepüree und Nussbratapfel</em>';
+const ID = 'at-wildbraten';
+const beschreibung = 'Ein besonderes Gericht speziell für die Feiertage hat Vinzenz Klimmer, Koch im Ausbildungszentrum Jamtal, dieses Mal zusammengestellt. Bergrettungsmagazin 12-2022';
+const hinweis = '';
+
+  /* ── Zutaten mit Mengenrechner ──────────────────────── */
+  const BASE_SERVINGS = 5;
+  // [Menge pro Portion, Einheit, Name]
+  const INGREDIENTS = [
+[null,	'Wildbraten', null], 
+[1/5,  'kg',	'Wildbraten (Hirsch, Reh, Gams oder Steinbock) '], 
+[2/5,  '',	'Karotten '], 
+[0.5/5,  '',	'Knolle Sellerie '], 
+[2/5,  '',	'Zwiebeln '], 
+[1/2/5,  'l',	'Rotwein '], 
+[50/5,  'ml',	'Rotweinessig '], 
+[2/5,  'l',	'Rindsuppe, wenn nicht vorhanden '], 
+[null,	'',	'Wasser oder Wildfond'], 
+[50/5,  'g',	'Tomatenmark'], 
+[20/5,  '',	'Pfefferkörner '], 
+[15/5,  '',	'Wacholderbeeren '], 
+[4/5,  '',	'Lorbeerblätter '], 
+[5/5,  '',	'Stück Piment '], 
+[2/5,  '',	'Nelken '], 
+[2/5,  '',	'Orangen (Schale und Saft)'], 
+[null,	'',	'Speisestärke/Maizena zum Eindicken '], 
+[null,	'',	'Salz '], 
+[null,	'',	'Öl oder Butterschmalz (zum Anbraten) '], 
+[null,	'Gebratenes Rotkraut', null],
+[1/5,  '',	'kl. Kopf Rotkraut '], 
+[100/5,  'ml',	'Olivenöl '], 
+[50/5,  'ml',	'Honig (flüssig, warm)'], 
+[200/5,  'ml',	'Gemüsefond oder Wasser '], 
+[null,	'',	'Salz, Pfeffer '], 
+[null,	'Selleriepüree ', null],
+[400/5,  'g',	'Sellerie '], 
+[100/5,  'g',	'Erdäpfel (festkochend) '], 
+[50/5,  'g',	'Butter '], 
+[50/5,  'ml',	'Milch '], 
+[null,	'',	'Salz, Muskatnuss'], 
+[null,	'Nussbratapfel ', null],
+[5/5,  '',	'Äpfel (etwa mittelgroß) '], 
+[200/5,  'g',	'geriebene Haselnüsse '], 
+[300/5,  'ml',	'Sahne '], 
+[20/5,  'g',	'Lebkuchengewürz '], 
+[20/5,  'g',	'Zucker '], 
+[null,	'',	'etwas Salz'], 
+  ];
+  let servings = BASE_SERVINGS;
+  
+  const zubereitung = [
+  ["", "Backofen auf 160 °C vorheizen. Das Fleisch salzen und im heißen Fett überall kräftig anbraten. Gemüse putzen und grob würfelig schneiden. Karotten, Sellerie und Zwiebeln zum Fleisch geben und goldbraun mit anrösten. Tomatenmark dazugeben, ebenfalls kurz mitrösten und dann mit Rotwein, dem Essig und der Rindsuppe (evtl. Wasser oder Wildfond) aufgießen. Gewürze sowie Schale und Saft der Orangen dazugeben. Den Bräter ca. zwei Stunden in den Backofen geben, der Braten sollte zugedeckt schmoren. ", ""],
+  ["", "Das Kraut in große Spalten schneiden und auf ein Blech geben. Alle Zutaten gut vermengen und über das Kraut gießen. Mit einer Alufolie zudecken und bei 160 °C ca. 40 bis 50 Minuten schmoren. Dann kurz in einer Pfanne beidseitig anbraten. ", ""],
+  ["", "Sellerie und Erdäpfel schälen und in grobe Würfel schneiden. In einen Topf mit Wasser geben, ca. 20 bis 25 Minuten kochen, dann abseihen. Mit einer Erdäpfelpresse alles zerdrücken. Warme Milch und zerlassene Butter mit den Gewürzen dazugeben. Alles kurz gut vermengen und abschmecken.", ""],
+  ["", "Ofen auf 160 °C vorheizen. Mit einem Apfelausstecher den Strunk entfernen. Die Äpfel auf ein Backblech geben. Die Zutaten gut verrühren und über die Äpfel gießen. Ab in den Ofen für ca. 45 Minuten. ", ""],
+  ["", "Braten aus dem Bräter nehmen und den Bratenfond durchsieben. Die Soße abschmecken und nach Wunsch mit Speisestärke/Maizena eindicken. Braten in Scheiben schneiden und beliebig anrichten. ", ""],
+  
+];
+
+	//const notizen =
+</script>
+<script src="../sidebar.js"></script>
+<script src="recipe_render.js"></script>
+</body>
+</html>

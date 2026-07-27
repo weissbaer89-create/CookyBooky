@@ -39,6 +39,24 @@ const RECIPES = [
             difficulty: "mittel",
             description: "Das Original aus Rom – ohne Sahne, mit Eigelb und Guanciale."
           },
+		  {
+            id: "it-ossobuco",
+            title: "Ossobuco",
+            file: "rezepte/it-ossobuco.html",
+            tags: ["fleisch", "klassiker", "bergrettung",],
+            time: "180 min",
+            difficulty: "mittel",
+            description: "mit Erdäpfel-Polenta-Sterz und Ratatouille"
+          },
+		  {
+            id: "it-brennesselgnocchi",
+            title: "Brennnessel -Gnocchi ",
+            file: "rezepte/it-brennesselgnocchi.html",
+            tags: ["fisch", "sommer", "bergrettung",],
+            time: "90 min",
+            difficulty: "mittel",
+            description: "mit gebratenem Huchen und Paprika-Vinaigrette"
+          },
         ]
       },
       {
@@ -82,10 +100,18 @@ const RECIPES = [
             id: "fr-ratatouille",
             title: "Ratatouille",
             file: "rezepte/fr-ratatouille.html",
-            tags: ["süß", "klassiker"],
+            tags: ["gemüse", "vegetarisch", "klassiker"],
             time: "1 h",
             difficulty: "mittel",
             description: "Französischer Klassiker"
+          },{
+            id: "fr-spargelhollandaise",
+            title: "Weißer Spargel",
+            file: "rezepte/fr-spargelhollandaise.html",
+            tags: ["deftig", "bergrettung", "klassiker"],
+            time: "1,5 h",
+            difficulty: "mittel",
+            description: "mit Sauce Hollandaise, Osterschinken und Erdäpfeln"
           },
         ]
       }
@@ -121,6 +147,15 @@ const RECIPES = [
             difficulty: "anspruchsvoll",
             description: "mit Semmelknödelfüllung und Kürbispüree"
           },
+          {
+            id: "at-schlutzkrapfen",
+            title: "Tiroler Schlutzkrapfen",
+            file: "rezepte/at-schlutzkrapfen.html",
+            tags: ["bodenständig", "hüttenküche", "bergrettung",],
+            time: "60 min",
+            difficulty: "einfach",
+            description: "mit Frühlingskräutern und Rohnen-Himbeersalat"
+          },
 		  {
             id: "at-eierschwammerlgulasch",
             title: "Eierschwammerlgulasch",
@@ -129,15 +164,6 @@ const RECIPES = [
             time: "100 min",
             difficulty: "mittel",
             description: "mit Semmelknödel"
-          },
-		  {
-            id: "at-ziegenfrischkäsesalat",
-            title: "Tiroler Ziegenfrischkäse-Salat",
-            file: "rezepte/at-ziegenfrischkäsesalat.html",
-            tags: ["deftig", "hüttenküche", "bergrettung",],
-            time: "100 min",
-            difficulty: "einfach",
-            description: "mit Himbeerdressing"
           },
 		  {
             id: "at-tirolergroestl",
@@ -170,7 +196,7 @@ const RECIPES = [
             id: "at-wildgulasch",
             title: "Wildgulasch",
             file: "rezepte/at-wildgulasch.html",
-            tags: ["herzhaft", "hüttenküche", "bergrettung",],
+            tags: ["deftig", "hüttenküche", "bergrettung",],
             time: "3 Std.",
             difficulty: "anspruchsvoll",
             description: "mit Steinpilz-Rahmwirsing, Butterspätzle und geschmorter Williams Birne"
@@ -183,6 +209,30 @@ const RECIPES = [
             time: "1 Std.",
             difficulty: "einfach",
             description: "Ideal für die kalte Jahreszeit"
+          },
+		  {
+            id: "at-roastbeef",
+            title: "Roastbeef",
+            file: "rezepte/at-roastbeef.html",
+            tags: ["herzhaft", "festtagsessen", "bergrettung",],
+            time: "2 Std.",
+            difficulty: "anspruchsvoll",
+            description: "Feiertagsmenü für die kalte Jahreszeit"
+          },
+        ]
+      },
+	  {
+        name: "Vorspeisen",
+        icon: "🥗",
+        items: [
+          {
+            id: "at-ziegenfrischkäsesalat",
+            title: "Tiroler Ziegenfrischkäse-Salat",
+            file: "rezepte/at-ziegenfrischkäsesalat.html",
+            tags: ["leicht", "hüttenküche", "bergrettung",],
+            time: "20 min",
+            difficulty: "einfach",
+            description: "mit Himbeerdressing"
           },
         ]
       }

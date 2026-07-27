@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="titelA">Titel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="recipes.css" />
+  <script src="../recipes.js"></script>
+</head>
+<body>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ── Sidebar ─────────────────────────────────────────────── -->
+<nav id="sidebar" aria-label="Rezept-Navigation">
+  <div class="sb-header">
+    <a class="sb-logo" id="sb-logo" href="../index.html"></a>
+    <button class="sb-close" onclick="closeSidebar()" aria-label="Schließen">✕</button>
+  </div>
+  <div id="sb-nav-body"></div>
+  <div class="sb-footer">
+    <span class="sb-footer-label">Erscheinungsbild</span>
+    <div class="theme-toggle">
+      <span class="theme-label">Dunkel</span>
+      <div class="toggle-track on" onclick="toggleTheme()" role="switch" aria-label="Theme wechseln">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Topbar ──────────────────────────────────────────────── -->
+<header id="topbar">
+  <button class="burger-btn" onclick="openSidebar()" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="topbar-breadcrumb">
+    <a href="../index.html">Kochbuch</a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="landA"></span></a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="typA"></span></a>
+    <span class="sep">›</span>
+    <span class="current" id="titelB">Titel</span>
+  </nav>
+  <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button>
+</header>
+
+<!-- ── Rezept ─────────────────────────────────────────────── -->
+<article>
+  <header class="recipe-hero">
+    <div class="recipe-cat-label"><span id="icon"></span> <span id="typB"></span> · <span id="flag"></span> <span id="landB"></span></div>
+    <h1 class="recipe-title" id="headline">Überschrift</h1>
+    <p class="recipe-desc" id="description">Beschreibung</p>
+    <div class="recipe-meta">
+      <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
+      <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">4</span></div>
+    </div>
+    <div class="recipe-tags" id="tags"></div>
+  </header>
+
+  <div class="gold-rule"><div class="gold-dot"></div></div>
+
+  <div class="recipe-body">
+    <!-- Zutaten -->
+    <aside class="ingredients-panel">
+      <h2 class="panel-title">Zutaten</h2>
+      <div class="serving-label-div">
+		<span class="serving-label">~ Portionen ~</span>
+	  </div>
+      <div class="serving-control">
+        <button class="serving-btn" onclick="changeServings(-1)">−</button>
+        <span class="serving-num" id="serving-num">4</span>
+        <button class="serving-btn" onclick="changeServings(1)">+</button>
+      </div>
+      <ul class="ingredient-list" id="ingredient-list"></ul>
+    </aside>
+
+    <!-- Zubereitung -->
+	<div syle="width=100%;">
+	<div id="steps">
+      <h2 class="steps-title">Zubereitung</h2>
+	</div>
+		<div id="notes"></div>
+  </div>
+  </div>
+</article>
+
+<footer>
+  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zur Startseite</a>
+</footer>
+
+<!-- ── Scripts ────────────────────────────────────────────── -->
+<script>
+  /* ── Sidebar-Konfiguration ──────────────────────────── */
+  window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
+  window.SIDEBAR_CURRENT_FILE = 'at-lachsmediterranesgemuese.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Lachs in der Folie <em>mit mediterranem Gemüse und Erdäpfelspalten</em>';
+const ID = 'at-lachsmediterranesgemuese';
+const beschreibung = 'Ideal für die warme Jahreszeit und für alle, die gerne am Grill stehen, ist das Fischrezept von Vinzenz Klimmer, der im Ausbildungszentrum der Bergrettung im Jamtal aufkocht. Bergrettungsmagazin 06-2022';
+const hinweis = '';
+
+  /* ── Zutaten mit Mengenrechner ──────────────────────── */
+  const BASE_SERVINGS = 4;
+  // [Menge pro Portion, Einheit, Name]
+  const INGREDIENTS = [
+[null,	'Lachs in der Folie vom Grill',	null],
+[550/4,	'g',	'Lachs mit Haut'],
+[1/4,	'',	'Zitrone '],
+[3/4,	'',	'Zweige Petersilie, Thymian, Koriander'], 
+[null,	'',	'Olivenöl'],
+[null,	'',	'Salz, gemahlener Pfeffer'],
+[null,	'Gemüse vom Grill',	null],
+[200/4,	'g',	'Cherrytomaten '],
+[2/4,	'',	'große Tomaten '],
+[4/4,	'',	'Jungzwiebeln'],
+[100/4,	'g',	'Zucchini'],
+[4/4,	'',	'Champignons (oder Pilze der Saison) '],
+[1/4,	'',	'Zitrone'],
+[null,	'',	'Salz, Pfeffer'],
+[null,	'',	'Olivenöl '],
+[null,	'Erdäpfelspalten vom Grill',	null],
+[4/4,	'',	'Erdäpfel '],
+[null,	'',	'Salz, Pfeffer'],
+[null,	'',	'Olivenöl '],
+[null,	'Tomaten-Salsa',	null],
+[3/4,	'',	'größere Tomaten (würfelig)'],
+[1/4,	'',	'rote Zwiebel'],
+[1/4,	'',	'Peperoni'],
+[1/4,	'',	'Knoblauchzehe '],
+[20/4,	'g',	'frischer Koriander '],
+[1/4,	'EL',	'Honig'],
+[null,	'',	'Saft und Schale von einer Limette '],
+[null,	'',	'Olivenöl'],
+[null,	'',	'Salz, Pfeffer '],
+  ];
+  let servings = BASE_SERVINGS;
+  
+  const zubereitung = [
+  ["", "Die Alufolie ausrollen und mit Olivenöl bestreichen. Den Lachs mit der Hautseite nach unten auf die Alufolie legen, Kräuter und die geriebene Schale einer Zitrone auf den Fisch geben. Mit Olivenöl übergießen und salzen, pfeffern.  ", ""],
+  ["", "Gemüse und Pilze in 1 bis 2 Zentimeter große Stücke schneiden. Mit Zitronensaft, Salz, Pfeffer und etwas Olivenöl würzen. ", ""],
+  ["", "Erdäpfel in Spalten schneiden und mit Salz, Pfeffer und Olivenöl würzen. Im Ofen bei 180 Grad Celsius ca. 20 Minuten vorgaren und am Grill vollenden.", ""],
+  ["", "Die Tomaten und die rote Zwiebel würfelig schneiden (etwa einen halben Zentimeter groß). Peperoni, Knoblauch und Koriander fein hacken. Die Limette zuerst waschen, dann die Schale mit einer Reibe raspeln. Die Limette halbieren  und den Saft ausdrücken. Alles in eine Schüssel geben. Honig dazu und mit Olivenöl, Salz und Pfeffer abschmecken. Kühl stellen, vor dem Servieren nochmals abschmecken.", ""],
+  ["", "Den Grill ca. zehn Minuten vorheizen. Dann den Fisch bei 250 Grad Celsius für etwa zehn Minuten grillen. Das Gemüse je nach Vorliebe mehr oder weniger knackig grillen.", ""],
+  
+];
+
+	//const notizen =
+</script>
+<script src="../sidebar.js"></script>
+<script src="recipe_render.js"></script>
+</body>
+</html>

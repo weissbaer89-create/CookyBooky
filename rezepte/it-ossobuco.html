@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="titelA">Titel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="recipes.css" />
+  <script src="../recipes.js"></script>
+</head>
+<body>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ── Sidebar ─────────────────────────────────────────────── -->
+<nav id="sidebar" aria-label="Rezept-Navigation">
+  <div class="sb-header">
+    <a class="sb-logo" id="sb-logo" href="../index.html"></a>
+    <button class="sb-close" onclick="closeSidebar()" aria-label="Schließen">✕</button>
+  </div>
+  <div id="sb-nav-body"></div>
+  <div class="sb-footer">
+    <span class="sb-footer-label">Erscheinungsbild</span>
+    <div class="theme-toggle">
+      <span class="theme-label">Dunkel</span>
+      <div class="toggle-track on" onclick="toggleTheme()" role="switch" aria-label="Theme wechseln">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Topbar ──────────────────────────────────────────────── -->
+<header id="topbar">
+  <button class="burger-btn" onclick="openSidebar()" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="topbar-breadcrumb">
+    <a href="../index.html">Kochbuch</a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="landA"></span></a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="typA"></span></a>
+    <span class="sep">›</span>
+    <span class="current" id="titelB">Titel</span>
+  </nav>
+  <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button>
+</header>
+
+<!-- ── Rezept ─────────────────────────────────────────────── -->
+<article>
+  <header class="recipe-hero">
+    <div class="recipe-cat-label"><span id="icon"></span> <span id="typB"></span> · <span id="flag"></span> <span id="landB"></span></div>
+    <h1 class="recipe-title" id="headline">Überschrift</h1>
+    <p class="recipe-desc" id="description">Beschreibung</p>
+    <div class="recipe-meta">
+      <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
+      <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">4</span></div>
+    </div>
+    <div class="recipe-tags" id="tags"></div>
+  </header>
+
+  <div class="gold-rule"><div class="gold-dot"></div></div>
+
+  <div class="recipe-body">
+    <!-- Zutaten -->
+    <aside class="ingredients-panel">
+      <h2 class="panel-title">Zutaten</h2>
+      <div class="serving-label-div">
+		<span class="serving-label">~ Portionen ~</span>
+	  </div>
+      <div class="serving-control">
+        <button class="serving-btn" onclick="changeServings(-1)">−</button>
+        <span class="serving-num" id="serving-num">4</span>
+        <button class="serving-btn" onclick="changeServings(1)">+</button>
+      </div>
+      <ul class="ingredient-list" id="ingredient-list"></ul>
+    </aside>
+
+    <!-- Zubereitung -->
+	<div syle="width=100%;">
+	<div id="steps">
+      <h2 class="steps-title">Zubereitung</h2>
+	</div>
+		<div id="notes"></div>
+  </div>
+  </div>
+</article>
+
+<footer>
+  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zur Startseite</a>
+</footer>
+
+<!-- ── Scripts ────────────────────────────────────────────── -->
+<script>
+  /* ── Sidebar-Konfiguration ──────────────────────────── */
+  window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
+  window.SIDEBAR_CURRENT_FILE = 'it-ossobuco.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Ossobuco <em>mit Erdäpfel-Polenta-Sterz und Ratatouille</em>';
+const ID = 'it-ossobuco';
+const beschreibung = 'Ossobuco ist ein traditionelles Schmorgericht der italienischen Küche. Ossobuco bedeutet „Knochen mit Loch“, nach dem Hohlknochen, der die im Gericht verwendete Kalbshachse durchzieht. Vinzenz Klimmer, Hüttenwirt und Koch im Ausbildungszentrum Jamtal, stellt dieses deftiges Gericht vor. Bergrettungsmagazin 06-2024';
+const hinweis = '';
+
+  /* ── Zutaten mit Mengenrechner ──────────────────────── */
+  const BASE_SERVINGS = 4;
+  // [Menge pro Portion, Einheit, Name]
+  const INGREDIENTS = [
+[null,  'Ossobuco',   null], 
+[2/4,  'kg',	'oder 6 bis 8  Kalbshaxen-Scheiben '], 
+[null,  '',	'Olivenöl '], 
+[null,  '',	'Mehl'], 
+[2/4,  '',	'rote Zwiebeln'], 
+[2/4,  '',	'Karotten'], 
+[2/4,  '',	'Stangen Staudensellerie '], 
+[3/4,  '',	'Knoblauchzehen '], 
+[100/4,  'g',	'Tomatenmark'], 
+[0.5/4,  'l',	'Rotwein zum Ablöschen '], 
+[1/4,  'l',	'Rindsuppe oder Gemüsefond '], 
+[2/4,  '',	'Nelken'], 
+[1/4,  '',	'Sternanis'], 
+[15/4,  '',	'Piment'], 
+[8/4,  '',	'Wacholderbeeren '], 
+[null,  '',	'Salz, Pfeffer aus der Mühle'],  
+[null,  '',	'Thymian, Rosmarin'], 
+[null,  'Gremolata (Kräuter-Gewürzmischung)',   null], 
+[1/4,  '',	'Zitrone – wenn möglich unbehandelt'], 
+[2/4,  '',	'Knoblauchzehen '], 
+[1/4,  'Bund (ca. 150 g)',	'Blattpetersilie'], 
+[null,  'Erdäpfel-Polenta-Sterz',   null],
+[500/4,  'g',	'Erdäpfel mit Schale '], 
+[2/4,  '',	'Zwiebeln'], 
+[null,  '',	'Pfeffer, Salz, Muskatnuss (gemahlen)'], 
+[null, 	'Polenta',   null],
+[1/4,  'l',	'Milch'], 
+[280/4,  'g',	'Polenta'], 
+[50/4,  'g',	'Butter '], 
+[null,  '',	'Salz, Muskatnuss (gemahlen)'], 
+[null,  'Ratatouille',   null],
+[1/4,  '',	'rote Zwiebel '], 
+[1/4,  '',	'Aubergine'], 
+[2/4,  '',	'Zucchini'], 
+[5/4,  '',	'Knoblauchzehen '], 
+[3/4,  '',	'Paprika grün, rot, gelb'], 
+[250/4,  'g',	'geschälte Tomaten aus der Dose '], 
+[100/4,  'g',	'Tomatenmark'], 
+[null,  '',	'Olivenöl'], 
+[null,  '',	'Thymian, Basilikum, Oregano'], 
+[null,  '',	'Salz, Pfeffer aus der Mühle'], 	
+  ];
+  let servings = BASE_SERVINGS;
+  
+  const zubereitung = [
+  ["Zubereitung Ossobuco", "Die Kalbshaxen­Scheiben salzen, pfeffern und im Mehl wenden. Bei mittlerer Hitze im heißen Olivenöl auf beiden Seiten goldbraun braten. Die Kalbshaxen­Scheiben in eine Auflaufform oder einen Bräter mit Deckel legen. ", ""],
+  ["", "Das Gemüse putzen, würfelig schneiden und im selben Topf, in dem man die Haxen angebraten hat, goldbraun andünsten. Tomatenmark und die Gewürze dazugeben und alles gut rösten, mit dem Rotwein ablöschen und würzen (Thymian,  Rosmarin). Wenn der Rotwein zur Hälfte verkocht ist, die Rindsuppe oder den Gemüsefond dazugeben. Das Gemüse über die Haxen geben und im Backrohr bei ca. 160 °C ca. 1 bis 1 1/2 Stunden weich schmoren.", ""],
+  ["", "In der Zwischenzeit kann die Gremolata zubereitet werden. Dazu die Petersilie fein schneiden und die zwei frischen Knoblauchzehen fein hacken. Anschließend beides mit dem Abrieb der ganzen Zitrone vermischen. In ein kleines Gefäß geben und mit einer Frischhaltefolie abdecken.", ""],
+  ["", "Kalbshaxen­Scheiben aus dem Schmortopf nehmen. Soße und Gemüse durch ein Sieb passieren. Soße wieder in den Schmortopf geben und nochmals bis zur Hälfte reduzieren lassen, falls sie dicker sein soll, mit Maizena eindicken, bis die richtige Konsistenz entstanden ist.", ""],
+  ["Zubereitung Erdäpfel-Polenta-Sterz", "Milch und Butter in einen Topf geben und zum Kochen bringen. Salz und Muskat­nuss dazugeben, dann die Polenta einrieseln lassen und bei schwacher Hitze etwa 20 Minuten weich dünsten, öfters umrühren. Die fertige Polenta in einem Topf zerbröseln.", ""],
+  ["", "Die Erdäpfel in kochendem Wasser mit der Schale weich kochen, schälen und grob reiben. Die Zwiebeln schälen und in kleine Würfel schneiden. Zwiebeln in Butterschmalz goldbraun anrösten, die Erdäpfel dazugeben und mitrösten. Dann die Polenta dazugeben und alles gut vermengen und rösten. Nochmals gut abschmecken.", ""],
+  ["Zubereitung Ratatouille", "Aubergine waschen, putzen und in mundgerechte Stücke schneiden (ca. 1 cm). Die Auberginenstücke mit Salz würzen und mindestens zehn Minuten ziehen lassen, dann gründlich trocken tupfen. In der Zwischenzeit die Zwiebel schälen und in 1 cm große Würfel schneiden. Knoblauch schälen und in feine Würfel schneiden. Zucchini putzen, waschen und in Würfel schneiden. Paprika längs halbieren und entkernen, waschen und in dieselbe Form schneiden.", ""],
+  ["", "Öl in einem großen Topf erhitzen und Zwiebel, Knoblauch und Zucchini darin anbraten, dann die Paprika und zuletzt die Auberginenstücke hinzufügen. Alles etwa fünf Minuten kräftig anbraten. Tomatenmark dazugeben und unterrühren, mit Salz und Pfeffer würzen. Geschälte Tomaten und die Kräuter hinzufügen.", ""],
+  ["", "Das Ratatouille bei mittlerer Hitze noch etwa 20 Minuten köcheln lassen, bei Be­darf etwas Wasser dazugeben. Das Gemüse sollte am Ende der Garzeit noch etwas Biss haben. Zum Servieren das Ratatouille nochmals kräftig abschmecken. ", ""],
+];
+
+	//const notizen =
+</script>
+<script src="../sidebar.js"></script>
+<script src="recipe_render.js"></script>
+</body>
+</html>

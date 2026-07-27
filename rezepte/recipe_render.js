@@ -88,7 +88,7 @@ renderTags(tagsArray);
         const s = amt * servings;
         amtStr = (Number.isInteger(s) ? s : s.toFixed(1)) + ' ' + unit;		
       } else if (amt == null && name == null) {
-      return `<li><span style="display: block; width: 100%; text-align:center; color: var(--muted);">~ ${unit} ~</span></li>`;
+      return `<li><span style="display: block; width: 100%; text-align:center; color: var(--muted);"><b>~ ${unit} ~</b></span></li>`;
 	  }
 	  return `<li><span class="ing-amount">${amtStr}</span><span class="ing-name">${name}</span></li>`;
     }).join('');

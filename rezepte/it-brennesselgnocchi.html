@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="titelA">Titel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="recipes.css" />
+  <script src="../recipes.js"></script>
+</head>
+<body>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ── Sidebar ─────────────────────────────────────────────── -->
+<nav id="sidebar" aria-label="Rezept-Navigation">
+  <div class="sb-header">
+    <a class="sb-logo" id="sb-logo" href="../index.html"></a>
+    <button class="sb-close" onclick="closeSidebar()" aria-label="Schließen">✕</button>
+  </div>
+  <div id="sb-nav-body"></div>
+  <div class="sb-footer">
+    <span class="sb-footer-label">Erscheinungsbild</span>
+    <div class="theme-toggle">
+      <span class="theme-label">Dunkel</span>
+      <div class="toggle-track on" onclick="toggleTheme()" role="switch" aria-label="Theme wechseln">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Topbar ──────────────────────────────────────────────── -->
+<header id="topbar">
+  <button class="burger-btn" onclick="openSidebar()" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="topbar-breadcrumb">
+    <a href="../index.html">Kochbuch</a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="landA"></span></a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="typA"></span></a>
+    <span class="sep">›</span>
+    <span class="current" id="titelB">Titel</span>
+  </nav>
+  <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button>
+</header>
+
+<!-- ── Rezept ─────────────────────────────────────────────── -->
+<article>
+  <header class="recipe-hero">
+    <div class="recipe-cat-label"><span id="icon"></span> <span id="typB"></span> · <span id="flag"></span> <span id="landB"></span></div>
+    <h1 class="recipe-title" id="headline">Überschrift</h1>
+    <p class="recipe-desc" id="description">Beschreibung</p>
+    <div class="recipe-meta">
+      <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
+      <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">4</span></div>
+    </div>
+    <div class="recipe-tags" id="tags"></div>
+  </header>
+
+  <div class="gold-rule"><div class="gold-dot"></div></div>
+
+  <div class="recipe-body">
+    <!-- Zutaten -->
+    <aside class="ingredients-panel">
+      <h2 class="panel-title">Zutaten</h2>
+      <div class="serving-label-div">
+		<span class="serving-label">~ Portionen ~</span>
+	  </div>
+      <div class="serving-control">
+        <button class="serving-btn" onclick="changeServings(-1)">−</button>
+        <span class="serving-num" id="serving-num">4</span>
+        <button class="serving-btn" onclick="changeServings(1)">+</button>
+      </div>
+      <ul class="ingredient-list" id="ingredient-list"></ul>
+    </aside>
+
+    <!-- Zubereitung -->
+	<div syle="width=100%;">
+	<div id="steps">
+      <h2 class="steps-title">Zubereitung</h2>
+	</div>
+		<div id="notes"></div>
+  </div>
+  </div>
+</article>
+
+<footer>
+  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zur Startseite</a>
+</footer>
+
+<!-- ── Scripts ────────────────────────────────────────────── -->
+<script>
+  /* ── Sidebar-Konfiguration ──────────────────────────── */
+  window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
+  window.SIDEBAR_CURRENT_FILE = 'it-brennesselgnocchi.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Brennnessel -Gnocchi <em>mit gebratenem Huchen und Paprika-Vinaigrette</em>';
+const ID = 'it-brennesselgnocchi';
+const beschreibung = 'Vinzenz Klimmer, Koch und Hüttenwirt im Ausbildungszentrum Jamtal, stellt dieses Mal ein sommerliches Fischgericht vor.  Bergrettungsmagazin 06-2023';
+const hinweis = 'Es muss nicht unbedingt Huchen sein, es darf natürlich auch ein anderer Fisch auf den Tisch.';
+
+  /* ── Zutaten mit Mengenrechner ──────────────────────── */
+  const BASE_SERVINGS = 4;
+  // [Menge pro Portion, Einheit, Name]
+  const INGREDIENTS = [
+[null,  'Brennnessel-Gnocchi ',   null], 
+[500/4,  'g',	'Erdäpfel (gekocht, passiert)'], 
+[200/4,  'g',	'Brennnesseln blanchiert'], 
+[1/4,  '',	'Ei'], 
+[150/4,  'g',	'Mehl'], 
+[null,  '',	'Salz, Pfeffer'],  
+[null,  'Pesto',   null], 
+[60/4,  'g',	'Brennnesseln'], 
+[30/4,  'g',	'Sonnenblumenkerne '], 
+[120/4,  'ml',	'Olivenöl'], 
+[2/4,  '',	'Prisen Salz'], 
+[null,  'Paprika-Vinaigrette ',   null], 
+[3/4,  '',	'Paprika (rot, grün, gelb)'], 
+[0.5/4,  '',	'rote Zwiebel '], 
+[1/4,  '',	'Chilischote (je nach gewünschter Schärfe!!!)'], 
+[50/4,  'ml',	'Rotweinessig'], 
+[50/4,  'ml',	'Olivenöl '], 
+[null,  '',	'Salz, Pfeffer'], 
+[null,  '',	'etwas Honig'], 
+[null,  '',	'ein Schluck Wasser'], 
+[null,  'Fisch',   null], 
+[550/4,  'g',	'Huchen'], 
+[null,  '',	'Salz, Pfeffer'], 
+[null,  '',	'etwas Zitronensaft '], 
+  ];
+  let servings = BASE_SERVINGS;
+  
+  const zubereitung = [
+  ["Zubereitung Brennnessel-Gnocchi ", "Die Kartoffeln mit Schale in einem Topf weich kochen, abseihen und kurz überkühlen. Schälen und noch warm durch eine Erdäpfelpresse drücken.", ""],
+  ["", "Die Brennnesselblätter gut waschen. In kochendem Salzwasser drei bis fünf Minuten kochen. Abseihen und sofort kalt abschrecken. Gut ausdrücken, bis sie halbwegs trocken sind, und dann fein hacken. Alle Zutaten zusammengeben und gut würzen. Zu einer homogenen Masse kneten.", ""],
+  ["", "Mehl auf die Arbeitsfläche geben, den Teig ausrollen, in daumendicke Stücke schneiden und über einem Gabelrücken abrollen. Die Gnocchi in Salzwasser vier bis fünf Minuten kochen. In einer Pfanne Butter bräunen und die Gnocchi nochmals kurz durchschwenken und abschmecken. ", ""],
+  ["Zubereitung Pesto", "Frische Brennnesseln gut putzen, vom Stängel abzupfen und im kalten Wasser waschen. Die Brennnesseln in kochendem Wasser ca. drei bis fünf Minuten kochen. Dann abseihen und sofort im eiskalten Wasser abschrecken. Alle Zutaten in einen Mixer geben und gut durchmixen und abschmecken.", ""],
+  ["Zubereitung Paprika-Vinaigrette", "Paprika vierteln, Kerne entfernen und in feine Würfel schneiden. Chilischote und Zwiebel ebenso in feine Würfel schneiden und alles vermengen.", ""],
+  ["Zubereitung Fisch", "Fisch gut würzen und in einer heißen Pfanne mit der Hautseite nach unten gut anbraten. Sobald das Fischeiweiß am Rand austritt, wenden und fertig garen. Nicht zu lange braten, damit der Fisch in der Mitte noch schön glasig ist.", ""],
+  
+];
+
+	//const notizen =
+</script>
+<script src="../sidebar.js"></script>
+<script src="recipe_render.js"></script>
+</body>
+</html>

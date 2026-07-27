@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="titelA">Titel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="recipes.css" />
+  <script src="../recipes.js"></script>
+</head>
+<body>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ── Sidebar ─────────────────────────────────────────────── -->
+<nav id="sidebar" aria-label="Rezept-Navigation">
+  <div class="sb-header">
+    <a class="sb-logo" id="sb-logo" href="../index.html"></a>
+    <button class="sb-close" onclick="closeSidebar()" aria-label="Schließen">✕</button>
+  </div>
+  <div id="sb-nav-body"></div>
+  <div class="sb-footer">
+    <span class="sb-footer-label">Erscheinungsbild</span>
+    <div class="theme-toggle">
+      <span class="theme-label">Dunkel</span>
+      <div class="toggle-track on" onclick="toggleTheme()" role="switch" aria-label="Theme wechseln">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Topbar ──────────────────────────────────────────────── -->
+<header id="topbar">
+  <button class="burger-btn" onclick="openSidebar()" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="topbar-breadcrumb">
+    <a href="../index.html">Kochbuch</a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="landA"></span></a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="typA"></span></a>
+    <span class="sep">›</span>
+    <span class="current" id="titelB">Titel</span>
+  </nav>
+  <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button>
+</header>
+
+<!-- ── Rezept ─────────────────────────────────────────────── -->
+<article>
+  <header class="recipe-hero">
+    <div class="recipe-cat-label"><span id="icon"></span> <span id="typB"></span> · <span id="flag"></span> <span id="landB"></span></div>
+    <h1 class="recipe-title" id="headline">Überschrift</h1>
+    <p class="recipe-desc" id="description">Beschreibung</p>
+    <div class="recipe-meta">
+      <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
+      <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">4</span></div>
+    </div>
+    <div class="recipe-tags" id="tags"></div>
+  </header>
+
+  <div class="gold-rule"><div class="gold-dot"></div></div>
+
+  <div class="recipe-body">
+    <!-- Zutaten -->
+    <aside class="ingredients-panel">
+      <h2 class="panel-title">Zutaten</h2>
+      <div class="serving-label-div">
+		<span class="serving-label">~ Portionen ~</span>
+	  </div>
+      <div class="serving-control">
+        <button class="serving-btn" onclick="changeServings(-1)">−</button>
+        <span class="serving-num" id="serving-num">4</span>
+        <button class="serving-btn" onclick="changeServings(1)">+</button>
+      </div>
+      <ul class="ingredient-list" id="ingredient-list"></ul>
+    </aside>
+
+    <!-- Zubereitung -->
+	<div syle="width=100%;">
+	<div id="steps">
+      <h2 class="steps-title">Zubereitung</h2>
+	</div>
+		<div id="notes"></div>
+  </div>
+  </div>
+</article>
+
+<footer>
+  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zur Startseite</a>
+</footer>
+
+<!-- ── Scripts ────────────────────────────────────────────── -->
+<script>
+  /* ── Sidebar-Konfiguration ──────────────────────────── */
+  window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
+  window.SIDEBAR_CURRENT_FILE = 'at-schlutzkrapfen.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Tiroler Schlutzkrapfen <em>mit Frühlingskräutern und Rohnen-Himbeersalat</em>';
+const ID = 'at-schlutzkrapfen';
+const beschreibung = 'Vinzenz Klimmer, Hüttenwirt und Koch im Ausbildungszentrum Jamtal, stellt ein Gericht der traditionellen Tiroler Küche vor. Bergrettungsmagazin 06-2024';
+const hinweis = '';
+
+  /* ── Zutaten mit Mengenrechner ──────────────────────── */
+  const BASE_SERVINGS = 4;
+  // [Menge pro Portion, Einheit, Name]
+  const INGREDIENTS = [
+	[null,  'Teig',   null],
+    [400/4,  'g',   'Weizenmehl'], 
+    [400/4,  'g',   'Roggenmehl'], 
+	[2/4,  '',   'Eier'], 
+	[110/4,  'ml',   'Wasser (je nach Konsistenz des Teiges)'], 
+	[null, '',	'Salz'], 
+	[null,  'Fülle',   null],
+	[400/4,  ' g',   'Blattspinat (trocken)'], 
+	[1/4,  '',   'Zwiebel (Würfel)'], 
+	[2/4,  '',   'Knoblauchzehen'], 
+	[300/4,  'g',   'Topfen'],  
+	[null, '',	'Salz, Pfeffer, Majoran'], 
+	[null,  'Für das Anrichten',   null],
+	[0.5/4,  'Bund',   'Schnittlauch'], 
+	[0.5/4,  'Bund',   'Bund glatte Petersilie'], 
+	[200/4,  'g',   'zerlassene Butter'], 
+	[200/4,  'g',   'Bergkäse/Parmesan – je nach Wunsch'], 
+	[null,  'Salat',   null],
+	[null,  '',   'Rohnen '], 
+	[null,  '',   'frische Himbeeren '], 
+	[null,  '',   'Wildkräuter '], 
+	[null,  '',   'Balsamico, Olivenöl, Salz, Pfeffer, Wasser'], 
+	[null,  '',   'Saft und Schale einer unbehandelten Limette'], 
+  ];
+  let servings = BASE_SERVINGS;
+  
+  const zubereitung = [
+  ["Zubereitung Teig", "Weizen- und Roggenmehl mit Ei, Salz und dem notwendigen Wasser zu einem geschmeidigen Teig verarbeiten, kurz rasten lassen und dann sofort weiterverarbeiten.", ""],
+  ["Zubereitung Fülle", "Zwiebel und Knoblauch schälen und in kleine Würfel schneiden, kurz in der Pfanne anbraten. Den trockenen Blattspinat, Topfen, Salz, Pfeffer, Majoran sowie Zwiebel und Knoblauch gut zu einer Masse verarbeiten. ", ""],
+  ["Zubereitung Schlutzkrapfen", "Den Teig dünn ausrollen und rund ausstechen. Mit einem Löffel die Fülle auf den Teig geben, diesen halbmondförmig zusammenklappen und den Rand mit einer Gabel gut andrücken. Die Schlutzkrapfen in kochendem Salzwasser ca. fünf bis sieben Minuten kochen. Abseihen und gut abtropfen lassen. Mit dem geriebenen Käse nach Wahl, den gehackten Kräutern und der zerlassenen Butter übergießen. ", ""],
+  ["Zubereitung Ronen-Himbeersalat", "Rohnen mit Wasser oder im Ofen weich kochen. Die Haut schälen und die Rohnen in die gewünschte Form schneiden (z. B. ein Zentimeter große Würfel). Mit Balsamico und Olivenöl übergießen, einen Schluck Wasser sowie Saft und Schale einer unbehandelten Limette dazugeben und mit Salz und Pfeffer abschmecken. Die frischen Himbeeren dazugeben und alles mit den Wildkräutern vorsichtig durchmischen.", ""],
+];
+
+	//const notizen =
+</script>
+<script src="../sidebar.js"></script>
+<script src="recipe_render.js"></script>
+</body>
+</html>

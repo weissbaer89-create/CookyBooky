@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="titelA">Titel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="recipes.css" />
+  <script src="../recipes.js"></script>
+</head>
+<body>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ── Sidebar ─────────────────────────────────────────────── -->
+<nav id="sidebar" aria-label="Rezept-Navigation">
+  <div class="sb-header">
+    <a class="sb-logo" id="sb-logo" href="../index.html"></a>
+    <button class="sb-close" onclick="closeSidebar()" aria-label="Schließen">✕</button>
+  </div>
+  <div id="sb-nav-body"></div>
+  <div class="sb-footer">
+    <span class="sb-footer-label">Erscheinungsbild</span>
+    <div class="theme-toggle">
+      <span class="theme-label">Dunkel</span>
+      <div class="toggle-track on" onclick="toggleTheme()" role="switch" aria-label="Theme wechseln">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Topbar ──────────────────────────────────────────────── -->
+<header id="topbar">
+  <button class="burger-btn" onclick="openSidebar()" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="topbar-breadcrumb">
+    <a href="../index.html">Kochbuch</a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="landA"></span></a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="typA"></span></a>
+    <span class="sep">›</span>
+    <span class="current" id="titelB">Titel</span>
+  </nav>
+  <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button>
+</header>
+
+<!-- ── Rezept ─────────────────────────────────────────────── -->
+<article>
+  <header class="recipe-hero">
+    <div class="recipe-cat-label"><span id="icon"></span> <span id="typB"></span> · <span id="flag"></span> <span id="landB"></span></div>
+    <h1 class="recipe-title" id="headline">Überschrift</h1>
+    <p class="recipe-desc" id="description">Beschreibung</p>
+    <div class="recipe-meta">
+      <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
+      <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">5</span></div>
+    </div>
+    <div class="recipe-tags" id="tags"></div>
+  </header>
+
+  <div class="gold-rule"><div class="gold-dot"></div></div>
+
+  <div class="recipe-body">
+    <!-- Zutaten -->
+    <aside class="ingredients-panel">
+      <h2 class="panel-title">Zutaten</h2>
+      <div class="serving-label-div">
+		<span class="serving-label">~ Portionen ~</span>
+	  </div>
+      <div class="serving-control">
+        <button class="serving-btn" onclick="changeServings(-1)">−</button>
+        <span class="serving-num" id="serving-num">5</span>
+        <button class="serving-btn" onclick="changeServings(1)">+</button>
+      </div>
+      <ul class="ingredient-list" id="ingredient-list"></ul>
+    </aside>
+
+    <!-- Zubereitung -->
+	<div syle="width=100%;">
+	<div id="steps">
+      <h2 class="steps-title">Zubereitung</h2>
+	</div>
+		<div id="notes"></div>
+  </div>
+  </div>
+</article>
+
+<footer>
+  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zur Startseite</a>
+</footer>
+
+<!-- ── Scripts ────────────────────────────────────────────── -->
+<script>
+  /* ── Sidebar-Konfiguration ──────────────────────────── */
+  window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
+  window.SIDEBAR_CURRENT_FILE = 'at-roastbeef.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Roastbeef im Ganzen <em>mit Pommes Macaire, winterlichen Kohl und Knollengemüse</em>';
+const ID = 'at-roastbeef';
+const beschreibung = 'Roastbeef im Ganzen, Pommes Macaire, winterlichen Kohl und Knollengemüse hat Vinzenz Klimmer, Koch und Hüttenwirt im Ausbildungszentrum Jamtal, für das Feiertagsmenü ausgewählt. Bergrettungsmagazin 12-2023';
+const hinweis = 'Sauce je nach Wunsch: ob eine klassische Jus/Bratensauce oder eine warm aufgeschlagene Buttersauce/Sauce Hollandaise. Was das Herz begehrt.';
+
+  /* ── Zutaten mit Mengenrechner ──────────────────────── */
+  const BASE_SERVINGS = 5;
+  // [Menge pro Portion, Einheit, Name]
+  const INGREDIENTS = [
+[null,  'Pommes Macaire',   null], 
+[1/5,  'kg',	'mehlige Erdäpfel'], 
+[2/5,  '',	'Zwiebeln, fein geschnitten'], 
+[150/5,  'g',	'Bauchspeck'], 
+[100/5,  'g',	'Schnittlauch'], 
+[50/5,  'g',	'Petersilie'], 
+[null,  '',	'Salz, Pfeffer'], 
+[75/5,  'g',	'Mehl zur Bindung'], 
+[null,  '',	'Öl'], 
+[null,  'Winterlicher Kohl und Knollengemüse',   null], 
+[150/5,  'g',	'Rotkraut'], 
+[150/5,  'g',	'Wirsing'], 
+[150/5,  'g',	'Schwarzkohl/Grünkohl'], 
+[150/5,  'g',	'Rosenkohl'], 
+[150/5,  'g',	'Hokkaido-Kürbis'], 
+[150/5,  'g',	'Sellerie'], 
+[null,  '',	'Olivenöl '], 
+[null,  '',	'Salz, Pfeffer '], 
+[null,  '',	'Butter '], 
+[null,  '',	'Gemüsefond oder Wasser'], 
+[null,  'Roastbeef im Ganzen',   null], 
+[1.25/5,  'kg',	'Roastbeef '], 
+[null,  '',	'Salz, Pfeffer'], 
+  ];
+  let servings = BASE_SERVINGS;
+  
+  const zubereitung = [
+  ["Zubereitung Pommes Macaire", "Die Erdäpfel waschen, in einen Topf mit Wasser geben und bei mittlerer Hitze zugedeckt ca. 25 Minuten bissfest kochen.", ""],
+  ["", "Zwiebeln schälen und in feine Würfel schneiden, ebenfalls den Speck. Schnittlauch und Petersilie fein schneiden oder hacken. Zwiebeln und Speck in einer Pfanne mit etwas Öl goldbraun anbraten, Schnittlauch und Petersilie dazugeben, kurz mitrösten und dann vom Herd nehmen und zur Seite stellen. ", ""],
+  ["", "Die Erdäpfel noch warm schälen und mit einer Kartoffelpresse zerdrücken. Zwiebel-Speck-Mischung dazugeben, Mehl für die Bindung und Salz und Pfeffer. Die Masse gut vermengen, bis eine formbare, aber nicht zu feste Masse entsteht. ", ""],
+  ["", "Die Erdäpfelmasse zu einer etwa 6 Zentimeter dicken Rolle formen, auskühlen lassen und dann in ca. 2 Zentimeter dicke Scheiben schneiden. Öl in der Pfanne erhitzen und die Scheiben auf beiden Seiten goldbraun anbraten.", ""],
+  ["Zubereitung Gemüse", "Die vier verschiedenen Kohlarten in größere Würfel oder Vierecke schneiden. Kürbis und Sellerie in ca. 1 bis 2 Zentimeter große Würfel schneiden. ", ""],
+  ["", "Das Rotkraut in einem Topf mit kochendem Wasser blanchieren, bis es bissfest ist. In einem separaten Topf die restlichen drei Kohlarten blanchieren, bis sie ebenfalls bissfest sind. Beim Kürbis und bei der Sellerie wie beim Kohl vorgehen. Sobald der Garpunkt erreicht ist, sofort im kalten Wasser abschrecken. Alles gut abtropfen lassen und zusammenmengen. ", ""],
+  ["", "In einer heißen Pfanne mit Olivenöl das Gemüse kurz anrösten, Butter und Gemüsefond/Wasser dazugeben und aufkochen, bis es richtig warm ist. Mit Salz und Pfeffer noch abschmecken.", ""],
+  ["Zubereitung Roastbeef", "Roastbeef gut salzen und pfeffern. In einer sehr heißen Pfanne auf allen Seiten sehr gut anrösten. Den Ofen vorheizen und das Fleisch bei 120 Grad Celsius garen. Das Roastbeef ist medium, wenn das Fleischthermometer an der dicksten Roastbeefstelle eine Kerntemperatur von 54 Grad Celsius aufweist. ", ""],
+  ["", "Das Roastbeef in Scheiben schneiden und mit Pommes Macaire und dem Kohlgemüse auf einem warmen Teller anrichten.", ""],
+  
+];
+
+	//const notizen =
+</script>
+<script src="../sidebar.js"></script>
+<script src="recipe_render.js"></script>
+</body>
+</html>

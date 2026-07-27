@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="titelA">Titel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="recipes.css" />
+  <script src="../recipes.js"></script>
+</head>
+<body>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ── Sidebar ─────────────────────────────────────────────── -->
+<nav id="sidebar" aria-label="Rezept-Navigation">
+  <div class="sb-header">
+    <a class="sb-logo" id="sb-logo" href="../index.html"></a>
+    <button class="sb-close" onclick="closeSidebar()" aria-label="Schließen">✕</button>
+  </div>
+  <div id="sb-nav-body"></div>
+  <div class="sb-footer">
+    <span class="sb-footer-label">Erscheinungsbild</span>
+    <div class="theme-toggle">
+      <span class="theme-label">Dunkel</span>
+      <div class="toggle-track on" onclick="toggleTheme()" role="switch" aria-label="Theme wechseln">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Topbar ──────────────────────────────────────────────── -->
+<header id="topbar">
+  <button class="burger-btn" onclick="openSidebar()" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="topbar-breadcrumb">
+    <a href="../index.html">Kochbuch</a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="landA"></span></a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="typA"></span></a>
+    <span class="sep">›</span>
+    <span class="current" id="titelB">Titel</span>
+  </nav>
+  <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button>
+</header>
+
+<!-- ── Rezept ─────────────────────────────────────────────── -->
+<article>
+  <header class="recipe-hero">
+    <div class="recipe-cat-label"><span id="icon"></span> <span id="typB"></span> · <span id="flag"></span> <span id="landB"></span></div>
+    <h1 class="recipe-title" id="headline">Überschrift</h1>
+    <p class="recipe-desc" id="description">Beschreibung</p>
+    <div class="recipe-meta">
+      <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
+      <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">1</span></div>
+    </div>
+    <div class="recipe-tags" id="tags"></div>
+  </header>
+
+  <div class="gold-rule"><div class="gold-dot"></div></div>
+
+  <div class="recipe-body">
+    <!-- Zutaten -->
+    <aside class="ingredients-panel">
+      <h2 class="panel-title">Zutaten</h2>
+      <div class="serving-label-div">
+		<span class="serving-label">~ Portionen ~</span>
+	  </div>
+      <div class="serving-control">
+        <button class="serving-btn" onclick="changeServings(-1)">−</button>
+        <span class="serving-num" id="serving-num">1</span>
+        <button class="serving-btn" onclick="changeServings(1)">+</button>
+      </div>
+      <ul class="ingredient-list" id="ingredient-list"></ul>
+    </aside>
+
+    <!-- Zubereitung -->
+	<div syle="width=100%;">
+	<div id="steps">
+      <h2 class="steps-title">Zubereitung</h2>
+	</div>
+		<div id="notes"></div>
+  </div>
+  </div>
+</article>
+
+<footer>
+  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zur Startseite</a>
+</footer>
+
+<!-- ── Scripts ────────────────────────────────────────────── -->
+<script>
+  /* ── Sidebar-Konfiguration ──────────────────────────── */
+  window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
+  window.SIDEBAR_CURRENT_FILE = 'si-prekmurje_gibanica.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Prekmurje <em>Gibanica</em>';
+const ID = 'si-prekmurje_gibanica';
+const beschreibung = 'Es gibt vieles, was man an Prekmurje (Übermurgebiet), der Region im äußersten Nordosten Sloweniens, lieben kann. Es ist ein Land nistender Störche, unberührter Natur und alter Mühlen, die sich langsam am Fluss Mur drehen. Ein Ort, an dem die Zeit stillsteht und man neue Energie tanken kann, an dem die Einheimischen für ihre Gastfreundschaft und hervorragende Küche bekannt sind. Ihr kultigstes Gericht ist die Prekmurska Gibanica (Prekmurje-Schichtkuchen), die früher besonderen Anlässen und Feiertagen vorbehalten war. Ihr Name leitet sich vom Wort güba (bedeutet: Falte) ab und bezieht sich auf ihre Schichten. Sie besteht aus Mürbeteig und Strudelteig sowie vier Füllungen in folgender Reihenfolge von unten nach oben: Mohn, Topfen (Quark), Walnuss und Apfel. Die Gibanica ist als slowenische Nationalspezialität eingestuft und hat in der EU sogar einen geschützten Status.';
+const hinweis = 'Verwenden Sie eine rechteckige Backform von 40 x 35 cm oder eine runde Form mit einem Durchmesser von 30-35 cm am oberen Rand und einer Höhe von 7-9 cm.';
+
+  /* ── Zutaten mit Mengenrechner ──────────────────────── */
+  const BASE_SERVINGS = 1;
+  // [Menge pro Portion, Einheit, Name]
+  const INGREDIENTS = [
+[null,	'Mürbeteig',	null],
+[100, 'g', 'griffiges Weizenmehl (Type 405/550)'],
+[100, 'g', 'glattes Weizenmehl'],
+[null, '','Eine Prise Salz'],
+[100, 'g', 'Butter'],
+[60, 'ml', 'kaltes Wasser zum Kneten'],
+[null,	'Strudelteig / Filoteig',	null],
+[500, 'g', 'glattes Weizenmehl'],
+[1, '','Ei'],
+[null, '','Eine Prise Salz'],
+[1, 'EL', 'Sonnenblumenöl'],
+[null, '','Ein paar Tropfen Zitronensaft'],
+[null, '','Lauwarmes Wasser zum Kneten'],
+[null,	'Mohnfüllung ',	null],
+[300, 'g', 'fein gemahlener Mohn'],
+[100, 'g', 'Zucker'],
+[10, 'g', 'Vanillezucker (optional)'],
+[null,	'Topfenfüllung',	null],
+[1200, 'g', 'Topfen'],
+[100, 'g', 'Zucker'],
+[2, '', 'Eier'],
+[20, 'g', 'Vanillezucker (optional)'],
+[null, '','Eine Prise Salz'],
+[null,	'Walnussfüllung ',	null],
+[300, 'g', 'gemahlene Walnüsse'],
+[100, 'g', 'Zucker'],
+[10, 'g', 'Vanillezucker (optional)'],
+[null,	'Apfelfüllung ',	null],
+[1500, 'g', 'Säuerliche Äpfel'],
+[120, 'g', 'Zucker'],
+[null, '','Eine Prise Zimt'],
+[20, 'g', 'Vanillezucker (optional)'],
+[null,	'Sahneguss ',	null],
+[800, 'g', 'Saure Sahne/Schmand und/oder Süße Sahne'],
+[3, '', 'Eier'],
+[null,	'Schmelzbutter ',	null],
+[250, 'g', 'Butter'],
+  ];
+  let servings = BASE_SERVINGS;
+  
+  const zubereitung = [
+	["Mürbeteig ", "Die Butter aus dem Kühlschrank nehmen und auf Raumtemperatur bringen. Die beiden Mehlarten mischen und in eine Schüssel oder auf ein Holzbrett sieben. Salz und die gewürfelte Butter dazugeben und kurz verkneten. Nach und nach das Wasser hinzufügen und weiterkneten, bis die Butter schmilzt und sich gut mit dem Mehl verbindet. Den Teig eine halbe Stunde an einem kühlen Ort ruhen lassen.", ""],
+	["Strudelteig ", "Das Mehl in eine große Schüssel sieben, in der Mitte eine Mulde formen und das Ei hineinschlagen. Salz, Öl und Zitronensaft hinzufügen. Alle Zutaten vermengen und langsam Wasser dazugeben. Den Teig mindestens 10 Minuten lang kneten, bis er elastisch ist. Den Teig mit Öl bestreichen und mindestens 30 Minuten ruhen lassen. Den Teig in 10 Portionen teilen, aus denen jeweils eine Schicht entsteht.", ""],
+	["Mohnfüllung", "Den Zucker und nach Wunsch den Vanillezucker zum Mohn geben und gut vermischen. Die Mohnmischung in zwei Teile teilen.", ""],
+	["Topfenfüllung ", "Das Ei, den optionalen Vanillezucker zusammen mit dem Feinzucker und einer Prise Salz zum Topfen geben. Gut zu einer glatten und streichfähigen Masse verrühren. Die Masse in zwei Portionen teilen.", ""],
+	["Walnussfüllung", "Die Walnüsse fein mahlen und mit dem Feinzucker sowie dem optionalen Vanillezucker vermischen. Die Masse in zwei Portionen teilen.", ""],
+	["Apfelfüllung ", "Die Äpfel schälen und fein reiben. Feinzucker, optionalen Vanillezucker sowie Zimt hinzufügen. Gut umrühren. Wenn die Äpfel sehr saftig sind, lassen Sie sie nach dem Reiben kurz stehen und drücken Sie sie leicht aus, bevor Sie sie zu den anderen Zutaten geben. Die Füllung wieder in zwei Portionen teilen.", ""],
+	["Sahneguss", "Die Eier einfach mit der sauren oder süßen Sahne verquirlen. Diesen Guss auf jeder Schicht verwenden. Die sogenannten 'trockenen' Füllungen (Mohn-, Walnuss- und Apfelfüllung) benötigen mehr Sahneguss als die Topfenfüllung, da diese bereits viel Feuchtigkeit mitbringt.", ""],
+	["Schmelzbutter ", "Die Butter schmelzen. Dieser Belag wird ebenfalls schichtweise aufgetragen.", ""],
+	["Schichten", "Rollen Sie den Mürbeteig in der Form Ihrer Backform (rechteckig oder rund) aus und legen Sie ihn hinein. Den Teigboden mit einer Gabel einstechen und im vorgeheizten Ofen bei 180-200 °C für etwa 3 bis 5 Minuten vorbacken, bis er leicht goldbraun wird (dieser Schritt ist optional). Vor dem Fortfahren leicht abkühlen lassen.", ""],
+	["", "Den Strudelteig auf einer bemehlten Fläche sehr dünn ausrollen. Den Teig nochmals mit Öl bestreichen, damit die Ränder des Teigs über die Ränder der Backform hinausstehen können.", ""],
+	["", "Legen Sie die erste Strudelteigschicht auf den vorgebackenen Mürbeteigboden und bestreichen Sie sie gleichmäßig mit der Hälfte der Mohnfüllung. Mit der Hälfte des Sahnegusses und der geschmolzenen Butter beträufeln. Mit einer neuen Strudelteigschicht abdecken. Darauf die Hälfte der Topfenfüllung verteilen und nach Bedarf mit Sahneguss beträufeln.", ""],
+	["", "Die dritte Strudelteigschicht darauflegen, mit der Hälfte der Walnussfüllung bestreuen und den Sahneguss sowie die geschmolzene Butter darüber verteilen.", ""],
+	["", "Die vierte Strudelteigschicht auflegen, mit der Hälfte der Apfelfüllung bestreuen, mit Sahneguss und Butter beträufeln.", ""],
+	["", "Wiederholen Sie den vorherigen Schritt und schichten Sie in der gleichen Reihenfolge die zweite Hälfte der Füllungen auf: Mohn, Topfen, Walnuss und Apfel. Vergessen Sie nicht, die Füllungen jeweils mit einer Schicht Strudelteig zu trennen.", ""],
+	["", "Auf die achte Schicht (abgedeckt mit der Apfelfüllung) legen Sie die neunte Schicht Strudelteig und bestreichen sie mit Sahneguss oder Buttertopping. Schließen Sie das Gebäck mit der letzten Strudelteigschicht ab und bestreichen Sie diese gründlich mit einer Kombination aus geschmolzener Butter und Sahneguss.", ""],
+	["", "Stechen Sie die Gibanica an mehreren Stellen bis zum Boden ein.", ""],
+	["", "Im vorgeheizten Ofen bei 170–180 °C für etwa 2 Stunden backen. Die Menge der Butter im Ofen bestimmt die Backzeit. Wenn die Oberseite der Gibanica nur mit Butter bestrichen wurde, vergessen Sie nicht, sie nach dem Backen mit saurer oder süßer Sahne zu bestreichen. Bei Raumtemperatur mindestens einige Stunden abkühlen lassen.", ""],
+	["", "In Stücke schneiden, solange sie noch lauwarm ist oder wenn sie abgekühlt ist. Wenn Sie eine runde Backform gewählt haben, in Dreiecke schneiden. Vor dem Servieren mit Puderzucker bestreuen.", ""],
+  
+];
+
+	//const notizen =
+</script>
+<script src="../sidebar.js"></script>
+<script src="recipe_render.js"></script>
+</body>
+</html>

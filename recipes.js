@@ -219,6 +219,33 @@ const RECIPES = [
             difficulty: "anspruchsvoll",
             description: "Feiertagsmenü für die kalte Jahreszeit"
           },
+		  {
+            id: "at-wildbraten",
+            title: "Wildbraten",
+            file: "rezepte/at-wildbraten.html",
+            tags: ["herzhaft", "festtagsessen", "bergrettung",],
+            time: "2,5 Std.",
+            difficulty: "anspruchsvoll",
+            description: "mit gebratenem Rotkraut, Selleriepüree und Nussbratapfel"
+          },
+		  {
+            id: "at-kaspressknoedel",
+            title: "Kaspressknödel",
+            file: "rezepte/at-kaspressknoedel.html",
+            tags: ["herzhaft", "bodenständig", "bergrettung",],
+            time: "120 min",
+            difficulty: "einfach",
+            description: "mit Tomaten-Gemüsewürfeln und Pilzen  "
+          },
+		  {
+            id: "at-lachsmediterranesgemuese",
+            title: "Lachs in der Folie",
+            file: "rezepte/at-lachsmediterranesgemuese.html",
+            tags: ["herzhaft", "bodenständig", "bergrettung","fisch"],
+            time: "60 min",
+            difficulty: "einfach",
+            description: "mit mediterranem Gemüse und Erdäpfelspalten"
+          },
         ]
       },
 	  {
@@ -358,7 +385,7 @@ const RECIPES = [
   // ════════════════════════════════════════════════════════
   //  LAND: Portugal
   // ════════════════════════════════════════════════════════  
-  {
+/*   {
     country: "Portugal",
     flag: "🇵🇹",
     code: "pt",
@@ -379,7 +406,7 @@ const RECIPES = [
         ]
       }
     ]
-  },
+  }, */
   // ════════════════════════════════════════════════════════
   //  LAND: Spanien
   // ════════════════════════════════════════════════════════  
@@ -466,7 +493,7 @@ const RECIPES = [
   // ════════════════════════════════════════════════════════
   //  LAND: USA
   // ════════════════════════════════════════════════════════  
-  {
+/*   {
     country: "USA",
     flag: "🇺🇸",
     code: "us",
@@ -487,5 +514,5 @@ const RECIPES = [
         ]
       }
     ]
-  },
+  }, */
 ];

@@ -196,7 +196,8 @@
           <span class="badge ${diffClass(r.difficulty)}">${r.difficulty}</span>
         </div>
         <div class="card-tags">
-          <span class="tag">${r.countryFlag ? `<img src="https://flagcdn.com/${r.countryFlag}.svg" height="10" alt="${r.countryName}" style="vertical-align:-1px;margin-right:.25rem;">` : ''}${r.countryName}</span>
+          <!-- <span class="tag">${r.countryFlag ? `<img src="https://flagcdn.com/${r.countryFlag}.svg" height="10" alt="${r.countryName}" style="vertical-align:-1px;margin-right:.25rem;">` : ''}${r.countryName}</span> -->
+          <span class="tag">${r.countryFlag ? `<img src="https://flagcdn.com/16x12/${r.countryFlag}.png"  alt="${r.countryName}" style="vertical-align:-1px;margin-right:.25rem;">` : ''}${r.countryName}</span>
           ${r.tags.map(function (t) { return `<span class="tag">#${t}</span>`; }).join('')}
         </div>
       </a>`;

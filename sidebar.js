@@ -68,7 +68,8 @@
     countryToggle.type = 'button';
     countryToggle.className = 'nav-country-toggle';
     countryToggle.innerHTML =
-      `<span class="nav-country-flag"><img src="https://flagcdn.com/${country.code}.svg" height="13" alt="${country.country}"></span>` +
+      /* `<span class="nav-country-flag"><img src="https://flagcdn.com/${country.code}.svg" height="13" alt="${country.country}"></span>` + */
+      `<span class="nav-country-flag"><img src="https://flagcdn.com/16x12/${country.code}.png" height="13" alt="${country.country}"></span>` +
       `<span class="nav-country-name">${country.country}</span>` +
       `<span class="nav-country-chevron">›</span>`;
     countryToggle.addEventListener('click', function () {

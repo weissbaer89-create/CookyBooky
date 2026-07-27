@@ -312,7 +312,7 @@ const RECIPES = [
 //  // ════════════════════════════════════════════════════════
   {
     country: "Nepal",
-    flag: "🇮🇳",
+    flag: "🇳🇵",
     code: "np",
     subcategories: [
       {
@@ -327,6 +327,32 @@ const RECIPES = [
             time: "120 min",
             difficulty: "mittel",
             description: "Traditionelle nepalesische Teigtaschen"
+          }
+        ]
+      }
+    ]
+  },
+  
+//  // ════════════════════════════════════════════════════════
+//  //  LAND: Slowenien
+//  // ════════════════════════════════════════════════════════
+  {
+    country: "Slowenien",
+    flag: "🇸🇮",
+    code: "si",
+    subcategories: [
+      {
+        name: "Nachspeise",
+        icon: "🥧",
+        items: [
+          {
+            id: "si-prekmurje_gibanica",
+            title: "Prekmurska gibanica",
+            file: "rezepte/si-prekmurje_gibanica.html",
+            tags: ["strudel", "nussig",],
+            time: "4 Std.",
+            difficulty: "mittel",
+            description: "slowenische Nationalspezialität"
           }
         ]
       }

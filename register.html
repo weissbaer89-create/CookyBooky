@@ -23,6 +23,31 @@
     .page-title em { font-style: italic; color: var(--accent); }
     .page-divider { width: 48px; height: 2px; background: var(--gold); margin: 1.5rem 0 0; border-radius: 1px; }
 
+    /* ── Filter Toggle ────────────────────────────────────── */
+    .filter-toggle-row { max-width: 880px; margin: 0 auto; padding: 1.75rem 2rem 0; }
+    .filter-toggle-btn {
+      display: inline-flex; align-items: center; gap: .45rem;
+      background: none; border: 1px solid var(--border); border-radius: 99px;
+      padding: .42rem .95rem; font-size: .78rem; color: var(--ink); cursor: pointer;
+      font-family: var(--ff-body); transition: background .15s, border-color .15s;
+    }
+    .filter-toggle-btn:hover { background: var(--paper); border-color: var(--muted); }
+    .filter-toggle-icon { font-size: .62rem; display: inline-block; transition: transform .25s cubic-bezier(.4,0,.2,1); }
+    #filters-panel.closed + .results-info + .alpha-bar,
+    #filters-panel.closed { }
+    .filter-toggle-row .filter-toggle-btn[aria-expanded="false"] .filter-toggle-icon { transform: rotate(-90deg); }
+    .filter-toggle-count {
+      background: var(--accent); color: #fff; font-size: .64rem; font-weight: 600;
+      padding: .05rem .42rem; border-radius: 99px; line-height: 1.4;
+    }
+
+    /* ── Collapsible filter panel ────────────────────────────*/
+    #filters-panel {
+      overflow: hidden; max-height: 2200px; opacity: 1;
+      transition: max-height .35s cubic-bezier(.4,0,.2,1), opacity .25s;
+    }
+    #filters-panel.closed { max-height: 0; opacity: 0; }
+
     /* ── Filter bar ───────────────────────────────────────── */
     .filter-wrap {
       max-width: 880px; margin: 0 auto;
@@ -58,6 +83,8 @@
     .chip.active-easy   { background: #2d7a3a; border-color: #2d7a3a; color: #fff; }
     .chip.active-medium { background: #9a6e00; border-color: #9a6e00; color: #fff; }
     .chip.active-hard   { background: #b5352a; border-color: #b5352a; color: #fff; }
+    /* Tag-Chip aktiv (Mehrfachauswahl) */
+    .chip.active-tag { background: rgba(212,168,67,.16); border-color: var(--gold); color: var(--ink); }
 
     /* Reset-Zeile */
     .filter-reset-row {
@@ -113,6 +140,7 @@
     .reg-row:last-child { border-bottom: none; }
     .reg-row:hover { background: var(--card-bg); padding-left: .9rem; }
     .reg-title { font-family: var(--ff-display); font-size: .96rem; line-height: 1.3; }
+    .reg-desc { font-size: .74rem; font-style: italic; color: var(--muted); margin-top: .15rem; line-height: 1.4; }
     .reg-sub { font-size: .68rem; color: var(--muted); margin-top: .1rem; }
     .reg-country { font-size: .72rem; color: var(--muted); white-space: nowrap; }
     .reg-time { font-size: .7rem; color: var(--muted); white-space: nowrap; }
@@ -184,7 +212,15 @@
   <div class="page-divider"></div>
 </div>
 
+<!-- ── Filter-Toggle ──────────────────────────────────────── -->
+<div class="filter-toggle-row">
+  <button class="filter-toggle-btn" id="filter-toggle-btn" type="button" aria-expanded="true" aria-controls="filters-panel">
+    <span class="filter-toggle-icon">▾</span> Filter <span class="filter-toggle-count" id="filter-toggle-count" style="display:none"></span>
+  </button>
+</div>
+
 <!-- ── Filter ─────────────────────────────────────────────── -->
+<div id="filters-panel">
 <div class="filter-wrap">
   <div class="filter-group">
     <div class="filter-group-label">Land</div>
@@ -199,11 +235,17 @@
   <div class="filter-group">
     <div class="filter-group-label">Schwierigkeitsgrad</div>
     <div class="filter-chips" id="diff-chips"></div>
+  </div></div><div class="filter-wrap">
+  <!--<div class="filter-divider"></div>-->
+  <div class="filter-group">
+    <div class="filter-group-label">Tags</div>
+    <div class="filter-chips" id="tag-chips"></div>
   </div>
 </div>
 <div class="filter-reset-row" id="filter-reset-row" style="display:none">
   <button class="filter-reset-btn" id="filter-reset-btn">✕ Alle Filter zurücksetzen</button>
 </div>
+</div><!-- /#filters-panel -->
 
 <div class="results-info" id="results-info"></div>
 <div class="alpha-bar" id="alpha-bar"></div>
@@ -243,6 +285,7 @@
   let activeCountry = null;   // null = alle
   let activeSubcat  = null;
   let activeDiff    = null;
+  let activeTags    = new Set(); // Mehrfachauswahl (UND-Verknüpfung)
 
   /* ── Hilfsfunktion: alle Chips einer Gruppe deaktivieren ─ */
   function clearGroup(selector) {
@@ -256,14 +299,17 @@
   const resetBtn = document.getElementById('filter-reset-btn');
   resetBtn.addEventListener('click', function () {
     activeCountry = activeSubcat = activeDiff = null;
+    activeTags.clear();
     // Alle „Alle"-Chips aktivieren
     document.getElementById('country-all-btn').className  = 'chip active-all';
     document.getElementById('subcat-all-btn').className   = 'chip active-all';
     document.getElementById('diff-all-btn').className     = 'chip active-all';
+    document.getElementById('tag-all-btn').className      = 'chip active-all';
     // Restliche Chips zurücksetzen
     ['#country-chips .chip:not(#country-all-btn)',
      '#subcat-chips .chip:not(#subcat-all-btn)',
-     '#diff-chips .chip:not(#diff-all-btn)'].forEach(function (sel) {
+     '#diff-chips .chip:not(#diff-all-btn)',
+     '#tag-chips .chip:not(#tag-all-btn)'].forEach(function (sel) {
       document.querySelectorAll(sel).forEach(function (c) { c.className = 'chip'; });
     });
     updateResetVisibility();
@@ -271,8 +317,12 @@
   });
 
   function updateResetVisibility() {
-    const anyActive = activeCountry !== null || activeSubcat !== null || activeDiff !== null;
-    resetRow.style.display = anyActive ? 'block' : 'none';
+    const activeCount = (activeCountry !== null ? 1 : 0) + (activeSubcat !== null ? 1 : 0) +
+      (activeDiff !== null ? 1 : 0) + activeTags.size;
+    resetRow.style.display = activeCount ? 'block' : 'none';
+    const countEl = document.getElementById('filter-toggle-count');
+    if (activeCount) { countEl.textContent = activeCount; countEl.style.display = 'inline-flex'; }
+    else { countEl.style.display = 'none'; }
   }
 
   /* ── LAND-Filter bauen ─────────────────────────────────── */
@@ -371,6 +421,65 @@
     diffContainer.appendChild(btn);
   });
 
+  /* ── TAG-Filter bauen (Mehrfachauswahl) ─────────────────── */
+  const tagContainer = document.getElementById('tag-chips');
+
+  const tagAllBtn = document.createElement('button');
+  tagAllBtn.id = 'tag-all-btn';
+  tagAllBtn.className = 'chip active-all';
+  tagAllBtn.textContent = 'Alle';
+  tagAllBtn.addEventListener('click', function () {
+    activeTags.clear();
+    refreshTagChips();
+    updateResetVisibility(); render();
+  });
+  tagContainer.appendChild(tagAllBtn);
+
+  // Deduplizierte, sortierte Tag-Liste aus allen Rezepten
+  const tagsSeen = new Set();
+  allRecipes.forEach(function (r) {
+    (r.tags || []).forEach(function (t) { tagsSeen.add(t); });
+  });
+  const tagList = Array.from(tagsSeen).sort(function (a, b) { return a.localeCompare(b, 'de'); });
+
+  const tagBtnMap = {};
+  tagList.forEach(function (tag) {
+    const btn = document.createElement('button');
+    btn.className = 'chip';
+    btn.textContent = '#' + tag;
+    btn.addEventListener('click', function () {
+      if (activeTags.has(tag)) activeTags.delete(tag); else activeTags.add(tag);
+      refreshTagChips();
+      updateResetVisibility(); render();
+    });
+    tagBtnMap[tag] = btn;
+    tagContainer.appendChild(btn);
+  });
+
+  // Chip-Zustände nach Auswahl aktualisieren (Mehrfachauswahl statt Alle/Einzeln)
+  function refreshTagChips() {
+    tagAllBtn.className = activeTags.size === 0 ? 'chip active-all' : 'chip';
+    tagList.forEach(function (tag) {
+      tagBtnMap[tag].className = activeTags.has(tag) ? 'chip active-tag' : 'chip';
+    });
+  }
+
+  /* ── Filter-Panel ein-/ausblenden ────────────────────────── */
+  const FILTERS_OPEN_KEY = 'bellacucina-filters-open';
+  const filtersPanel     = document.getElementById('filters-panel');
+  const filterToggleBtn  = document.getElementById('filter-toggle-btn');
+
+  function setFiltersOpen(open) {
+    filtersPanel.classList.toggle('closed', !open);
+    filterToggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    localStorage.setItem(FILTERS_OPEN_KEY, open ? '1' : '0');
+  }
+  filterToggleBtn.addEventListener('click', function () {
+    setFiltersOpen(filtersPanel.classList.contains('closed'));
+  });
+  const savedFiltersOpen = localStorage.getItem(FILTERS_OPEN_KEY);
+  setFiltersOpen(savedFiltersOpen === null ? true : savedFiltersOpen === '1');
+
   /* ── Render ────────────────────────────────────────────── */
   const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
@@ -383,6 +492,11 @@
       if (activeCountry && r.country    !== activeCountry) return false;
       if (activeSubcat  && r.subcat     !== activeSubcat)  return false;
       if (activeDiff    && r.difficulty !== activeDiff)    return false;
+      if (activeTags.size) {
+        const rTags = r.tags || [];
+        const hasAll = Array.from(activeTags).every(function (t) { return rTags.includes(t); });
+        if (!hasAll) return false;
+      }
       return true;
     });
 
@@ -391,6 +505,7 @@
     if (activeCountry) parts.push(activeCountry);
     if (activeSubcat)  parts.push(activeSubcat);
     if (activeDiff)    parts.push(activeDiff);
+    if (activeTags.size) parts.push(Array.from(activeTags).map(function (t) { return '#' + t; }).join(' '));
     document.getElementById('results-info').textContent =
       filtered.length + ' Rezept' + (filtered.length !== 1 ? 'e' : '') +
       (parts.length ? ' · ' + parts.join(' · ') : '');
@@ -442,6 +557,7 @@
         a.innerHTML =
           `<div>
             <div class="reg-title">${r.title}</div>
+            ${r.description ? `<div class="reg-desc">${r.description}</div>` : ''}
             <div class="reg-sub">${r.subcatIcon} ${r.subcat}</div>
           </div>
           <span class="reg-country"><img src="https://flagcdn.com/${r.code}.svg" height="11" alt="${r.country}" style="vertical-align:middle;margin-right:.25rem">${r.country}</span>

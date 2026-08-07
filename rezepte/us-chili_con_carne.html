@@ -59,7 +59,7 @@
     <div class="recipe-meta">
       <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
       <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
-      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">5</span></div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">4</span></div>
     </div>
     <div class="recipe-tags" id="tags"></div>
   </header>
@@ -75,7 +75,7 @@
 	  </div>
       <div class="serving-control">
         <button class="serving-btn" onclick="changeServings(-1)">−</button>
-        <span class="serving-num" id="serving-num">5</span>
+        <span class="serving-num" id="serving-num">4</span>
         <button class="serving-btn" onclick="changeServings(1)">+</button>
       </div>
       <ul class="ingredient-list" id="ingredient-list"></ul>
@@ -99,64 +99,39 @@
 <script>
   /* ── Sidebar-Konfiguration ──────────────────────────── */
   window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
-  window.SIDEBAR_CURRENT_FILE = 'rezepte/at-wildbraten.html'; // ← bei jeder Vorlage anpassen
-const headline = 'Wildbraten <em>mit gebratenem Rotkraut, Selleriepüree und Nussbratapfel</em>';
-const ID = 'at-wildbraten';
-const beschreibung = 'Ein besonderes Gericht speziell für die Feiertage hat Vinzenz Klimmer, Koch im Ausbildungszentrum Jamtal, dieses Mal zusammengestellt. Bergrettungsmagazin 12-2022';
-const hinweis = '';
+  window.SIDEBAR_CURRENT_FILE = 'rezepte/us-chili_con_carne.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Chili<em> con Carne</em>';
+const ID = 'us-chili_con_carne';
+const beschreibung = 'Über kaum ein anderes Gericht wird so viel gestritten wie über Chili con Carne. Diskussionen über die ursprüngliche Herkunft, die richtigen Zutaten und sogar die Schreibweise erregen immer wieder die Gemüter der Chilifans. Auch aus diesem Grunde gibt es unzählige Variationen und Abwandlungen von Chili con carne Rezepte. Die einzigen gemeinsamen Zutaten aller Chili-Rezepte sind Fleisch und Chili - natürlich gibt es aber auch einige vegetarische Variationen. Ob Mexiko oder USA - uns ist das egal - es sollte nur richtig scharf und richtig gut sein - hier finden Sie die besten Chili con carne Rezepte.';
+const hinweis = 'Mit Gebäck oder mit Tortilla Chips servieren.';
 
   /* ── Zutaten mit Mengenrechner ──────────────────────── */
-  const BASE_SERVINGS = 5;
+  const BASE_SERVINGS = 4;
   // [Menge pro Portion, Einheit, Name]
   const INGREDIENTS = [
-[null,	'Wildbraten', null], 
-[1/5,  'kg',	'Wildbraten (Hirsch, Reh, Gams oder Steinbock) '], 
-[2/5,  '',	'Karotten '], 
-[0.5/5,  '',	'Knolle Sellerie '], 
-[2/5,  '',	'Zwiebeln '], 
-[1/2/5,  'l',	'Rotwein '], 
-[50/5,  'ml',	'Rotweinessig '], 
-[2/5,  'l',	'Rindsuppe, wenn nicht vorhanden '], 
-[null,	'',	'Wasser oder Wildfond'], 
-[50/5,  'g',	'Tomatenmark'], 
-[20/5,  '',	'Pfefferkörner '], 
-[15/5,  '',	'Wacholderbeeren '], 
-[4/5,  '',	'Lorbeerblätter '], 
-[5/5,  '',	'Stück Piment '], 
-[2/5,  '',	'Nelken '], 
-[2/5,  '',	'Orangen (Schale und Saft)'], 
-[null,	'',	'Speisestärke/Maizena zum Eindicken '], 
-[null,	'',	'Salz '], 
-[null,	'',	'Öl oder Butterschmalz (zum Anbraten) '], 
-[null,	'Gebratenes Rotkraut', null],
-[1/5,  '',	'kl. Kopf Rotkraut '], 
-[100/5,  'ml',	'Olivenöl '], 
-[50/5,  'ml',	'Honig (flüssig, warm)'], 
-[200/5,  'ml',	'Gemüsefond oder Wasser '], 
-[null,	'',	'Salz, Pfeffer '], 
-[null,	'Selleriepüree ', null],
-[400/5,  'g',	'Sellerie '], 
-[100/5,  'g',	'Erdäpfel (festkochend) '], 
-[50/5,  'g',	'Butter '], 
-[50/5,  'ml',	'Milch '], 
-[null,	'',	'Salz, Muskatnuss'], 
-[null,	'Nussbratapfel ', null],
-[5/5,  '',	'Äpfel (etwa mittelgroß) '], 
-[200/5,  'g',	'geriebene Haselnüsse '], 
-[300/5,  'ml',	'Sahne '], 
-[20/5,  'g',	'Lebkuchengewürz '], 
-[20/5,  'g',	'Zucker '], 
-[null,	'',	'etwas Salz'], 
+	[0.5/4,'','Chilischote'],
+    [400/4,'g','Faschiertes'],
+    [0.5/4, '','grüner Paprika'],
+    [1/4, '','Knoblauchzehe'],
+    [0.5/4, 'Dose','Mais'],
+	[1/4, 'Schuss','Olivenöl'],
+    [1/4, 'EL','Paprikapulver'],
+    [100/4, 'ml','Rindsuppe'],
+    [400/4, 'g','Rote Bohnen '],
+    [0.5/4, '','roter Paprika'],
+    [1/4, 'Prise','Salz und Pfeffer'],
+    [0.5/4, 'TL','Thymian'],
+    [1/4, 'Dose','Tomaten'],
+    [1/4, 'Dose','Weiße Bohnen'],
+    [2/4, '','Zwiebeln'],
   ];
   let servings = BASE_SERVINGS;
   
-  const zubereitung = [
-  ["", "Backofen auf 160 °C vorheizen. Das Fleisch salzen und im heißen Fett überall kräftig anbraten. Gemüse putzen und grob würfelig schneiden. Karotten, Sellerie und Zwiebeln zum Fleisch geben und goldbraun mit anrösten. Tomatenmark dazugeben, ebenfalls kurz mitrösten und dann mit Rotwein, dem Essig und der Rindsuppe (evtl. Wasser oder Wildfond) aufgießen. Gewürze sowie Schale und Saft der Orangen dazugeben. Den Bräter ca. zwei Stunden in den Backofen geben, der Braten sollte zugedeckt schmoren. ", ""],
-  ["", "Das Kraut in große Spalten schneiden und auf ein Blech geben. Alle Zutaten gut vermengen und über das Kraut gießen. Mit einer Alufolie zudecken und bei 160 °C ca. 40 bis 50 Minuten schmoren. Dann kurz in einer Pfanne beidseitig anbraten. ", ""],
-  ["", "Sellerie und Erdäpfel schälen und in grobe Würfel schneiden. In einen Topf mit Wasser geben, ca. 20 bis 25 Minuten kochen, dann abseihen. Mit einer Erdäpfelpresse alles zerdrücken. Warme Milch und zerlassene Butter mit den Gewürzen dazugeben. Alles kurz gut vermengen und abschmecken.", ""],
-  ["", "Ofen auf 160 °C vorheizen. Mit einem Apfelausstecher den Strunk entfernen. Die Äpfel auf ein Backblech geben. Die Zutaten gut verrühren und über die Äpfel gießen. Ab in den Ofen für ca. 45 Minuten. ", ""],
-  ["", "Braten aus dem Bräter nehmen und den Bratenfond durchsieben. Die Soße abschmecken und nach Wunsch mit Speisestärke/Maizena eindicken. Braten in Scheiben schneiden und beliebig anrichten. ", ""],
-  
+  const zubereitung = [  
+	["", "Zwiebel und Knoblauch schälen, klein hacken, Paprika und Chili klein würfeln. Faschiertes in mehreren Etappen in Öl anbraten."],
+	["", "Zwiebel und Knoblauch hell anrösten, Paprika zugeben und mitrösten. Fleisch zugeben, Paprikapulver einrühren, mit Suppe und Dosentomaten aufgießen.", ""],
+	["", "Mit Chili, Salz, Pfeffer und Thymian würzen und ca. 20 Minuten köcheln lassen.", ""],
+	["", "Zuletzt Mais und Bohnen zufügen und kurz mitkochen. Abschmecken.", ""],
 ];
 
 	//const notizen =

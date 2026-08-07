@@ -59,7 +59,7 @@
     <div class="recipe-meta">
       <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
       <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
-      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">5</span></div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">4</span></div>
     </div>
     <div class="recipe-tags" id="tags"></div>
   </header>
@@ -75,7 +75,7 @@
 	  </div>
       <div class="serving-control">
         <button class="serving-btn" onclick="changeServings(-1)">−</button>
-        <span class="serving-num" id="serving-num">5</span>
+        <span class="serving-num" id="serving-num">4</span>
         <button class="serving-btn" onclick="changeServings(1)">+</button>
       </div>
       <ul class="ingredient-list" id="ingredient-list"></ul>
@@ -99,64 +99,51 @@
 <script>
   /* ── Sidebar-Konfiguration ──────────────────────────── */
   window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
-  window.SIDEBAR_CURRENT_FILE = 'rezepte/at-wildbraten.html'; // ← bei jeder Vorlage anpassen
-const headline = 'Wildbraten <em>mit gebratenem Rotkraut, Selleriepüree und Nussbratapfel</em>';
-const ID = 'at-wildbraten';
-const beschreibung = 'Ein besonderes Gericht speziell für die Feiertage hat Vinzenz Klimmer, Koch im Ausbildungszentrum Jamtal, dieses Mal zusammengestellt. Bergrettungsmagazin 12-2022';
-const hinweis = '';
+  window.SIDEBAR_CURRENT_FILE = 'rezepte/at-zwiebelrostbraten.html'; // ← bei jeder Vorlage anpassen
+const headline = '<em>Zwiebel</em>rostbraten';
+const ID = 'at-zwiebelrostbraten';
+const beschreibung = 'Ein Zwiebelrostbraten ist ein klassisches, traditionelles Gericht, das mit einer Kartoffelbeilage angeboten wird. Bei diesem Rezept wird das Fleisch in Butterschmalz scharf angebraten. Auch bekannt unter Rostbraten wird er bei uns in Österreich immer mit gerösteten Zwiebeln und Bratensauce serviert.';
+const hinweis = 'Den Zwiebelrostbraten wird mit Petersilienkartoffel, Bratkartoffeln oder Kartoffelröster serviert.';
 
   /* ── Zutaten mit Mengenrechner ──────────────────────── */
-  const BASE_SERVINGS = 5;
+  const BASE_SERVINGS = 4;
   // [Menge pro Portion, Einheit, Name]
   const INGREDIENTS = [
-[null,	'Wildbraten', null], 
-[1/5,  'kg',	'Wildbraten (Hirsch, Reh, Gams oder Steinbock) '], 
-[2/5,  '',	'Karotten '], 
-[0.5/5,  '',	'Knolle Sellerie '], 
-[2/5,  '',	'Zwiebeln '], 
-[1/2/5,  'l',	'Rotwein '], 
-[50/5,  'ml',	'Rotweinessig '], 
-[2/5,  'l',	'Rindsuppe, wenn nicht vorhanden '], 
-[null,	'',	'Wasser oder Wildfond'], 
-[50/5,  'g',	'Tomatenmark'], 
-[20/5,  '',	'Pfefferkörner '], 
-[15/5,  '',	'Wacholderbeeren '], 
-[4/5,  '',	'Lorbeerblätter '], 
-[5/5,  '',	'Stück Piment '], 
-[2/5,  '',	'Nelken '], 
-[2/5,  '',	'Orangen (Schale und Saft)'], 
-[null,	'',	'Speisestärke/Maizena zum Eindicken '], 
-[null,	'',	'Salz '], 
-[null,	'',	'Öl oder Butterschmalz (zum Anbraten) '], 
-[null,	'Gebratenes Rotkraut', null],
-[1/5,  '',	'kl. Kopf Rotkraut '], 
-[100/5,  'ml',	'Olivenöl '], 
-[50/5,  'ml',	'Honig (flüssig, warm)'], 
-[200/5,  'ml',	'Gemüsefond oder Wasser '], 
-[null,	'',	'Salz, Pfeffer '], 
-[null,	'Selleriepüree ', null],
-[400/5,  'g',	'Sellerie '], 
-[100/5,  'g',	'Erdäpfel (festkochend) '], 
-[50/5,  'g',	'Butter '], 
-[50/5,  'ml',	'Milch '], 
-[null,	'',	'Salz, Muskatnuss'], 
-[null,	'Nussbratapfel ', null],
-[5/5,  '',	'Äpfel (etwa mittelgroß) '], 
-[200/5,  'g',	'geriebene Haselnüsse '], 
-[300/5,  'ml',	'Sahne '], 
-[20/5,  'g',	'Lebkuchengewürz '], 
-[20/5,  'g',	'Zucker '], 
-[null,	'',	'etwas Salz'], 
+	[null,	'Rostbraten', null],
+	[4/4,	'',	'Rostbraten (à 140 g; oder Beiried)'],
+	[1/4,	'Prise',	'Salz'],
+	[1/4,	'Prise',	'Pfeffer (schwarz aus der Mühle)'],
+	[1/4,	'EL',	'Mehl (für das Fleisch)'],
+	[1/4,	'EL',	'Butterschmalz (für die Pfanne)'],
+	[1/4,	'EL',	'Senf'],
+	[null,	'Röstzwiebel', null],
+	[3/4,	'',	'Zwiebel (mittelgroß)'],
+	[2/4,	'EL',	'Weizenmehl (glatt)'],
+	[1/4,	'EL',	'Paprikapulver (edelsüß)'],
+	[500/4,	'ml',	'Pflanzenöl (Sonnenblumenöl oder Maiskeimöl)'],
+	[1/4,	'Prise',	'Salz'],
+	[null,	'Sauce', null],
+	[1/4,	'EL',	'Butterschmalz (für die Pfanne)'],
+	[1/4,	'EL',	'Tomatenmark'],
+	[200/4,	'ml',	'Rotwein (trocken)'],
+	[1/4,	'Schuss',	'Essig'],
+	[2/4,	'',	'Lorbeerblätter'],
+	[250/4,	'ml',	'Rindsuppe (kräftig)'],
   ];
   let servings = BASE_SERVINGS;
   
-  const zubereitung = [
-  ["", "Backofen auf 160 °C vorheizen. Das Fleisch salzen und im heißen Fett überall kräftig anbraten. Gemüse putzen und grob würfelig schneiden. Karotten, Sellerie und Zwiebeln zum Fleisch geben und goldbraun mit anrösten. Tomatenmark dazugeben, ebenfalls kurz mitrösten und dann mit Rotwein, dem Essig und der Rindsuppe (evtl. Wasser oder Wildfond) aufgießen. Gewürze sowie Schale und Saft der Orangen dazugeben. Den Bräter ca. zwei Stunden in den Backofen geben, der Braten sollte zugedeckt schmoren. ", ""],
-  ["", "Das Kraut in große Spalten schneiden und auf ein Blech geben. Alle Zutaten gut vermengen und über das Kraut gießen. Mit einer Alufolie zudecken und bei 160 °C ca. 40 bis 50 Minuten schmoren. Dann kurz in einer Pfanne beidseitig anbraten. ", ""],
-  ["", "Sellerie und Erdäpfel schälen und in grobe Würfel schneiden. In einen Topf mit Wasser geben, ca. 20 bis 25 Minuten kochen, dann abseihen. Mit einer Erdäpfelpresse alles zerdrücken. Warme Milch und zerlassene Butter mit den Gewürzen dazugeben. Alles kurz gut vermengen und abschmecken.", ""],
-  ["", "Ofen auf 160 °C vorheizen. Mit einem Apfelausstecher den Strunk entfernen. Die Äpfel auf ein Backblech geben. Die Zutaten gut verrühren und über die Äpfel gießen. Ab in den Ofen für ca. 45 Minuten. ", ""],
-  ["", "Braten aus dem Bräter nehmen und den Bratenfond durchsieben. Die Soße abschmecken und nach Wunsch mit Speisestärke/Maizena eindicken. Braten in Scheiben schneiden und beliebig anrichten. ", ""],
-  
+  const zubereitung = [  
+	["", "Für den Zwiebelrostbraten das Fleisch mit dem Fleischklopfer (flache Seite) klopfen, die Ränder mehrmals einschneiden und kräftig mit Salz und Pfeffer würzen. ", "Beim Fleischklopfer darauf achten, dass eine ganz Flache Seite verwendet wird und keine Zacken, man kann auch eine Pfanne zum Klopfen verwenden."],
+	["", "Danach die Rostbraten-Stücke auf beiden Seite in Mehl wenden und in einer Bratpfanne mit Butterschmalz auf beiden Seiten ca. 3-4 Minuten scharf anbraten. ", ""],
+	["", "Das Fleisch aus der Pfanne nehmen, auf einer Seite mit Senf einstreichen und in eine feuerfest Pfanne legen. ", ""],
+	["", "Für die Röstzwiebeln die Zwiebeln schälen und in dünne Ringe schneiden. ", ""],
+	["", "Danach in die Bratpfanne wieder ein wenig Butterschmalz geben und ein Viertel der Zwiebelringe für gut 10 Minuten goldbraun schmoren - dabei immer wieder durchrühren. ", ""],
+	["", "Nun das Tomatenmark in die Pfanne geben, kurz mitrösten, mit Rotwein und einem Schuss Essig ablöschen, Lorbeerblätter dazugeben und nochmals für ein paar Minuten einköcheln lassen. ", ""],
+	["", "Anschließend mit der Rinderbrühe aufgießen, nochmals für ein paar Minuten einköcheln lassen und dann in die feuerfeste Pfanne über das Fleisch gießen. Die Flüssigkeit sollte das Fleisch aber nicht komplett bedecken. ", ""],
+	["", "Die Pfanne mit einem Deckel abdecken und für rund 90 Minuten (je nach Fleischdicke) im vorgeheizten Backofen bei 160 Grad Ober-Unterhitze schmoren lassen. Die letzten 10 Minuten auf 100 Grad zurückdrehen. ", ""],
+	["", "Die restlichen Zwiebelringe mit Mehl und Paprikapulver vermengen und in einem Topf mit reichlich Pflanzenöl bei 160 Grad portionsweise, goldbraun frittieren. Nicht zu viele Zwiebelringe auf einmal in den Topf. ", ""],
+	["", "Den gerösteten Zwiebel auf Küchenpapier abtropfen lassen und ein wenig salzen. ", ""],
+	["", "Zum Schluss das Fleisch aus dem Backofen holen, auf Tellern mit der Sauce anrichten und mit den Röstzwiebeln, einem Essiggurkerl und frischer Petersilie garnieren. ", ""],
 ];
 
 	//const notizen =

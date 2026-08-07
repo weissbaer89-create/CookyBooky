@@ -246,6 +246,15 @@ const RECIPES = [
             difficulty: "einfach",
             description: "mit mediterranem Gemüse und Erdäpfelspalten"
           },
+		  {
+            id: "at-zwiebelrostbraten",
+            title: "Zwiebelrostbraten",
+            file: "rezepte/at-zwiebelrostbraten.html",
+            tags: ["herzhaft", "traditionell", "fleisch"],
+            time: "120 min",
+            difficulty: "mittel",
+            description: "ein klassisches, traditionelles Gericht"
+          },
         ]
       },
 	  {
@@ -519,26 +528,50 @@ const RECIPES = [
   // ════════════════════════════════════════════════════════
   //  LAND: USA
   // ════════════════════════════════════════════════════════  
-/*   {
+   {
     country: "USA",
     flag: "🇺🇸",
     code: "us",
     subcategories: [
-      {
+       {
         name: "Hauptgerichte",
         icon: "🍔",
         items: [
           {
-            id: "tantanmenramen",
-            title: "Tantanmen Ramen",
-            file: "rezepte/tantanmenramen.html",
-            tags: ["asiatisch", "straßenküche", "winter",],
+            id: "us-chili_con_carne",
+            title: "Chili Con Carne",
+            file: "us-chili_con_carne.html",
+            tags: ["amerikanisch", "straßenküche", "winter",],
+            time: "40 min",
+            difficulty: "einfach",
+            description: "ein Amerikanischer KLassiker"
+          },
+		  {
+            id: "us-orangen_feuerhuhn",
+            title: "Orangen-Feuerhuhn",
+            file: "us-orangen_feuerhuhn.html",
+            tags: ["amerikanisch", ],
+            time: "120 min",
+            difficulty: "einfach",
+            description: "Die rote Farbe verleiht diesem Gericht seinen Namen"
+          },
+        ]
+      }, 
+	  {
+        name: "Desserts",
+        icon: "🧁",
+        items: [
+          {
+            id: "us_apple_berry_crisp",
+            file: "rezepte/us_apple_berry_crisp.html",
+            title: "Apple Berry Crisp",
+            tags: ["pie", "herbst",],
             time: "60 min",
             difficulty: "mittel",
-            description: "in einer scharfen Suppe"
-          }
+            description: "So schmeckt der Herbst..."
+          },
         ]
-      }
+      },
     ]
-  }, */
+  },
 ];

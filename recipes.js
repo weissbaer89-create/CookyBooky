@@ -540,7 +540,7 @@ const RECIPES = [
           {
             id: "us-chili_con_carne",
             title: "Chili Con Carne",
-            file: "us-chili_con_carne.html",
+            file: "rezepte/us-chili_con_carne.html",
             tags: ["amerikanisch", "straßenküche", "winter",],
             time: "40 min",
             difficulty: "einfach",
@@ -549,7 +549,7 @@ const RECIPES = [
 		  {
             id: "us-orangen_feuerhuhn",
             title: "Orangen-Feuerhuhn",
-            file: "us-orangen_feuerhuhn.html",
+            file: "rezepte/us-orangen_feuerhuhn.html",
             tags: ["amerikanisch", ],
             time: "120 min",
             difficulty: "einfach",

@@ -368,7 +368,7 @@ const RECIPES = [
     ]
   },
   // ════════════════════════════════════════════════════════
-  //  LAND: Thailand
+  //  LAND: Thailand🍜
   // ════════════════════════════════════════════════════════  
   {
     country: "Thailand",
@@ -376,17 +376,55 @@ const RECIPES = [
     code: "th",
     subcategories: [
       {
+        name: "Vorspeise",
+        icon: "🍜",
+        items: [
+          {
+            id: "th-fruehlingsrollen",
+            title: "Frühlingsrollen",
+            file: "rezepte/th-fruehlingsrollen.html",
+            tags: ["asiatisch", "straßenküche",,],
+            time: "30 min",
+            difficulty: "mittel",
+            description: "ปอเปี๊ยะทอด - Bor Bia Thod"
+          }
+        ]
+      },{
         name: "Hauptgerichte",
         icon: "🍜",
         items: [
           {
-            id: "th-stickyricemango",
+            id: "th-massaman_curry",
+            title: "Massaman Curry",
+            file: "rezepte/th-massaman_curry.html",
+            tags: ["asiatisch", "straßenküche", "winter",],
+            time: "60 min",
+            difficulty: "mittel",
+            description: "แกงมัสมั่นไก่ - Kaeng Massaman Kai"
+          },
+		  {
+            id: "th-thai_curry_noodle_soup",
+            title: "Spicy Thai Curry Noodle Soup",
+            file: "rezepte/th-thai_curry_noodle_soup.html",
+            tags: ["asiatisch", "straßenküche",],
+            time: "20 min",
+            difficulty: "mittel",
+            description: "ข้าวซอย - Khao Soi"
+          }
+        ]
+      },
+      {
+        name: "Nachspeise",
+        icon: "🍡",
+        items: [
+          {
+            id: "th-sticky_rice",
             title: "Sticky Rice mit Mango",
-            file: "rezepte/th-stickyricemango.html",
+            file: "rezepte/th-sticky_rice.html",
             tags: ["asiatisch", "straßenküche", "sommer",],
             time: "60 min",
             difficulty: "mittel",
-            description: "Khao Niaow Ma Muang"
+            description: "้าวเหนียวมะม่วง - Khao Niaow Ma Muang"
           }
         ]
       }

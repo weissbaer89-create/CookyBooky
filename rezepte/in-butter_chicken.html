@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="titelA">Titel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="recipes.css" />
+  <script src="../recipes.js"></script>
+</head>
+<body>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ── Sidebar ─────────────────────────────────────────────── -->
+<nav id="sidebar" aria-label="Rezept-Navigation">
+  <div class="sb-header">
+    <a class="sb-logo" id="sb-logo" href="../index.html"></a>
+    <button class="sb-close" onclick="closeSidebar()" aria-label="Schließen">✕</button>
+  </div>
+  <div id="sb-nav-body"></div>
+  <div class="sb-footer">
+    <span class="sb-footer-label">Erscheinungsbild</span>
+    <div class="theme-toggle">
+      <span class="theme-label">Dunkel</span>
+      <div class="toggle-track on" onclick="toggleTheme()" role="switch" aria-label="Theme wechseln">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Topbar ──────────────────────────────────────────────── -->
+<header id="topbar">
+  <button class="burger-btn" onclick="openSidebar()" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="topbar-breadcrumb">
+    <a href="../index.html">Kochbuch</a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="landA"></span></a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="typA"></span></a>
+    <span class="sep">›</span>
+    <span class="current" id="titelB">Titel</span>
+  </nav>
+  <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button>
+</header>
+
+<!-- ── Rezept ─────────────────────────────────────────────── -->
+<article>
+  <header class="recipe-hero">
+    <div class="recipe-cat-label"><span id="icon"></span> <span id="typB"></span> · <span id="flag"></span> <span id="landB"></span></div>
+    <h1 class="recipe-title" id="headline">Überschrift</h1>
+    <p class="recipe-desc" id="description">Beschreibung</p>
+    <div class="recipe-meta">
+      <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
+      <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">4</span></div>
+    </div>
+    <div class="recipe-tags" id="tags"></div>
+  </header>
+
+  <div class="gold-rule"><div class="gold-dot"></div></div>
+
+  <div class="recipe-body">
+    <!-- Zutaten -->
+    <aside class="ingredients-panel">
+      <h2 class="panel-title">Zutaten</h2>
+      <div class="serving-label-div">
+		<span class="serving-label">~ Portionen ~</span>
+	  </div>
+      <div class="serving-control">
+        <button class="serving-btn" onclick="changeServings(-1)">−</button>
+        <span class="serving-num" id="serving-num">4</span>
+        <button class="serving-btn" onclick="changeServings(1)">+</button>
+      </div>
+      <ul class="ingredient-list" id="ingredient-list"></ul>
+    </aside>
+
+    <!-- Zubereitung -->
+	<div syle="width=100%;">
+	<div id="steps">
+      <h2 class="steps-title">Zubereitung</h2>
+	</div>
+		<div id="notes"></div>
+  </div>
+  </div>
+</article>
+
+<footer>
+  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zur Startseite</a>
+</footer>
+
+<!-- ── Scripts ────────────────────────────────────────────── -->
+<script>
+  /* ── Sidebar-Konfiguration ──────────────────────────── */
+  window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
+  window.SIDEBAR_CURRENT_FILE = 'rezepte/in-butter_chicken.html'; // ← bei jeder Vorlage anpassen
+const headline = '<em>Butter</em> Chicken';
+const ID = 'in-butter_chicken';
+const beschreibung = '<h3>मुर्ग़ मखनी - murgh makhani</h3> Butter Chicken, auch bekannt als murgh makhani, ist ein Gericht der indischen Küche. Das Gericht bildet eine Art Curry mit Hähnchenfleisch und einer gewürzten Tomaten-Butter-Sauce. Die Sauce ist für ihre reichhaltige Konsistenz bekannt.';
+const hinweis = 'Als Beilage empfehle ich Basmatireis oder Naan-Brot dazu.';
+
+  /* ── Zutaten mit Mengenrechner ──────────────────────── */
+  const BASE_SERVINGS = 4;
+  // [Menge pro Portion, Einheit, Name]
+  const INGREDIENTS = [
+    [600/4,'g','Hähnchenfleisch'],
+
+[null,'Marinade',null],
+[4/4,'','Knoblauchzehen gepresst'],
+[2/4,'EL','Joghurt 3,5% Fett'],
+[3/4,'EL','Olivenöl'],
+[1/2/4,'','Zitrone Saft der Zitrone'],
+[1/2/4,'TL','Kurkuma'],
+[1/4,'TL','Chili- und Paprikapulver, Garam Masala'],
+[null,'','Salz & Pfeffer nach Geschmack'],
+[null,'Soße (Masala)',null],
+[60/4,'ml','Öl zum anbraten zb. Sonnenblumenöl'],
+[4/4,'','Knoblauchzehen'],
+[15/4,'g','Ingwer-Stück'],
+[1/4,'','große Zwiebel gewürfelt'],
+[80/4,'g','Butter'],
+[60/4,'g','Cashewnüsse'],
+[500/4,'ml','passierte Tomaten oder 5 frische Tomaten (gewürfelt)'],
+[200/4,'ml','Schlagsahne'],
+[1/4,'EL','getrocknete Bockshornkleeblätter'],
+[1/2/4,'TL','Kurkuma'],
+[1/4,'TL',' Paprika-, Chili-, Korianderpulver, Garam Masala, Kreuzkümmel'],
+[null,'','Salz & Pfeffer nach Geschmack'],
+[1/4/4,'TL','Zucker'],
+[null,'','frische gehackte Kräuter für Deko zb. Petersilie oder Koriander'],
+[1/4,'TL','Chiliflocken (hot) '],
+[null,'','getrockneten Bockshornklee optional'],
+  ];
+  let servings = BASE_SERVINGS;
+  
+  const zubereitung = [
+  ["", "Das Fleisch und alle Zutaten für die Marinade in eine Schüssel geben, vermischen und zugedeckt für ca. 20-30 Minuten ziehen lassen.", ""],
+  ["", "Knoblauch, Ingwer schälen und in einem Mörser zu einer Paste stampfen.", ""],
+  ["", "Öl in einer Pfanne erhitzen und die Zwiebeln darin anschwitzen.", ""],
+  ["", "Die Hälfte der Butter dazugeben und darin zerschmelzen lassen.", ""],
+  ["", "Knoblauch-Ingwer Paste, Gewürze und die Cashewnüsse dazugeben und weitere 30-40 Sekunden mit anschwitzen.", "Beim anbraten der Gewürze empfehle ich den Herd etwas runter zu schalten. Nicht verbrennen sondern nur kurz Schmoren, damit sie ihr volles Aroma entfalten können."],
+  ["", "Mit den passierten Tomaten ablöschen(oder frischen Tomaten). Rundherum schön anbraten. Einmal alles aufkochen lassen, dann Hitze runterschalten. Mit geschlossenem Deckel für ca. 6 Minuten köcheln lassen.", "Statt frische Tomaten (gewürfelt) kannst du auch passierte oder gehackte Tomaten nehmen. "],
+  ["", "Die Pfanne mit der Soße vom Herd nehmen und abkühlen lassen. Währenddessen das Fleisch von beiden Seiten scharf anbraten und zur Seite legen. Das Fleisch muss nicht ganz durch gebraten werden, da es später nochmals in der Soße köcheln wird.", ""],
+  ["", "Die abgekühlte Soße in einem Mixer geben und cremig mixen (Oder mit einem Pürierstab).", ""],
+  ["", "Zurück in die Pfanne geben, 2/3 der Schlagsahne dazugeben und nochmals kochen lassen. Mit Salz & Pfeffer abschmecken. Falls nötig mit etwas Wasser verdünnen, dann aber nochmals köcheln lassen.", ""],
+  ["", "Das Fleisch vorsichtig in die köchelnde Soße dazugeben. Die andere Hälfte der Butter dazugeben. Alles nochmals für 3-5 Minuten mit geschlossenem Deckel köcheln lassen. Mit Salz & Pfeffer abschmecken.", ""],
+  ["", "Mit frischem Koriander toppe, nach Geschmack mit der restlichen Sahne verzieren und genießen.", "Optional: etwas Chiliflocken & getrocknetes Bockshornklee darüber verteilen."],
+];
+
+	//const notizen =
+</script>
+<script src="../sidebar.js"></script>
+<script src="recipe_render.js"></script>
+</body>
+</html>

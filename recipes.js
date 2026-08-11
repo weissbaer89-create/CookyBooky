@@ -278,44 +278,55 @@ const RECIPES = [
   // ════════════════════════════════════════════════════════
   //  LAND: Indien
   // ════════════════════════════════════════════════════════
-//  {
-//    country: "Indien",
-//    flag: "🇮🇳",
-//    code: "in",
-//    subcategories: [
-//      {
-//        name: "Hauptgerichte",
-//        icon: "🍛",
-//        items: [
-//          {
-//            id: "chicken-curry",
-//            title: "Butter Chicken Curry",
-//            file: "rezepte/butter-chicken.html",
-//            tags: ["hähnchen", "würzig"],
-//            time: "50 min",
-//            difficulty: "mittel",
-//            description: "Zartes Hähnchen in samtiger Tomaten-Butter-Sauce."
-//          }
-//        ]
-//      },
-//      {
-//        name: "Vorspeisen",
-//        icon: "🥣",
-//        items: [
-//          {
-//            id: "karotten-suppe",
-//            title: "Ingwer-Karotten-Suppe",
-//            file: "rezepte/karotten-suppe.html",
-//            tags: ["vegan", "warm"],
-//            time: "30 min",
-//            difficulty: "einfach",
-//            description: "Cremige Suppe mit frischem Ingwer und Kokosmilch."
-//          }
-//        ]
-//      }
-//    ]
-//  },
-//
+  {
+    country: "Indien",
+    flag: "🇮🇳",
+    code: "in",
+    subcategories: [
+      {
+        name: "Hauptgerichte",
+        icon: "🍛",
+        items: [
+          {
+            id: "in-butter_chicken",
+            title: "Butter Chicken",
+            file: "rezepte/in-butter_chicken.html",
+            tags: ["hähnchen", "würzig"],
+            time: "50 min",
+            difficulty: "mittel",
+            description: "Zartes Hähnchen in samtiger Tomaten-Butter-Sauce."
+          }
+        ]
+     },
+    ]
+  }, 
+  
+  // ════════════════════════════════════════════════════════
+  //  LAND: Ungarn
+  // ════════════════════════════════════════════════════════
+  {
+    country: "Ungarn",
+    flag: "🇭🇺",
+    code: "hu",
+    subcategories: [
+      {
+        name: "Hauptgerichte",
+        icon: "🍛",
+        items: [
+          {
+            id: "hu-gulaschsuppe",
+            title: "Ungarische Gulaschsuppe",
+            file: "rezepte/hu-gulaschsuppe.html",
+            tags: ["hähnchen", "würzig"],
+            time: "50 min",
+            difficulty: "mittel",
+            description: "mit viel Rotwein"
+          }
+        ]
+     },
+    ]
+  },
+
 //  // ════════════════════════════════════════════════════════
 //  //  LAND: Nepal
 //  // ════════════════════════════════════════════════════════
@@ -401,6 +412,14 @@ const RECIPES = [
             time: "60 min",
             difficulty: "mittel",
             description: "แกงมัสมั่นไก่ - Kaeng Massaman Kai"
+          },{
+            id: "th-chichen_cashew_nuts",
+            title: "Gebratenes Hühnerfleisch mit Cashew-Kernen",
+            file: "rezepte/th-chichen_cashew_nuts.html",
+            tags: ["asiatisch", "straßenküche", "klassiker",],
+            time: "40 min",
+            difficulty: "mittel",
+            description: "ไก่ผัดเม็ดมะม่วงหิมพานต์ - Gai Pad Med Mamuang"
           },
 		  {
             id: "th-thai_curry_noodle_soup",
@@ -458,28 +477,28 @@ const RECIPES = [
   // ════════════════════════════════════════════════════════
   //  LAND: Portugal
   // ════════════════════════════════════════════════════════  
-/*   {
+   {
     country: "Portugal",
     flag: "🇵🇹",
     code: "pt",
     subcategories: [
       {
-        name: "Hauptgerichte",
-        icon: "🥘",
+        name: "Desserts",
+        icon: "🍰",
         items: [
           {
-            id: "tantanmenramen",
-            title: "Tantanmen Ramen",
-            file: "rezepte/tantanmenramen.html",
-            tags: ["asiatisch", "straßenküche", "winter",],
-            time: "60 min",
+            id: "pt-pasteis_lima",
+            title: "Pasteis de Lima",
+            file: "rezepte/pt-pasteis_lima.html",
+            tags: ["klassiker", "interpretation",],
+            time: "50 min",
             difficulty: "mittel",
-            description: "in einer scharfen Suppe"
+            description: "Limetten-Cremetörtchen mit Rum"
           }
         ]
       }
     ]
-  }, */
+  }, 
   // ════════════════════════════════════════════════════════
   //  LAND: Spanien
   // ════════════════════════════════════════════════════════  
@@ -500,6 +519,56 @@ const RECIPES = [
             time: "90 min",
             difficulty: "mittel",
             description: "mit Paella-Sud"
+          }
+        ]
+      }
+    ]
+  },  
+  // ════════════════════════════════════════════════════════
+  //  LAND: Griechenland
+  // ════════════════════════════════════════════════════════  
+  {
+    country: "Griechenland",
+    flag: "🇬🇷",
+    code: "gr",
+    subcategories: [
+      {
+        name: "Hauptgerichte",
+        icon: "🫓",
+        items: [
+          {
+            id: "gr-tzaziki_burger",
+            title: "Tzaziki-Burger",
+            file: "rezepte/gr-tzaziki_burger.html",
+            tags: ["burger",],
+            time: "70 min",
+            difficulty: "mittel",
+            description: "Griechenland in einer Burger-Bun"
+          }
+        ]
+      }
+    ]
+  },  
+  // ════════════════════════════════════════════════════════
+  //  LAND: Großbritannien
+  // ════════════════════════════════════════════════════════  
+  {
+    country: "Großbritannien",
+    flag: "🇬🇧",
+    code: "gb",
+    subcategories: [
+      {
+        name: "Hauptgerichte",
+        icon: "🍖",
+        items: [
+          {
+            id: "gb-weltbester_burger",
+            title: "Weltbester Burger",
+            file: "rezepte/gb-weltbester_burger.html",
+            tags: ["burger",],
+            time: "70 min",
+            difficulty: "mittel",
+            description: "zumindest nach Jamie Oliver"
           }
         ]
       }

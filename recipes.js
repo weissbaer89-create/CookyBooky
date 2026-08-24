@@ -255,6 +255,15 @@ const RECIPES = [
             difficulty: "mittel",
             description: "ein klassisches, traditionelles Gericht"
           },
+		  {
+            id: "at-rindergulasch",
+            title: "Klassisches Rindergulasch",
+            file: "rezepte/at-rindergulasch.html",
+            tags: ["herzhaft", "traditionell", "fleisch"],
+            time: "120 min",
+            difficulty: "mittel",
+            description: "traditionelles Familien-Rezept ohne viel Schnickschnack, Burschen-Approved!"
+          },
         ]
       },
 	  {
@@ -317,10 +326,35 @@ const RECIPES = [
             id: "hu-gulaschsuppe",
             title: "Ungarische Gulaschsuppe",
             file: "rezepte/hu-gulaschsuppe.html",
-            tags: ["hähnchen", "würzig"],
-            time: "50 min",
+            tags: ["traditionell", "würzig", "rotwein"],
+            time: "120 min",
             difficulty: "mittel",
             description: "mit viel Rotwein"
+          }
+        ]
+     },
+    ]
+  },  
+  // ════════════════════════════════════════════════════════
+  //  LAND: Mexico
+  // ════════════════════════════════════════════════════════
+  {
+    country: "Mexico",
+    flag: "🇲🇽",
+    code: "mx",
+    subcategories: [
+      {
+        name: "Hauptgerichte",
+        icon: "🍛",
+        items: [
+          {
+            id: "mx-tacos_al_pastor",
+            title: "Tacos al Pastor",
+            file: "rezepte/mx-tacos_al_pastor.html",
+            tags: ["traditionell", "würzig"],
+            time: "120 min",
+            difficulty: "mittel",
+            description: "mexikanisches Fingerfood"
           }
         ]
      },
@@ -429,7 +463,16 @@ const RECIPES = [
             time: "20 min",
             difficulty: "mittel",
             description: "ข้าวซอย - Khao Soi"
-          }
+          },
+		  {
+            id: "th-ramen_pad_thai",
+            title: "Ramen Pad Thai mit Garnelen",
+            file: "rezepte/th-ramen_pad_thai.html",
+            tags: ["asiatisch", "straßenküche",],
+            time: "30 min",
+            difficulty: "mittel",
+            description: "Variation eines Klassikers"
+          },
         ]
       },
       {
@@ -469,6 +512,31 @@ const RECIPES = [
             time: "60 min",
             difficulty: "mittel",
             description: "in einer scharfen Suppe"
+          }
+        ]
+      }
+    ]
+  },
+  // ════════════════════════════════════════════════════════
+  //  LAND: Irland
+  // ════════════════════════════════════════════════════════  
+  {
+    country: "Irland",
+    flag: "🇮🇪",
+    code: "ie",
+    subcategories: [
+      {
+        name: "Hauptgerichte",
+        icon: "🥘",
+        items: [
+          {
+            id: "ie-shepherds_pie",
+            title: "Shepherd's Pie",
+            file: "rezepte/ie-shepherds_pie.html",
+            tags: ["auflauf", "feierabendrezepte", "fleisch",],
+            time: "80 min",
+            difficulty: "mittel",
+            description: ""
           }
         ]
       }
@@ -598,7 +666,7 @@ const RECIPES = [
           {
             id: "de-griesschnitten",
             title: "Grießschnitten",
-            file: "rezepte/de-griesschnitten.html",
+            file: "rezepte/de-griessschnitten.html",
             tags: ["leicht", "winter", "süß",],
             time: "50 min",
             difficulty: "mittel",

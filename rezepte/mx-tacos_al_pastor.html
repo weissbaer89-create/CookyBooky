@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="titelA">Titel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="recipes.css" />
+  <script src="../recipes.js"></script>
+</head>
+<body>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ── Sidebar ─────────────────────────────────────────────── -->
+<nav id="sidebar" aria-label="Rezept-Navigation">
+  <div class="sb-header">
+    <a class="sb-logo" id="sb-logo" href="../index.html"></a>
+    <button class="sb-close" onclick="closeSidebar()" aria-label="Schließen">✕</button>
+  </div>
+  <div id="sb-nav-body"></div>
+  <div class="sb-footer">
+    <span class="sb-footer-label">Erscheinungsbild</span>
+    <div class="theme-toggle">
+      <span class="theme-label">Dunkel</span>
+      <div class="toggle-track on" onclick="toggleTheme()" role="switch" aria-label="Theme wechseln">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Topbar ──────────────────────────────────────────────── -->
+<header id="topbar">
+  <button class="burger-btn" onclick="openSidebar()" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="topbar-breadcrumb">
+    <a href="../index.html">Kochbuch</a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="landA"></span></a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="typA"></span></a>
+    <span class="sep">›</span>
+    <span class="current" id="titelB">Titel</span>
+  </nav>
+  <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button>
+</header>
+
+<!-- ── Rezept ─────────────────────────────────────────────── -->
+<article>
+  <header class="recipe-hero">
+    <div class="recipe-cat-label"><span id="icon"></span> <span id="typB"></span> · <span id="flag"></span> <span id="landB"></span></div>
+    <h1 class="recipe-title" id="headline">Überschrift</h1>
+    <p class="recipe-desc" id="description">Beschreibung</p>
+    <div class="recipe-meta">
+      <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
+      <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">4</span></div>
+    </div>
+    <div class="recipe-tags" id="tags"></div>
+  </header>
+
+  <div class="gold-rule"><div class="gold-dot"></div></div>
+
+  <div class="recipe-body">
+    <!-- Zutaten -->
+    <aside class="ingredients-panel">
+      <h2 class="panel-title">Zutaten</h2>
+      <div class="serving-label-div">
+		<span class="serving-label">~ Portionen ~</span>
+	  </div>
+      <div class="serving-control">
+        <button class="serving-btn" onclick="changeServings(-1)">−</button>
+        <span class="serving-num" id="serving-num">4</span>
+        <button class="serving-btn" onclick="changeServings(1)">+</button>
+      </div>
+      <ul class="ingredient-list" id="ingredient-list"></ul>
+    </aside>
+
+    <!-- Zubereitung -->
+	<div syle="width=100%;">
+	<div id="steps">
+      <h2 class="steps-title">Zubereitung</h2>
+	</div>
+		<div id="notes"></div>
+  </div>
+  </div>
+</article>
+
+<footer>
+  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zur Startseite</a>
+</footer>
+
+<!-- ── Scripts ────────────────────────────────────────────── -->
+<script>
+  /* ── Sidebar-Konfiguration ──────────────────────────── */
+  window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
+  window.SIDEBAR_CURRENT_FILE = 'rezepte/mx-tacos_al_pastor.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Tacos al <em>Pastor</em>';
+const ID = 'mx-tacos_al_pastor';
+const beschreibung = 'Tacos al Pastor ist mexikanisches Fingerfood "at its best"! Fruchtig, saftig, geschmackvoll mit einer ordentlichen Portion Schärfe ist diese Taco-Variante eine echte Empfehlung. In Mexiko bekommt man diese Taco-Variante in nahezu jedem Taco-Stand. Heute zeigen wir dir, wie du diesen genialen Taco selber machen kannst! Tacos al Pastor sind ein Klassiker der mexikanischen Küche. Was der Döner für die Türkei ist und der Gyros-Spieß für Griechenland, ist der Taco al Pastor für Mexiko. Und auch die Zubereitung ist ähnlich, denn für diesen würzigen Taco wird das Schweinefleisch am Spieß gegart. Typisch für dieses Gericht ist Achiote-Paste, die aus Orleanssamen hergestellt wird und für die typisch rote Farbe der Marinade sorgt. Als Ausgangsprodukt für unsere Tacos al Pastor haben wir den Rückenstrang des Iberico-Schweines verwendet. Das sogenannte Iberico Lomo aus dem Hause Otto Gourmet ist mit feinen Fettäderchen durchzogen und hat daher einen besonders intensiven Geschmack. Auch nach dem Grillen am Spieß ist dieses Fleisch immer noch zart und saftig! ';
+const hinweis = '';
+
+  /* ── Zutaten mit Mengenrechner ──────────────────────── */
+  const BASE_SERVINGS = 4;
+  // [Menge pro Portion, Einheit, Name]
+  const INGREDIENTS = [
+[800/8*2,'g','Iberico Lomo'],
+[8/8*2,' ','Tortillas (15 cm Durchmesser)'],
+[1/8*2,' ','Ananas'],
+[1/8*2,' ','Limette'],
+[1/2/8*2,' Bund','Koriander'],
+[1/8*2,' ','rote Zwiebel (mittelgroß)'],
+[null,'Für die Marinade',null],
+[2/8*2,' ','Tomaten (mittelgroß)'],
+[2/8*2,' ','Orangen'],
+[2/8*2,' ','Knoblauchzehen'],
+[3/8*2,' ','Chilis'],
+[3/8*2,' EL','Achiote-Paste'],
+[2/8*2,' EL','Apfelessig'],
+[1/8*2,' TL','Oregano'],
+[1/2/8*2,' TL','Chipotle-Chili'],
+[1/2/8*2,' TL','Kreuzkümmel gemahlen'],
+[1/2/8*2,' TL','Salz'],
+  ];
+  let servings = BASE_SERVINGS;
+  
+  const zubereitung = [
+  ["", "Zunächst wird die Marinade hergestellt. Dazu werden die Knoblauchzehen abgezogen und grob gehackt. Der Stielansatz der Tomaten wird entfernt und die Tomaten werden grob gewürfelt. Die Chilis werden entkernt und kleingeschnitten. Die Orangen werden halbiert und ausgepresst. Das alles kommt zusammen mit den restlichen Zutaten der Marinade in ein hohes Mixgefäß und wird mit einem Pürierstab zerkleinert. Das Fleisch wird in 1,5 cm dicke Scheiben geschnitten und zusammen mit der Marinade in einen Vakuumbeutel gegeben und die Marinade darin gut mit dem Fleisch vermengt. Dann wird der Beutel vakuumiert und für 2-3 Stunden in den Kühlschrank zum Marinieren gelegt.", ""],
+  ["", "Der Grill wird auf 180°C vorgeheizt und der Heckbrenner läuft dabei auf mittlerer Stufe mit. Die Ananas wird geschält und in Scheiben geschnitten. Der Strunk bleibt dabei in den Scheiben erhalten, damit die Scheiben besser auf dem Spieß halten. Die Zwiebel wird abgezogen und halbiert. Das marinierte Fleisch wird aus dem Vakuum geholt und der Spieß wird bestückt. Zuerst wird eine Zwiebelhälfte aufgespießt, dann folgt immer abwechselnd eine Scheibe Fleisch und eine Scheibe Ananas. Zum Abschluss wird die andere Zwiebelhälfte auf den Spieß gesteckt und das Grillgut mit den Spießkrallen zusammengedrückt und befestigt. Zur besseren Temperaturkontrolle haben wir den Spieß mit unserem Grillthermometer bestückt und eine Ziel-Kerntemperatur von 63°C eingestellt. Für Iberico-Fleisch ist das die ideale Kerntemperatur. Solltet ihr herkömmliches Schweinefleisch verwenden, sollte ggf. eine höhere Kerntemperatur angepeilt werden (bei Schweinenacken ca. 75°C).", ""],
+  ["", "Nun wird der Spieß eingehangen und der Motor wird eingeschaltet. Unter dem Drehspieß sollte auf dem Grillrost eine Schale mit Wasser platziert werden, damit sich heruntertropfendes Fett und Fleischsäfte nicht einbrennen. Der Drehspieß wird bei geschlossenen Deckel für etwa 60 Minuten gegart, bis das Fleisch die gewünschte Kerntemperatur erreicht hat. In der Zwischenzeit wird der Koriander gewaschen und fein gehackt und die Limette wird halbiert. Wenn der Spieß die Ziel-Kerntemperatur erreicht hat, kann das Fleisch mit der Ananas vorsichtig heruntergeschnitten werden.", ""],
+  ["", "Das Fleisch wird nun zusammen mit den Ananasstücken in die Tortillas gefüllt und mit Koriander, etwas klein gehackter roter Zwiebel bestreut und mit etwas Limettensaft beträufelt. Diese Tacos al Pastor sind eine wahre Geschmacksexplosion! Würzig, saftig und fruchtig sind diese Tacos ein absoluter Traum, den jeder Liebhaber der Tex-Mex-Küche unbedingt mal nachmachen sollte.", ""],
+
+];
+
+	//const notizen =
+</script>
+<script src="../sidebar.js"></script>
+<script src="recipe_render.js"></script>
+</body>
+</html>

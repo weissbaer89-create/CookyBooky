@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="titelA">Titel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="recipes.css" />
+  <script src="../recipes.js"></script>
+</head>
+<body>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ── Sidebar ─────────────────────────────────────────────── -->
+<nav id="sidebar" aria-label="Rezept-Navigation">
+  <div class="sb-header">
+    <a class="sb-logo" id="sb-logo" href="../index.html"></a>
+    <button class="sb-close" onclick="closeSidebar()" aria-label="Schließen">✕</button>
+  </div>
+  <div id="sb-nav-body"></div>
+  <div class="sb-footer">
+    <span class="sb-footer-label">Erscheinungsbild</span>
+    <div class="theme-toggle">
+      <span class="theme-label">Dunkel</span>
+      <div class="toggle-track on" onclick="toggleTheme()" role="switch" aria-label="Theme wechseln">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Topbar ──────────────────────────────────────────────── -->
+<header id="topbar">
+  <button class="burger-btn" onclick="openSidebar()" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="topbar-breadcrumb">
+    <a href="../index.html">Kochbuch</a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="landA"></span></a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="typA"></span></a>
+    <span class="sep">›</span>
+    <span class="current" id="titelB">Titel</span>
+  </nav>
+  <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button>
+</header>
+
+<!-- ── Rezept ─────────────────────────────────────────────── -->
+<article>
+  <header class="recipe-hero">
+    <div class="recipe-cat-label"><span id="icon"></span> <span id="typB"></span> · <span id="flag"></span> <span id="landB"></span></div>
+    <h1 class="recipe-title" id="headline">Überschrift</h1>
+    <p class="recipe-desc" id="description">Beschreibung</p>
+    <div class="recipe-meta">
+      <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
+      <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">6</span></div>
+    </div>
+    <div class="recipe-tags" id="tags"></div>
+  </header>
+
+  <div class="gold-rule"><div class="gold-dot"></div></div>
+
+  <div class="recipe-body">
+    <!-- Zutaten -->
+    <aside class="ingredients-panel">
+      <h2 class="panel-title">Zutaten</h2>
+      <div class="serving-label-div">
+		<span class="serving-label">~ Portionen ~</span>
+	  </div>
+      <div class="serving-control">
+        <button class="serving-btn" onclick="changeServings(-1)">−</button>
+        <span class="serving-num" id="serving-num">6</span>
+        <button class="serving-btn" onclick="changeServings(1)">+</button>
+      </div>
+      <ul class="ingredient-list" id="ingredient-list"></ul>
+    </aside>
+
+    <!-- Zubereitung -->
+	<div syle="width=100%;">
+	<div id="steps">
+      <h2 class="steps-title">Zubereitung</h2>
+	</div>
+		<div id="notes"></div>
+  </div>
+  </div>
+</article>
+
+<footer>
+  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zur Startseite</a>
+</footer>
+
+<!-- ── Scripts ────────────────────────────────────────────── -->
+<script>
+  /* ── Sidebar-Konfiguration ──────────────────────────── */
+  window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
+  window.SIDEBAR_CURRENT_FILE = 'rezepte/ie-shepherds_pie.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Shepherd´s <em>Pie</em>';
+const ID = 'ie-shepherds_pie';
+const beschreibung = 'Aromatisches Hackfleisch mit Erbsen und Möhren, cremiger Kartoffelbrei, geschichtet in einer Auflaufform und mit Cheddar überbacken: Der Klassiker Shepherd´s Pie aus der irischen Küche lässt unsere Herzen höher schlagen. In diesem Pie vereinen sich aromatisches Hackfleisch, feines Gemüse und cremiger Kartoffelbrei. Für das Hackfleisch wird meist Rinderhackfleisch verwendet, ursprünglicher ist es mit Lammhackfeisch. Beide Varianten sind lecker. Auch sonst lassen sich unzählige Versionen des Shepherd´s Pie finden. Statt Gemüsebrühe kann auch ein Rinderfond oder zur Hälfte Rotwein verwendet werden. Gewürfelte Möhren sind eigentlich immer zu finden. Häufig auch Erbsen. Seltener Pilze oder Bohnen. Gerne wird in oder auf das Kartoffelpüree Käse, z. B. Cheddar gegeben, dieser kann aber auch weggelassen werden.';
+const hinweis = '';
+
+  /* ── Zutaten mit Mengenrechner ──────────────────────── */
+  const BASE_SERVINGS = 6;
+  // [Menge pro Portion, Einheit, Name]
+  const INGREDIENTS = [
+[800/6,'g','Iberico Lomo'],
+[800/6,'g','mehligkochende Kartoffeln'],
+[null,'','Salz'],
+[2/6,'','Möhren'],
+[1/6,'','weiße Zwiebel'],
+[1/6,'El','Öl'],
+[800/6,'g','Rinderhackfleisch (ersatzweise Lammhackfleisch)'],
+[2/6,'El','Tomatenmark'],
+[100/6,'g','Erbsen (TK)'],
+[2/6,'Zweige','Thymian'],
+[150/6,'ml','Gemüsebrühe'],
+[null,'','Worcestershiresauce (nach Belieben)'],
+[null,'','Salz'],
+[null,'','Pfeffer'],
+[125/6,'ml','Milch'],
+[20/6,'g','Butter'],
+[null,'','Muskat'],
+[100/6,'g','Cheddar-Käse (gerieben)'],
+  ];
+  let servings = BASE_SERVINGS;
+  
+  const zubereitung = [
+  ["", "Kartoffeln schälen, in gleich große Stücke schneiden. In kaltem Wasser zugedeckt aufkochen, salzen und ca. 20 Min. bei milder Hitze kochen, bis sie gar sind.", ""],
+  ["", " In der Zwischenzeit Möhren schälen und in ca. 5 mm große Würfel schneiden. Zwiebel fein würfeln.", ""],
+  ["", "Öl in einer tiefen Pfanne oder direkt in einem ofenfesten Bräter erhitzen. Rinderhackfleisch darin krümelig anbraten. Möhren und Zwiebeln zugeben und 2–3 Minuten mit anbraten. Tomatenmark, Erbsen und Thymian zugeben, unterheben und mit Brühe ablöschen. Mit Worcestershiresauce, Salz und Pfeffer würzen und 15 Minuten auf mittlerer Stufe köcheln lassen, bis eine dickflüssige Hackfleischsauce entstanden ist. Thymianzweige entfernen.", ""],
+  ["", "Kartoffeln abgießen und ausdampfen lassen. Mit einem Kartoffelstampfer fein zerdrücken. Milch erwärmen und mit einem Schneebesen unter die fein zerdrückten Kartoffeln rühren. Butter zugeben und unterrühren. Mit Salz, Pfeffer und Muskat abschmecken. Die eine Hälfte des Cheddars unterrühren.", ""],
+  ["", "Hackfleischmasse in eine Auflaufform geben und den Kartoffelbrei gleichmäßig darauf verteilen. Restlichen Cheddar drüberstreuen und im vorgeheizten Backofen bei 200 Grad ca. 30 Minuten goldgelb backen.", ""],
+
+];
+
+	//const notizen =
+</script>
+<script src="../sidebar.js"></script>
+<script src="recipe_render.js"></script>
+</body>
+</html>

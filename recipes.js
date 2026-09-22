@@ -280,7 +280,22 @@ const RECIPES = [
             description: "mit Himbeerdressing"
           },
         ]
-      }
+      },
+	  {
+        name: "Einwecken",
+        icon: "🫙",
+        items: [
+          {
+            id: "at-birnenkompott",
+            title: "Birnenkompott",
+            file: "rezepte/at-birnenkompott.html",
+            tags: ["leicht", "kompott"],
+            time: "25 min",
+            difficulty: "einfach",
+            description: "aus frischen Birnen mit Vanille & Zimt"
+          },
+        ]
+      },
     ]
   },
  

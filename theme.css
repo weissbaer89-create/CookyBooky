@@ -239,12 +239,39 @@ body {
 }
 .burger-btn:hover { background: var(--paper); border-color: var(--muted); }
 .burger-btn span { display: block; width: 17px; height: 1.5px; background: var(--ink); border-radius: 2px; transition: background .3s; }
-.topbar-theme-btn {
-  background: none; border: 1px solid var(--border); border-radius: 9px;
-  width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
-  cursor: pointer; font-size: 1rem; transition: background .2s, border-color .2s; flex-shrink: 0;
+
+/* ── Topbar-Switches (Tag/Nacht & Wake-Lock) ─────────────────
+   Pill-Schalter mit gleitendem Knopf, wie ein klassischer
+   On/Off-Toggle – Farbgebung an das Bella-Cucina-Theme angepasst
+   (Creme/Gold statt Rot/Grün). ────────────────────────────── */
+.topbar-switch {
+  position: relative;
+  width: 54px; height: 28px;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  padding: 0; cursor: pointer; flex-shrink: 0;
+  transition: background .3s, border-color .3s;
 }
-.topbar-theme-btn:hover { background: var(--paper); border-color: var(--muted); }
+.topbar-switch:hover { border-color: var(--muted); }
+.topbar-switch .switch-icon {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  font-size: .68rem; line-height: 1; opacity: .4;
+  transition: opacity .3s; pointer-events: none; filter: grayscale(.4);
+}
+.topbar-switch .switch-icon.left  { left: 6px; }
+.topbar-switch .switch-icon.right { right: 6px; }
+.topbar-switch .knob {
+  position: absolute; top: 2px; left: 2px;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: #fffdf9;
+  box-shadow: 0 2px 6px rgba(26,18,8,.35);
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+}
+.topbar-switch.on { background: var(--gold); border-color: var(--gold); }
+.topbar-switch.on .knob { transform: translateX(26px); }
+.topbar-switch.on .switch-icon.right { opacity: .95; filter: none; }
+.topbar-switch:not(.on) .switch-icon.left { opacity: .6; filter: none; }
 
 /* ═══════════════════════════════════════════════════════════
    SHARED UTILITIES

@@ -11,11 +11,28 @@
   ══════════════════════════════════════════════════════════ */
   const THEME_KEY = 'bellacucina-theme';
 
+  // Bestehenden Icon-Button in der Topbar zu einem Toggle-Switch umbauen
+  // (Markup bleibt in jeder Seite gleich, nur der Inhalt wird ersetzt –
+  // kein manuelles Anpassen pro Seite nötig).
+  document.querySelectorAll('.topbar-theme-btn').forEach(function (b) {
+    b.classList.add('topbar-switch', 'theme-switch');
+    b.setAttribute('role', 'switch');
+    b.setAttribute('aria-label', 'Tag-/Nachtansicht wechseln');
+    b.innerHTML =
+      '<span class="switch-icon left">🌙</span>' +
+      '<span class="switch-icon right">☀️</span>' +
+      '<span class="knob"></span>';
+  });
+
   function applyTheme(dark) {
     document.documentElement.classList.toggle('dark', dark);
     document.querySelectorAll('.toggle-track').forEach(t => t.classList.toggle('on', dark));
     document.querySelectorAll('.theme-label').forEach(l => l.textContent = dark ? 'Dunkel' : 'Hell');
-    document.querySelectorAll('.topbar-theme-btn').forEach(b => b.textContent = dark ? '☀️' : '🌙');
+    document.querySelectorAll('.topbar-theme-btn').forEach(function (b) {
+      b.classList.toggle('on', dark);
+      b.setAttribute('aria-checked', dark ? 'true' : 'false');
+      b.title = dark ? 'Zur hellen Ansicht wechseln' : 'Zur dunklen Ansicht wechseln';
+    });
   }
   function toggleTheme() {
     const dark = !document.documentElement.classList.contains('dark');
@@ -25,6 +42,77 @@
   const saved = localStorage.getItem(THEME_KEY);
   applyTheme(saved ? saved === 'dark' : true);
   window.toggleTheme = toggleTheme;
+
+  /* ══════════════════════════════════════════════════════════
+     1b. WAKE LOCK (Bildschirm wach halten)
+  ══════════════════════════════════════════════════════════ */
+  const WAKE_KEY = 'bellacucina-wakelock';
+  let wakeLock = null;
+  let wakeLockWanted = localStorage.getItem(WAKE_KEY) === '1';
+
+  function updateWakeBtn() {
+    document.querySelectorAll('.topbar-wake-btn').forEach(function (b) {
+      const active = wakeLockWanted && wakeLock !== null;
+      b.classList.toggle('on', active);
+      b.setAttribute('aria-checked', active ? 'true' : 'false');
+      b.title = active
+        ? 'Bildschirm bleibt an – zum Deaktivieren klicken'
+        : 'Bildschirm wach halten (verhindert Standby)';
+    });
+  }
+
+  async function requestWakeLock() {
+    if (!('wakeLock' in navigator)) { updateWakeBtn(); return; }
+    try {
+      wakeLock = await navigator.wakeLock.request('screen');
+      wakeLock.addEventListener('release', function () {
+        wakeLock = null;
+        updateWakeBtn();
+      });
+    } catch (err) {
+      wakeLock = null;
+    }
+    updateWakeBtn();
+  }
+
+  function releaseWakeLock() {
+    if (wakeLock) { wakeLock.release(); wakeLock = null; }
+    updateWakeBtn();
+  }
+
+  function toggleWakeLock() {
+    wakeLockWanted = !wakeLockWanted;
+    localStorage.setItem(WAKE_KEY, wakeLockWanted ? '1' : '0');
+    if (wakeLockWanted) requestWakeLock(); else releaseWakeLock();
+  }
+  window.toggleWakeLock = toggleWakeLock;
+
+  // Wake Lock wird vom Browser automatisch freigegeben, sobald der Tab
+  // in den Hintergrund wechselt – bei Rückkehr ggf. neu anfordern.
+  document.addEventListener('visibilitychange', function () {
+    if (wakeLockWanted && document.visibilityState === 'visible' && wakeLock === null) {
+      requestWakeLock();
+    }
+  });
+
+  // Button neben dem Theme-Toggle in JEDE Topbar einfügen (kein manuelles
+  // Einbauen pro Rezeptseite nötig, da sidebar.js überall eingebunden ist).
+  document.querySelectorAll('.topbar-theme-btn').forEach(function (themeBtn) {
+    const wakeBtn = document.createElement('button');
+    wakeBtn.type = 'button';
+    wakeBtn.className = 'topbar-switch topbar-wake-btn wake-switch';
+    wakeBtn.setAttribute('role', 'switch');
+    wakeBtn.setAttribute('aria-label', 'Bildschirm wach halten');
+    wakeBtn.setAttribute('aria-checked', 'false');
+    wakeBtn.innerHTML =
+      '<span class="switch-icon left">💤</span>' +
+      '<span class="switch-icon right">☕</span>' +
+      '<span class="knob"></span>';
+    wakeBtn.addEventListener('click', toggleWakeLock);
+    themeBtn.insertAdjacentElement('afterend', wakeBtn);
+  });
+  updateWakeBtn();
+  if (wakeLockWanted) requestWakeLock();
 
   /* ══════════════════════════════════════════════════════════
      2. SIDEBAR AUFBAUEN

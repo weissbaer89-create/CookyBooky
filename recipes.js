@@ -294,6 +294,24 @@ const RECIPES = [
             difficulty: "einfach",
             description: "aus frischen Birnen mit Vanille & Zimt"
           },
+          {
+            id: "at-zwetschgenmarmelade",
+            title: "Zwetschgenmarmelade",
+            file: "rezepte/at-zwetschgenmarmelade.html",
+            tags: ["leicht", "marmelade"],
+            time: "30 min",
+            difficulty: "einfach",
+            description: "mit Zimt und Vanille"
+          },
+          {
+            id: "at-traubenmarmelade",
+            title: "Apfel-Trauben-Marmelade",
+            file: "rezepte/at-traubenmarmelade.html",
+            tags: ["leicht", "marmelade"],
+            time: "45 min",
+            difficulty: "einfach",
+            description: "mit Zimt und Vanille"
+          },
         ]
       },
     ]

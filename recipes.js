@@ -264,6 +264,15 @@ const RECIPES = [
             difficulty: "mittel",
             description: "traditionelles Familien-Rezept ohne viel Schnickschnack, Burschen-Approved!"
           },
+		  {
+            id: "at-linseneintopf_selchroller",
+            title: "Herzhafter Linseneintopf",
+            file: "rezepte/at-linseneintopf_selchroller.html",
+            tags: ["herzhaft", "traditionell", "fleisch", "winter"],
+            time: "40 min",
+            difficulty: "leicht",
+            description: "mit Selchroller, Speck und Spazln"
+          },
         ]
       },
 	  {

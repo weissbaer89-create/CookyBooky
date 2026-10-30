@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="titelA">Titel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="recipes.css" />
+  <script src="../recipes.js"></script>
+</head>
+<body>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ── Sidebar ─────────────────────────────────────────────── -->
+<nav id="sidebar" aria-label="Rezept-Navigation">
+  <div class="sb-header">
+    <a class="sb-logo" id="sb-logo" href="../index.html"></a>
+    <button class="sb-close" onclick="closeSidebar()" aria-label="Schließen">✕</button>
+  </div>
+  <div id="sb-nav-body"></div>
+  <div class="sb-footer">
+    <span class="sb-footer-label">Erscheinungsbild</span>
+    <div class="theme-toggle">
+      <span class="theme-label">Dunkel</span>
+      <div class="toggle-track on" onclick="toggleTheme()" role="switch" aria-label="Theme wechseln">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Topbar ──────────────────────────────────────────────── -->
+<header id="topbar">
+  <button class="burger-btn" onclick="openSidebar()" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="topbar-breadcrumb">
+    <a href="../index.html">Kochbuch</a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="landA"></span></a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="typA"></span></a>
+    <span class="sep">›</span>
+    <span class="current" id="titelB">Titel</span>
+  </nav>
+  <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button>
+</header>
+
+<!-- ── Rezept ─────────────────────────────────────────────── -->
+<article>
+  <header class="recipe-hero">
+    <div class="recipe-cat-label"><span id="icon"></span> <span id="typB"></span> · <span id="flag"></span> <span id="landB"></span></div>
+    <h1 class="recipe-title" id="headline">Überschrift</h1>
+    <p class="recipe-desc" id="description">Beschreibung</p>
+    <div class="recipe-meta">
+      <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
+      <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
+      <div class="meta-pill"><span class="lbl">Portionen&nbsp;</span><span id="base-servings">4</span></div>
+    </div>
+    <div class="recipe-tags" id="tags"></div>
+  </header>
+
+  <div class="gold-rule"><div class="gold-dot"></div></div>
+
+  <div class="recipe-body">
+    <!-- Zutaten -->
+    <aside class="ingredients-panel">
+      <h2 class="panel-title">Zutaten</h2>
+      <div class="serving-label-div">
+		<span class="serving-label">~ Portionen ~</span>
+	  </div>
+      <div class="serving-control">
+        <button class="serving-btn" onclick="changeServings(-1)">−</button>
+        <span class="serving-num" id="serving-num">4</span>
+        <button class="serving-btn" onclick="changeServings(1)">+</button>
+      </div>
+      <ul class="ingredient-list" id="ingredient-list"></ul>
+    </aside>
+
+    <!-- Zubereitung -->
+	<div syle="width=100%;">
+	<div id="steps">
+      <h2 class="steps-title">Zubereitung</h2>
+	</div>
+		<div id="notes"></div>
+  </div>
+  </div>
+</article>
+
+<footer>
+  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zur Startseite</a>
+</footer>
+
+<!-- ── Scripts ────────────────────────────────────────────── -->
+<script>
+  /* ── Sidebar-Konfiguration ──────────────────────────── */
+  window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
+  window.SIDEBAR_CURRENT_FILE = 'rezepte/at-linseneintopf_selchroller.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Herzhafter Linseneintopf <em>mit Selchroller, Speck und Spazln</em>';
+const ID = 'at-linseneintopf_selchroller';
+const beschreibung = 'Feiner Wintereintopf';
+const hinweis = 'man kann das Gericht noch mit Crème Fraiche abrunden';
+
+// Ausgabe: Pasta alla Carbonara
+  /* ── Zutaten mit Mengenrechner ──────────────────────── */
+  const BASE_SERVINGS = 4;
+  // [Menge pro Portion, Einheit, Name]
+  const INGREDIENTS = [
+    [400,  'g',   'Selchroller'],
+    [200,    'g', 'Speck'],
+    [300,   'g',   'Berglinsen'],
+    [4,   '',   'Karotten'],
+    [2,   '',   'Zwiebeln'],
+    [3,   '',   'Knoblauchzehen'],
+    [2,   'EL',   'Tomatenmark'],
+    [1.8,   'l',   'Rindssuppe'],
+    [500,   'g',   'Spätzle'],
+    [,   '',   'Öl'],
+    [,   '',   'Salz'],
+    [,   '',   'Pfeffer'],
+    [,   '',   'Petersilie'],
+  ];
+  let servings = BASE_SERVINGS;
+  
+  const zubereitung = [
+  ["", "Zwiebeln und Karotten klein schneiden, Knoblauch andrücken und grob hacken. Selchroller in ca 1cm große Stücke schneiden", ""],
+  ["", "Selchroller und Speck in einem großen Topf anbraten.", ""],
+  ["", "Zwiebeln, Knoblauch, Karotten und die Berglinsen hinzufügen und mit anrösten.", ""], // <--- Dieser Tipp ist leer!
+  ["", "Tomatenmark hinzufügen und pfeffern (mit dem Salzen vorsichtig sein)", ""],
+  ["", "Mit Suppe ablöschen und etwa 30 Minuten bei geschlossenenm köcheln lassen.", ""],
+  ["", "Die Spätzle zugeben und noch 10 Minuten köcheln lassen. Gehackte Petersilie zugeben.", ""],
+];
+
+	//const notizen =
+</script>
+<script src="../sidebar.js"></script>
+<script src="recipe_render.js"></script>
+</body>
+</html>

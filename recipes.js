@@ -291,6 +291,21 @@ const RECIPES = [
         ]
       },
 	  {
+        name: "Desserts",
+        icon: "🍰",
+        items: [
+          {
+            id: "at-paradiescreme_gugelhupf",
+            title: "Paradiescreme Gugelhupf",
+            file: "rezepte/at-paradiescreme_gugelhupf.html",
+            tags: ["schokolade", "fluffig",],
+            time: "60 min",
+            difficulty: "einfach",
+            description: "ganz ganz einfach"
+          },
+        ]
+      },
+	  {
         name: "Einwecken",
         icon: "🫙",
         items: [

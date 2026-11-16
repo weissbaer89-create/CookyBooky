@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="titelA">Titel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css" />
+  <link rel="stylesheet" href="recipes.css" />
+  <script src="../recipes.js"></script>
+</head>
+<body>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- ── Sidebar ─────────────────────────────────────────────── -->
+<nav id="sidebar" aria-label="Rezept-Navigation">
+  <div class="sb-header">
+    <a class="sb-logo" id="sb-logo" href="../index.html"></a>
+    <button class="sb-close" onclick="closeSidebar()" aria-label="Schließen">✕</button>
+  </div>
+  <div id="sb-nav-body"></div>
+  <div class="sb-footer">
+    <span class="sb-footer-label">Erscheinungsbild</span>
+    <div class="theme-toggle">
+      <span class="theme-label">Dunkel</span>
+      <div class="toggle-track on" onclick="toggleTheme()" role="switch" aria-label="Theme wechseln">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Topbar ──────────────────────────────────────────────── -->
+<header id="topbar">
+  <button class="burger-btn" onclick="openSidebar()" aria-label="Menü öffnen">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="topbar-breadcrumb">
+    <a href="../index.html">Kochbuch</a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="landA"></span></a>
+    <span class="sep">›</span>
+    <a href="../index.html"><span id="typA"></span></a>
+    <span class="sep">›</span>
+    <span class="current" id="titelB">Titel</span>
+  </nav>
+  <button class="topbar-theme-btn" onclick="toggleTheme()" aria-label="Theme wechseln">☀️</button>
+</header>
+
+<!-- ── Rezept ─────────────────────────────────────────────── -->
+<article>
+  <header class="recipe-hero">
+    <div class="recipe-cat-label"><span id="icon"></span> <span id="typB"></span> · <span id="flag"></span> <span id="landB"></span></div>
+    <h1 class="recipe-title" id="headline">Überschrift</h1>
+    <p class="recipe-desc" id="description">Beschreibung</p>
+    <div class="recipe-meta">
+      <div class="meta-pill"><span class="lbl">Zeit&nbsp;</span><span id="time">0 min</span></div>
+      <div class="meta-pill"><span class="lbl">Schwierigkeit&nbsp;</span><span id="difficulty">???</span></div>
+      <div class="meta-pill"><span id="base-servings">4</span><span class="lbl">&nbsp;Portionen</span></div>
+    </div>
+    <div class="recipe-tags" id="tags"></div>
+  </header>
+
+  <div class="gold-rule"><div class="gold-dot"></div></div>
+
+  <div class="recipe-body">
+    <!-- Zutaten -->
+    <aside class="ingredients-panel">
+      <h2 class="panel-title">Zutaten</h2>
+      <div class="serving-label-div">
+		<span class="serving-label">~ Portionen ~</span>
+	  </div>
+      <div class="serving-control">
+        <button class="serving-btn" onclick="changeServings(-1)">−</button>
+        <span class="serving-num" id="serving-num">4</span>
+        <button class="serving-btn" onclick="changeServings(1)">+</button>
+      </div>
+      <ul class="ingredient-list" id="ingredient-list"></ul>
+    </aside>
+
+    <!-- Zubereitung -->
+	<div syle="width=100%;">
+	<div id="steps">
+      <h2 class="steps-title">Zubereitung</h2>
+	</div>
+		<div id="notes"></div>
+  </div>
+  </div>
+</article>
+
+<footer>
+  <strong id="footer-logo"></strong> &mdash; <a href="../index.html">← Zurück zur Startseite</a>
+</footer>
+
+<!-- ── Scripts ────────────────────────────────────────────── -->
+<script>
+  /* ── Sidebar-Konfiguration ──────────────────────────── */
+  window.SIDEBAR_PREFIX       = '../';        // Pfad-Präfix für Links
+  window.SIDEBAR_CURRENT_FILE = 'rezepte/tr-pide.html'; // ← bei jeder Vorlage anpassen
+const headline = 'Mediterrane Pide <em>mit Artischocken & Oliven</em>';
+const ID = 'tr-pide';
+const beschreibung = 'Diese Pide mit Artischocken und Oliven ist eine mediterrane Variante für alle, die ihre Pide vegetarisch mögen, aber trotzdem nicht auf ordentlich Geschmack verzichten wollen. Knuspriger Germteig mit mediterraner Käsefüllung aus Feta, Artischocken, Mozzarella und Oliven bringen eben genau die richtige Mischung aus Würze und Cremigkeit auf den Tisch. Wenige Zutaten, sauber kombiniert – mehr braucht es auch gar nicht. - Motion Cooking';
+const hinweis = 'Wie bei allen Pide-Rezepten ist auch hier die Hitze entscheidend. Ein maximal aufgeheizter Ofen sorgt dafür, dass der Teig außen schön knusprig und innen flaumig wird, während die Füllung saftig und aromatisch bleibt. Perfekt als schnelles Abendessen, zum Teilen im Büro oder als vegetarischer Hauptgang mit mediterranem Einschlag.';
+
+// Ausgabe: Pasta alla Carbonara
+  /* ── Zutaten mit Mengenrechner ──────────────────────── */
+  const BASE_SERVINGS = 4;
+  // [Menge pro Portion, Einheit, Name]
+  const INGREDIENTS = [
+    [null,  'für den Teig',   null],
+    [320/4,  'g',   'Weizenmehl (W700 oder Tipo 00)'],
+    [4/4,    'g', 'Trockengerm'],
+    [1/4,   'TL',   'Salz'],
+    [1/4,   'TL',   'Zucker'],
+    [200/4,   'g',   'Wasser'],
+    [2/4,   'EL',   'Olivenöl'],
+	
+    [null,  'für die Füllung',   null],
+    [150/4,   'g',   'Feta'],
+    [150/4,   'g',   'Mozzarella'],
+    [150/4,   'g',   'Artischocken, eingelegt & abgetropft'],
+    [80/4,   'g',   'Oliven'],
+	
+	[null,  'zum Toppen',   null],
+    [null,   null,   'Ei + Schluck Milch, zum Bepinseln'],
+    [null,   null,   'Sesam, zum Bestreuen'],
+    [null,   null,   'Petersilie, fein gehackt'],
+  ];
+  let servings = BASE_SERVINGS;
+  
+  const zubereitung = [
+  ["für den Teig", "Mehl, Germ, Salz und Zucker in einer Schüssel vermengen. Das Wasser hinzufügen und alles kurz zu einem groben Teig verrühren. Anschließend zu einem glatten, geschmeidigen Teig kneten und gegen Ende der Knetzeit das Olivenöl einarbeiten. Den Teig abdecken und etwa 1 Stunde gehen lassen, bis sich das Volumen verdoppelt hat.", ""],
+  ["für die Füllung", "Feta, Mozzarella und Artischocken fein hacken oder kurz mixen und gut vermengen.", ""],
+  ["für die Pide", "Den Teig in gleich große Teile teilen und jeweils oval etwa 5 mm dick ausrollen.", ""],
+  ["", "Die Füllung gleichmäßig auf dem Teig verteilen, dabei links und rechts rund 2 cm Rand frei lassen und den Teig nach oben hin leicht spitz zulaufen lassen. Die Teigränder links und rechts einklappen und oben zu einer Spitze formen.", ""],
+  ["", "Die Oliven halbieren und auf der Füllung verteilen. Den Teig mit der Ei-Milch-Mischung bestreichen und mit Sesam bestreuen.", ""],
+  ["", "Im maximal vorgeheizten Backofen (bei mir 250 °C – wenn dein Ofen mehr hergibt, dann mehr – 10–12 Minuten backen. Anschneiden und genießen!", ""],
+];
+
+	//const notizen =
+</script>
+<script src="../sidebar.js"></script>
+<script src="recipe_render.js"></script>
+</body>
+</html>

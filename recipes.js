@@ -342,6 +342,32 @@ const RECIPES = [
   },
  
   // ════════════════════════════════════════════════════════
+  //  LAND: Türkei
+  // ════════════════════════════════════════════════════════
+  {
+    country: "Türkei",
+    flag: "🇹🇷",
+    code: "tr",
+    subcategories: [
+      {
+        name: "Hauptgerichte",
+        icon: "🌯",
+        items: [
+          {
+            id: "tr-pide",
+            title: "Mediterrane Pide",
+            file: "rezepte/tr-pide.html",
+            tags: ["vegetarisch", "einfach", "MotionCooking"],
+            time: "120 min",
+            difficulty: "einfach",
+            description: " mit Artischocken & Oliven"
+          }
+        ]
+     },
+    ]
+  }, 
+   
+  // ════════════════════════════════════════════════════════
   //  LAND: Indien
   // ════════════════════════════════════════════════════════
   {
